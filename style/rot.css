@@ -1,0 +1,13 @@
+:root {
+  --orange: #ffa500;
+  --darkBrown: #340100;
+  --lightOrange: #ffed7d;
+}
+html::-webkit-scrollbar {
+  width: 10px;
+  background-color: #340100;
+}
+html::-webkit-scrollbar-thumb {
+  background-color: #ffa500;
+  border-radius: 10px;
+}

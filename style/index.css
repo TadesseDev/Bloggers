@@ -1,0 +1,247 @@
+@import url("./fonts/registr.css");
+@import url("./registrationForm.css");
+@import url("./rot.css");
+html,
+body {
+  margin: 0px;
+  padding: 0px;
+}
+* {
+  outline: none;
+}
+*:focus {
+  outline: none;
+}
+*:focus-visible {
+  outline: none;
+}
+.container {
+  max-width: 1200px;
+}
+header {
+  font-family: "menu";
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-transform: capitalize;
+  margin-top: 20px;
+  z-index: 1;
+}
+.logo {
+  height: 35px;
+}
+svg {
+  height: 100%;
+}
+.menu a {
+  text-decoration: none;
+  color: #340100;
+  margin-right: 10px;
+}
+.jumbotron {
+  margin-top: 10px;
+  padding: 20px;
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+  height: 250px;
+  text-transform: capitalize;
+  background-color: var(--darkBrown);
+  border-radius: 0px;
+}
+.textContent ol {
+  font-family: "title";
+  font-size: 1.2em;
+  list-style: none;
+  color: var(--lightOrange);
+  margin: 0px;
+  padding-left: 40px;
+}
+.textContent ol .title {
+  margin-left: -40px;
+  font-size: 1.4em;
+}
+.jumbotron img {
+  width: 100%;
+}
+.imageContainer {
+  height: fit-content;
+}
+.BlogSideImage {
+  padding: 20px;
+  height: 150px;
+}
+.BlogSideImage img {
+  height: 100%;
+  width: auto;
+  float: right;
+}
+.blogTitle {
+  text-decoration: underline;
+  font-family: "title";
+  text-transform: capitalize;
+  font-size: 1.5em;
+}
+.halfSide {
+  margin-top: 30px;
+  padding-top: 10px;
+  box-shadow: 0px 0px 20px 1px rgba(0, 0, 0, 0.096);
+  border-radius: 10px;
+  border: #ffa500 solid 1px;
+}
+/* create blog css */
+.CreateBloog {
+  flex-direction: column;
+  /* height: 80vh; */
+  /* background-color: aqua; */
+  /* margin: auto; */
+  /* margin-top: -90px; */
+  /* width: 95vw; */
+  /* overflow: hidden; */
+}
+/* .CreateBloog form { */
+/* height: 100%; */
+/* background-color: #8a5d0b; */
+/* } */
+/* .CreateBloog .row {
+  height: 100%;
+  max-height: 100%;
+  overflow: hidden; */
+/* background-color: #8a5d0b; */
+/* } */
+/* .textArea { */
+/* background-color: #7a705e; */
+/* } */
+.editPost {
+  position: relative;
+  width: 100%;
+  height: 80%;
+}
+textarea {
+  height: 400px;
+  width: 100%;
+  /* border: var(--orange) 3px solid; */
+}
+/* textArea:focus-visible { */
+/* border: var(--orange) 3px solid; */
+/* } */
+.editPost .add {
+  /* position: absolute; */
+  /* bottom: 5px; */
+  /* left: 0; */
+  /* display: inline-flex; */
+  height: 40px;
+}
+.add input[type="file"] {
+  display: none;
+}
+.sideButton {
+  height: 100%;
+  margin: 5px;
+  border: none;
+  /* background-color: var(--darkBrown); */
+  /* color: var(--orange);
+  border-radius: 10px; */
+  background: transparent;
+}
+.icon {
+  height: 100%;
+}
+.sideButton.yellow {
+  color: var(--darkBrown);
+  background-color: var(--orange);
+}
+.add .sideButton.save,
+.add .sideButton.cancel {
+  display: none;
+}
+.CreateBlogBotom p {
+  display: inline;
+}
+.CreateBlogBotom .author {
+  margin: 10px 10px;
+}
+
+.CreateBlogBotom label {
+  margin: 0px 10px;
+}
+.preview {
+  /* border: #ffa500 3px solid; */
+  position: relative;
+}
+.preview button {
+  font-size: 18px;
+  position: fixed;
+  bottom: 2%;
+  right: 2%;
+  height: 70px;
+  width: 70px;
+  border-radius: 50%;
+  border: none;
+  background-color: var(--darkBrown);
+  color: var(--orange);
+  box-shadow: 0px 0px 20px 0px black;
+}
+.userAction {
+  transform: translate(0px, -50%);
+  height: fit-content;
+  float: right;
+}
+.button {
+  padding: 10px 30px;
+  border-radius: 10px;
+  background-color: var(--orange);
+  border: none;
+  color: var(--darkBrown);
+}
+.button:focus {
+  outline: none;
+}
+.Home {
+  margin-top: 100px;
+}
+.orange {
+  background-color: var(--orange);
+}
+.darkBrown {
+  background-color: var(--darkBrown);
+}
+.lightOrange {
+  background-color: var(--lightOrange);
+}
+.ColorOrange {
+  color: var(--orange);
+}
+.ColorDarkBrown {
+  color: var(--darkBrown);
+}
+.ColorLightOrange {
+  color: var(--lightOrange);
+}
+.simpleTextField {
+  outline: none;
+  border: none;
+  border-bottom: 2px orange solid;
+}
+.half {
+  width: 49%;
+  padding: 1%;
+}
+.floatLeft {
+  float: left;
+}
+a {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: none;
+}
+.codeBlock {
+  max-width: 80%;
+}
+.modal select {
+  font-size: 20px;
+  color: orange;
+  background: none;
+  border: none;
+  outline: none;
+  margin-left: 50px;
+}

@@ -1,0 +1,27 @@
+@import url("./rot.css");
+.formTitle {
+  color: var(--darkBrown);
+  text-align: center;
+  font-size: 2em;
+}
+.registration form {
+  text-transform: capitalize;
+  padding-top: 50px;
+  width: 60%;
+  margin: auto;
+}
+.registration form > label,
+.registration form > input {
+  width: 100%;
+  border-radius: 10px;
+}
+.registration form > input {
+  border: 3px solid var(--orange);
+  height: 40px;
+  text-align: center;
+  margin-bottom: 15px;
+}
+#password,
+#confirmationPassword {
+  width: 49%;
+}
