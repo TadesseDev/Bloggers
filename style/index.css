@@ -237,11 +237,13 @@ a:hover {
 .codeBlock {
   max-width: 80%;
 }
-.modal select {
+.modal .select {
   font-size: 20px;
   color: orange;
   background: none;
   border: none;
-  outline: none;
   margin-left: 50px;
+}
+.modal datalist {
+  background-color: var(--darkBrown);
 }

@@ -1,6 +1,8 @@
 <?php include "header.php";
-// session_destroy();
 include "./includes/validateRegistration.php";
+// $image = imagecreatefrompng("./files/3D tube WM.png");
+// $rotateImage = imagerotate($image, 45, false);
+// imagepng($rotateImage, "./files/createdImage.png", 9);
 ?>
 <div class="jumbotron">
     <div class="container">

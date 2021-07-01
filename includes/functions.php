@@ -26,3 +26,17 @@ function login($email, $Password)
     }
     // echo "use is loged in";
 }
+function processMyimage($source, $destination, $width, $height)
+{
+    list($w, $h) = getimagesize($source);
+    $oldRatio = $w / $h;
+    // echo $oldRatio;
+    $newRatio = $width / $height;
+    // echo $newRatio;
+    echo print_r($source);
+    if ($newRatio > $oldRatio) {
+        $width = $height * $oldRatio;
+    } else {
+        $height = $width / $oldRatio;
+    }
+}

@@ -1,4 +1,7 @@
 <?php
+
+use function PHPSTORM_META\type;
+
 include "header.php";
 if (!isset($_SESSION['type'])) {
     $_SESSION['type'] = null;
@@ -15,6 +18,9 @@ if (!isset($_SESSION['images'])) {
 if (!isset($_SESSION['preserve'])) {
     $_SESSION['preserve'] = array();
 }
+if (!isset($_SESSION['order'])) {
+    $_SESSION['order'] = array();
+}
 $BR = "<br/>";
 ?>
 <div class="container">
@@ -23,47 +29,22 @@ $BR = "<br/>";
             <div class="col-sm-12 textArea">
                 <div class="editPost">
                     <?php
-                    $keys = array_keys($_SESSION['images']);
+                    $keys = array_keys($_SESSION['order']);
                     $preservkeys = array_keys($_SESSION['preserve']);
                     for ($i = 0; $i < sizeof($_SESSION['textArea']); $i++) :
                     ?>
                         <textarea name="<?php echo $i ?>" placeholder="compile your blog here and preview will be available on the bottom of this page"><?php echo $_SESSION['textArea'][$i]; ?></textarea>
                         <?php
-                        foreach ($keys as $image) {
-                            if (floor((float)($image)) == $i) {
-
-                                foreach ($preservkeys as $preserve) {
-                                    if (floor((float)($preserve)) == $i) {
-                                        if ((float)($preserve) <= (float)($image)) {
-                                            // since we are useing a time stap this is highly unlikly to become equa;
-                                            //print the preserved text here 
-                                            echo $_SESSION['preserve'][$preserve] . $BR;
-                                        }
-                                    }
-                                }
-                                // echo print_r($_SESSION['images'][$image]) . $BR;
-                                $tmpName = $_SESSION['images'][$image]['name'];
-                                echo $tmpName . $BR;
-                                //
-                                foreach ($preservkeys as $preserve) {
-                                    if (floor((float)($preserve)) == $i) {
-                                        if ((float)($preserve) > (float)($image)) {
-                                            //print the preserved text here 
-
-                                            echo $_SESSION['preserve'][$preserve] . $BR;
-                                        }
-                                    }
-                                }
-                                break;
-                            }
-
-                            foreach ($preservkeys as $preserve) {
-                                if (floor((float)($preserve)) == $i) {
-                                    //print the preserved text here 
-                                    echo $_SESSION['preserve'][$preserve] . $BR;
+                        foreach ($keys as $key) :
+                            if (floor((float)$key) == $i) {
+                                if ($_SESSION['order'][$key][0] == 'image') {
+                                    echo $_SESSION['order'][$key][1]['name'] . $BR;
+                                } else if ($_SESSION['order'][$key][0] == 'preservedText') {
+                                    // ["content" => $_POST['PreservedText'], "language" => $_POST['category']]; 
+                                    echo $_SESSION['order'][$key][1]['content'] . $BR;
                                 }
                             }
-                        }
+                        endforeach;
                     endfor;
                     if (sizeof($_SESSION['textArea']) === 0) {
                         ?>
@@ -71,25 +52,26 @@ $BR = "<br/>";
                     <?php } ?>
                     <div class=" add">
                         <label for="AddPicture" class="sideButton">
-                            <span id=""><img class="icon" src="./files/icons/camera-brown.png" alt="add picture"></span>
+                            <span><img class="icon" src="./files/icons/camera-brown.png" alt="add picture"></span>
                         </label>
                         <button type="submit" name="uploadImage" class="sideButton save" id="upload">
-                            <span id=""><img class="icon" src="./files/icons/Save-brown.png" alt="add picture">
+                            <span><img class="icon" src="./files/icons/Save-brown.png" alt="add picture">
                             </span></button>
                         <button type="submit" class="sideButton cancel" id="cancel" onclick="cancePhotoUpload();" name="cancelPhotoUpdate">
-                            <span id=""><img class="icon" src="./files/icons/Cancel-brown.png" alt="add picture"></span></button>
+                            <span><img class="icon" src="./files/icons/Cancel-brown.png" alt="add picture"></span></button>
                         <input type="file" accept="image/*" onchange="pictureAdded();" name="AddPicture" id="AddPicture"></input>
                         <button type="button" class="sideButton" data-toggle="modal" data-target="#exampleModalCenter">
-                            <span id=""><img class="icon" src="./files/icons/code-brown.png" alt="add picture"></span>
+                            <span><img class="icon" src="./files/icons/code-brown.png" alt="add picture"></span>
                         </button>
                         <!-- <input type="file" id="addPreserveText"></input> -->
-                        <button type="submit" name="reset" class="sideButton" id="">
-                            <span id=""><img class="icon" src="./files/icons/Refresh-brown.png" alt="add picture"></span>
+                        <button type="submit" name="reset" class="sideButton">
+                            <span><img class="icon" src="./files/icons/Refresh-brown.png" alt="add picture"></span>
                         </button>
-                        <button type="submit" name="preview" class="sideButton" id="">
-                            <span id=""><img class="icon" src="./files/icons/Eye-brown.png" alt="add picture"></span></button>
-                        <button type="clear" name="addTextArea" class="sideButton" id="">
-                            <span id=""><img class="icon" src="./files/icons/Add-text-area-brown.png" alt="add picture" disabled></span></button>
+                        <button type="submit" name="preview" class="sideButton">
+                            <span><img class="icon" src="./files/icons/Eye-brown.png" alt="add picture"></span></button>
+                        <button type="clear" name="addTextArea" class="sideButton">
+                            <span><img class="icon" src="./files/icons/Add-text-area-brown.png" alt="add picture" disabled></span>
+                        </button>
                     </div>
                 </div>
                 <div class="CreateBlogBotom">
@@ -128,43 +110,16 @@ $BR = "<br/>";
                         foreach ($paras as $para) {
                             echo $para . $BR . $BR;
                         }
-                        foreach ($imageKeys as $image) {
-                            if (floor((float)($image)) == $i) {
-                                foreach ($preservkeys as $preserve) {
-                                    if (floor((float)($preserve)) == $i) {
-                                        if ((float)($preserve) <= (float)($image)) {
-                                            // since we are useing a time stap this is highly unlikly to become equa;
-                                            //print the preserved text here 
-                                            echo $_SESSION['preserve'][$preserve] . $BR;
-                                        }
-                                    }
-                                }
-                                // echo print_r($_SESSION['images'][$image]) . $BR;
-                                // once we found the image we will look for preserved texts which might come before 
-                                // that image but are next to the same text box.
-                                $tmpName = $_SESSION['images'][$image]['name'];
-                                echo $tmpName . $BR;
-                                // onec we print the image we will slo look for preserved texts which are in the same 
-                                //text box sequence but come after the image 
-                                foreach ($preservkeys as $preserve) {
-                                    if (floor((float)($preserve)) == $i) {
-                                        if ((float)($preserve) > (float)($image)) {
-                                            //print the preserved text here 
-
-                                            echo $_SESSION['preserve'][$preserve] . $BR;
-                                        }
-                                    }
-                                }
-                                break; // go to the next paragraph
-                            }
-                            // this one will be excuted if no picture were found
-                            foreach ($preservkeys as $preserve) {
-                                if (floor((float)($preserve)) == $i) {
-                                    //print the preserved text here 
-                                    echo $_SESSION['preserve'][$preserve] . $BR;
+                        foreach ($keys as $key) :
+                            if (floor((float)$key) == $i) {
+                                if ($_SESSION['order'][$key][0] == 'image') {
+                                    echo $_SESSION['order'][$key][1]['name'] . $BR;
+                                } else if ($_SESSION['order'][$key][0] == 'preservedText') {
+                                    // ["content" => $_POST['PreservedText'], "language" => $_POST['category']]
+                                    echo $_SESSION['order'][$key][1]['content'] . $BR;
                                 }
                             }
-                        }
+                        endforeach;
                         // echo $x . $BR;
                         $i++;
                     }
@@ -179,25 +134,30 @@ $BR = "<br/>";
                     <div class="modal-header darkBrown">
                         <h5 class="modal-title ColorOrange" id="exampleModalLongTitle">chose your language</h5>
                         <div class="languageOption">
-                            <select name="category">
-                                <option value="">HTML</option>
-                                <option value="">PHP</option>
-                                <option value="">Java</option>
-                                <option value="">SQL</option>
-                                <option value="">JavaScript</option>
-                                <option value="">JSON</option>
-                            </select>
+                            <input type="text" list="languages" name="category" id="lang" class="select" placeholder="select lang">
+                            <datalist id="languages">
+                                <option value="HTML">
+                                <option value="PHP">
+                                <option value="Java">
+                                <option value="SQL">
+                                <option value="JavaScript">
+                                <option value="JSON">
+                            </datalist>
+                            <span class="icon" id="statusIcon">
+                                <!-- <img class="icon" src="./files/icons/x-red.png" alt="add picture" disabled>
+                                <img class="icon" src="./files/icons/correct-green.png" alt="correct input" disabled> -->
+                            </span>
                         </div>
                         <button type="button" class="close ColorOrange" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <textarea name="PreservedText" id="" cols="30" rows="10"></textarea>
+                        <textarea name="PreservedText" cols="30" rows="10"></textarea>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="button darkBrown ColorOrange" data-dismiss="modal">cancel</button>
-                        <button type="submit" class="button darkBrown ColorOrange" name="addSpecialCharacter">submit</button>
+                        <button type="submit" class="button darkBrown ColorOrange" name="addSpecialCharacter" id="submitCodeContent">submit</button>
                     </div>
                 </div>
             </div>
