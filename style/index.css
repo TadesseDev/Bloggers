@@ -116,10 +116,13 @@ svg {
   height: 80%;
 }
 textarea {
-  height: 400px;
+  height: 100%;
   width: 100%;
-  /* border: var(--orange) 3px solid; */
+  border: none;
+  border-bottom: var(--orange) 5px solid;
+  border-left: var(--orange) 5px solid;
 }
+
 /* textArea:focus-visible { */
 /* border: var(--orange) 3px solid; */
 /* } */
@@ -246,4 +249,15 @@ a:hover {
 }
 .modal datalist {
   background-color: var(--darkBrown);
+}
+.textareaContainer {
+  margin-top: 20px;
+  height: 100px;
+  min-height: 100px;
+}
+pre.preview {
+  max-height: 200px;
+}
+pre {
+  max-height: 400px;
 }

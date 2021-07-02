@@ -1,5 +1,6 @@
 <?php include "header.php";
 include "./includes/validateRegistration.php";
+// echo print_r(gd_info());
 // $image = imagecreatefrompng("./files/3D tube WM.png");
 // $rotateImage = imagerotate($image, 45, false);
 // imagepng($rotateImage, "./files/createdImage.png", 9);

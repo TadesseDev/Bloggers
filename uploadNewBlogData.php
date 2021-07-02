@@ -31,11 +31,14 @@ if (isset($_POST['upload'])) {
     header("location: AddBlog.php");
 } else if (isset($_POST['uploadImage'])) {
     $fileName = $_FILES['AddPicture']['name'];
-    $fileType = $_FILES['AddPicture']['type'];
     $tmpName = $_FILES['AddPicture']['tmp_name'];
     $error = $_FILES['AddPicture']['error'];
     $fileSize = $_FILES['AddPicture']['size'];
-    if ($fileType != "image/jpeg") :
+    $validExt = ['jpg', 'JPG', 'jpeg', 'JPEG', 'png', 'PNG', 'gif', 'GIF', 'wbmp', 'WBMP', 'bmp', 'BMP', 'webp', 'WEBP'];
+    $ext = explode(".", $fileName);
+    $ext = end($ext);
+    // echo $ext;
+    if (!in_array($ext, $validExt)) :
         echo "you canot upload such files as this are not image files";
     elseif ($error != 0) :
         echo "something went wrong in uploading image";
@@ -45,12 +48,12 @@ if (isset($_POST['upload'])) {
         $index = (sizeof($_SESSION['textArea']) - 1) + time() / 10000000000;
         $_SESSION['images']["$index"] = $_FILES['AddPicture'];
         updatePreviewOrder($index, "image", $_SESSION['images']["$index"]);
-        processMyimage($tmpName, "./files/blogsData/$fileName", 200, 200);
         // move_uploaded_file($tmpName, "./files/blogsData/$fileName");
-        // unlink("./files/blogsData/$fileName");
-        echo "upload complet";
+        processMyimage($tmpName, "./files/blogsData/W-200/$index.$ext", 200, 150, $ext);
+    // unlink("./files/blogsData/$fileName");
+    // echo "upload complet";
     endif;
-    // header("location: AddBlog.php");
+    header("location: AddBlog.php");
 } else if (isset($_POST['preview'])) {
     header("location: AddBlog.php");
 } else if (isset($_POST['addTextArea'])) {
@@ -60,7 +63,7 @@ if (isset($_POST['upload'])) {
     header("location: AddBlog.php");
 } else if (isset($_POST['addSpecialCharacter'])) {
     $index = (sizeof($_SESSION['textArea']) - 1) + time() / 10000000000;
-    $_SESSION['preserve']["$index"] = ["content" => $_POST['PreservedText'], "language" => $_POST['category']];
+    $_SESSION['preserve']["$index"] = ["content" => htmlspecialchars($_POST['PreservedText']), "language" => $_POST['category']];
     updatePreviewOrder($index, "preservedText", $_SESSION['preserve']["$index"]);
     header("location: AddBlog.php");
 } else if (isset($_POST['cancelPhotoUpdate'])) {

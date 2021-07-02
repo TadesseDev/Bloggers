@@ -26,52 +26,59 @@ $BR = "<br/>";
 <div class="container">
     <form action="./uploadNewBlogData.php" method="POST" enctype="multipart/form-data">
         <div class="row CreateBloog">
-            <div class="col-sm-12 textArea">
+            <div class="col-sm-12 textArea ">
                 <div class="editPost">
                     <?php
                     $keys = array_keys($_SESSION['order']);
                     $preservkeys = array_keys($_SESSION['preserve']);
                     for ($i = 0; $i < sizeof($_SESSION['textArea']); $i++) :
                     ?>
-                        <textarea name="<?php echo $i ?>" placeholder="compile your blog here and preview will be available on the bottom of this page"><?php echo $_SESSION['textArea'][$i]; ?></textarea>
+                        <div class="textareaContainer"><textarea class="" name="<?php echo $i ?>" placeholder="compile your blog here and preview will be available on the bottom of this page"><?php echo $_SESSION['textArea'][$i]; ?></textarea>
+                        </div><?php
+                                foreach ($keys as $key) :
+                                    if (floor((float)$key) == $i) {
+                                        if ($_SESSION['order'][$key][0] == 'image') {
+                                            echo $_SESSION['order'][$key][1]['name'] . $BR;
+                                        } else if ($_SESSION['order'][$key][0] == 'preservedText') {
+                                ?>
+                                    <pre class="preview">
+                                <code class="language-<?php echo $_SESSION['order'][$key][1]['language']; ?>">
+                                <?php echo $_SESSION['order'][$key][1]['content'] . $BR; ?>
+                                </code>
+                                </pre>
                         <?php
-                        foreach ($keys as $key) :
-                            if (floor((float)$key) == $i) {
-                                if ($_SESSION['order'][$key][0] == 'image') {
-                                    echo $_SESSION['order'][$key][1]['name'] . $BR;
-                                } else if ($_SESSION['order'][$key][0] == 'preservedText') {
-                                    // ["content" => $_POST['PreservedText'], "language" => $_POST['category']]; 
-                                    echo $_SESSION['order'][$key][1]['content'] . $BR;
-                                }
-                            }
-                        endforeach;
-                    endfor;
-                    if (sizeof($_SESSION['textArea']) === 0) {
+                                        }
+                                    }
+                                endforeach;
+                            endfor;
+                            if (sizeof($_SESSION['textArea']) === 0) {
                         ?>
-                        <textarea name="<?php echo sizeof($_SESSION['textArea']) ?>" placeholder="compile your blog here and preview will be available on the bottom of this page"></textarea>
+                        <div class="textareaContainer"><textarea name="<?php echo sizeof($_SESSION['textArea']) ?>" placeholder="compile your blog here and preview will be available on the bottom of this page"></textarea></div>
                     <?php } ?>
-                    <div class=" add">
-                        <label for="AddPicture" class="sideButton">
-                            <span><img class="icon" src="./files/icons/camera-brown.png" alt="add picture"></span>
-                        </label>
-                        <button type="submit" name="uploadImage" class="sideButton save" id="upload">
-                            <span><img class="icon" src="./files/icons/Save-brown.png" alt="add picture">
-                            </span></button>
-                        <button type="submit" class="sideButton cancel" id="cancel" onclick="cancePhotoUpload();" name="cancelPhotoUpdate">
-                            <span><img class="icon" src="./files/icons/Cancel-brown.png" alt="add picture"></span></button>
-                        <input type="file" accept="image/*" onchange="pictureAdded();" name="AddPicture" id="AddPicture"></input>
-                        <button type="button" class="sideButton" data-toggle="modal" data-target="#exampleModalCenter">
-                            <span><img class="icon" src="./files/icons/code-brown.png" alt="add picture"></span>
-                        </button>
-                        <!-- <input type="file" id="addPreserveText"></input> -->
-                        <button type="submit" name="reset" class="sideButton">
-                            <span><img class="icon" src="./files/icons/Refresh-brown.png" alt="add picture"></span>
-                        </button>
-                        <button type="submit" name="preview" class="sideButton">
-                            <span><img class="icon" src="./files/icons/Eye-brown.png" alt="add picture"></span></button>
-                        <button type="clear" name="addTextArea" class="sideButton">
-                            <span><img class="icon" src="./files/icons/Add-text-area-brown.png" alt="add picture" disabled></span>
-                        </button>
+                    <div>
+                        <div class=" add">
+                            <label for="AddPicture" class="sideButton">
+                                <span><img class="icon" src="./files/icons/camera-brown.png" alt="add picture"></span>
+                            </label>
+                            <button type="submit" name="uploadImage" class="sideButton save" id="upload">
+                                <span><img class="icon" src="./files/icons/Save-brown.png" alt="add picture">
+                                </span></button>
+                            <button type="submit" class="sideButton cancel" id="cancel" onclick="cancePhotoUpload();" name="cancelPhotoUpdate">
+                                <span><img class="icon" src="./files/icons/Cancel-brown.png" alt="add picture"></span></button>
+                            <input type="file" accept="image/*" onchange="pictureAdded();" name="AddPicture" id="AddPicture"></input>
+                            <button type="button" class="sideButton" data-toggle="modal" data-target="#exampleModalCenter">
+                                <span><img class="icon" src="./files/icons/code-brown.png" alt="add picture"></span>
+                            </button>
+                            <!-- <input type="file" id="addPreserveText"></input> -->
+                            <button type="submit" name="reset" class="sideButton">
+                                <span><img class="icon" src="./files/icons/Refresh-brown.png" alt="add picture"></span>
+                            </button>
+                            <button type="submit" name="preview" class="sideButton">
+                                <span><img class="icon" src="./files/icons/Eye-brown.png" alt="add picture"></span></button>
+                            <button type="clear" name="addTextArea" class="sideButton">
+                                <span><img class="icon" src="./files/icons/Add-text-area-brown.png" alt="add picture" disabled></span>
+                            </button>
+                        </div>
                     </div>
                 </div>
                 <div class="CreateBlogBotom">
@@ -108,7 +115,7 @@ $BR = "<br/>";
                     foreach ($_SESSION['textArea'] as $x) {
                         $paras = explode("\n", $x);
                         foreach ($paras as $para) {
-                            echo $para . $BR . $BR;
+                            echo $para . $BR;
                         }
                         foreach ($keys as $key) :
                             if (floor((float)$key) == $i) {
@@ -116,7 +123,14 @@ $BR = "<br/>";
                                     echo $_SESSION['order'][$key][1]['name'] . $BR;
                                 } else if ($_SESSION['order'][$key][0] == 'preservedText') {
                                     // ["content" => $_POST['PreservedText'], "language" => $_POST['category']]
-                                    echo $_SESSION['order'][$key][1]['content'] . $BR;
+                ?>
+                                    <pre>
+
+                        <code class="language-<?php echo $_SESSION['order'][$key][1]['language']; ?>">
+                        <?php echo $_SESSION['order'][$key][1]['content'] . $BR; ?>
+                        </code>
+                        </pre>
+                <?php
                                 }
                             }
                         endforeach;

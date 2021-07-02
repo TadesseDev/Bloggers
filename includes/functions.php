@@ -26,17 +26,39 @@ function login($email, $Password)
     }
     // echo "use is loged in";
 }
-function processMyimage($source, $destination, $width, $height)
+function processMyimage($source, $destination, $w, $h, $ext)
 {
-    list($w, $h) = getimagesize($source);
-    $oldRatio = $w / $h;
+    list($w_original, $h_original) = getimagesize($source);
+    $scale_ratio = $w_original / $h_original;
+    // $oldRatio = $w / $h;
     // echo $oldRatio;
-    $newRatio = $width / $height;
+    // $newRatio = $width / $height;
     // echo $newRatio;
-    echo print_r($source);
-    if ($newRatio > $oldRatio) {
-        $width = $height * $oldRatio;
+    // echo print_r($source);
+    // echo $ext;
+    if (($w / $h) > $scale_ratio) {
+        $w = $h * $scale_ratio;
     } else {
-        $height = $width / $oldRatio;
+        $h = $w / $scale_ratio;
     }
+    // echo "<br/>" . $ext;
+    // exif_read_data($source);
+    $img = "";
+    if (strcasecmp($ext, "jpeg") == 0 || strcasecmp($ext, "jpg") == 0) :
+        $img = imagecreatefromjpeg($source);
+    elseif (strcasecmp($ext, "webp") == 0) :
+        $img = imagecreatefromwebp($source);
+    elseif (strcasecmp($ext, "bmp") == 0) :
+        $img = imagecreatefrombmp($source);
+    elseif (strcasecmp($ext, "gif") == 0) :
+        $img = imagecreatefromgif($source);
+    elseif (strcasecmp($ext, "png") == 0) :
+        $img = imagecreatefrompng($source);
+    elseif (strcasecmp($ext, "wbmp") == 0) :
+    endif;
+    $im = imagescale($img, 150);
+    // $newImg = imagecreatetruecolor($w, $h);
+    // echo $w, " ", $h;
+    // imagecopyresampled($newImg, $img, 0, 0, 0, 0, $w, $h, $w_original, $h_original);
+    imagejpeg($im, $destination);
 }

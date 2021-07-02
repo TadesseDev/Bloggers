@@ -307,3 +307,36 @@ lang.oninput = function () {
 submitCodeContent.onclick = function (x) {
   if (!ValidLanguage) x.preventDefault();
 };
+
+let textAreaContainer = $(".textareaContainer")[0];
+let textArea = $(".textareaContainer textarea")[0];
+document.addEventListener(
+  "DOMContentLoaded",
+  function () {
+    languages = document.getElementById("languages");
+    suportedLanguage.forEach((x) => {
+      let newel = document.createElement("option");
+      newel.value = `${x}`;
+      languages.appendChild(newel);
+    });
+    if (textArea.scrollHeight > textAreaContainer.scrollHeight - 5) {
+      // console.log("overflow");
+      console.log(textArea.scrollHeight + "is the scrol height");
+      // const newWidth = textAreaContainer.scrollHeight;
+      // const newWidth = this.scrollHeight;
+      const oldWidth = textArea.scrollHeight + 10;
+      console.log(oldWidth);
+      textAreaContainer.style.height = `${oldWidth}.px`;
+    }
+  },
+  false
+);
+textArea.oninput = function () {
+  if (this.scrollHeight > textAreaContainer.scrollHeight - 5) {
+    // console.log("overflow");
+    // const newWidth = textAreaContainer.scrollHeight;
+    // const newWidth = this.scrollHeight;
+    const oldWidth = this.scrollHeight + 10;
+    textAreaContainer.style.height = `${oldWidth}.px`;
+  }
+};
