@@ -35,7 +35,7 @@ include "./includes/validateRegistration.php";
         </div>
     </div>
 </div>
-<div class="container">
+<div class="container zero-top">
     <div class="userAction">
         <form action="" method="POST">
             <?php

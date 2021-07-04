@@ -320,12 +320,8 @@ document.addEventListener(
       languages.appendChild(newel);
     });
     if (textArea.scrollHeight > textAreaContainer.scrollHeight - 5) {
-      // console.log("overflow");
       console.log(textArea.scrollHeight + "is the scrol height");
-      // const newWidth = textAreaContainer.scrollHeight;
-      // const newWidth = this.scrollHeight;
       const oldWidth = textArea.scrollHeight + 10;
-      console.log(oldWidth);
       textAreaContainer.style.height = `${oldWidth}.px`;
     }
   },
@@ -333,10 +329,10 @@ document.addEventListener(
 );
 textArea.oninput = function () {
   if (this.scrollHeight > textAreaContainer.scrollHeight - 5) {
-    // console.log("overflow");
-    // const newWidth = textAreaContainer.scrollHeight;
-    // const newWidth = this.scrollHeight;
     const oldWidth = this.scrollHeight + 10;
     textAreaContainer.style.height = `${oldWidth}.px`;
+  } else {
+    console.log("function call");
+    textAreaContainer.style.height = "fit-contjlent";
   }
 };

@@ -5,9 +5,18 @@ html,
 body {
   margin: 0px;
   padding: 0px;
+  background-color: #34010000;
+}
+body {
+  background-image: url("../files/SVG/background-blue.svg");
+  background-size: cover;
+  background-size: contain;
+  min-height: 100vh;
 }
 * {
   outline: none;
+  margin: 0px;
+  padding: 0px;
 }
 *:focus {
   outline: none;
@@ -16,7 +25,12 @@ body {
   outline: none;
 }
 .container {
-  max-width: 1200px;
+  padding: 20px 30px;
+  background-color: rgba(255, 255, 255, 0.767);
+}
+.zero-top {
+  padding-top: 0px;
+  margin-top: 0px;
 }
 header {
   font-family: "menu";
@@ -38,14 +52,16 @@ svg {
   margin-right: 10px;
 }
 .jumbotron {
-  margin-top: 10px;
   padding: 20px;
   padding-bottom: 0px;
   margin-bottom: 0px;
-  height: 250px;
+  height: 300px;
   text-transform: capitalize;
   background-color: var(--darkBrown);
   border-radius: 0px;
+}
+.jumbotron .container {
+  background: transparent;
 }
 .textContent ol {
   font-family: "title";
@@ -119,8 +135,9 @@ textarea {
   height: 100%;
   width: 100%;
   border: none;
-  border-bottom: var(--orange) 5px solid;
-  border-left: var(--orange) 5px solid;
+  border-bottom: silver 5px solid;
+  border-left: silver 5px solid;
+  border-radius: 10px;
 }
 
 /* textArea:focus-visible { */
@@ -199,7 +216,7 @@ textarea {
   outline: none;
 }
 .Home {
-  margin-top: 100px;
+  padding-top: 100px;
 }
 .orange {
   background-color: var(--orange);
