@@ -1,5 +1,6 @@
 <?php
 ?>
+</div> <!-- normal flow-->
 </body>
 <!-- <script>
     let lans = JSON.parse("./run_results.json/suportedLanguage");

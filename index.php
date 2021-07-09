@@ -5,8 +5,8 @@ include "./includes/validateRegistration.php";
 // $rotateImage = imagerotate($image, 45, false);
 // imagepng($rotateImage, "./files/createdImage.png", 9);
 ?>
-<div class="jumbotron">
-    <div class="container">
+<div class="heading">
+    <div class="container-fluid">
         <div class="row align-items-center">
             <div class="col-sm-8">
                 <div class="textContent">
@@ -35,7 +35,7 @@ include "./includes/validateRegistration.php";
         </div>
     </div>
 </div>
-<div class="container zero-top">
+<div class="container-fluid">
     <div class="userAction">
         <form action="" method="POST">
             <?php
@@ -75,7 +75,7 @@ include "./includes/validateRegistration.php";
         </div>
     </div>
 </div>
-<div class=" container Home">
+<div class=" container-fluid Home">
     <div class="row">
         <div class="col-sm-8">
             <div class="blogTitle">this is paragraph</div>

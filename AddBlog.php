@@ -27,6 +27,23 @@ $BR = "<br/>";
     <form action="./uploadNewBlogData.php" method="POST" enctype="multipart/form-data">
         <div class="row CreateBloog">
             <div class="col-sm-12 textArea ">
+
+                <div class="CreateBlogBotom">
+                    <div class="author">
+                        <p>Author
+                            <?php
+                            if (isset($_SESSION['userId'])) :
+                                echo "<p>" . $_SESSION['userFname'] . " " . $_SESSION['userLname'] . "</p>";
+                            else :
+                                echo "uknown user... pleas sign in";
+                            endif; ?>
+                        </p>
+                    </div>
+                    <label for="type">Type</label>
+                    <input type="text" name="type" class="simpleTextField" value="<?php echo $_SESSION['type'] ?>">
+                    <label for="title">Title</label>
+                    <input type="text" name="title" class="simpleTextField" value="<?php echo $_SESSION['title'] ?>">
+                </div>
                 <div class="editPost">
                     <?php
                     $keys = array_keys($_SESSION['order']);
@@ -60,12 +77,13 @@ $BR = "<br/>";
                             <label for="AddPicture" class="sideButton">
                                 <span><img class="icon" src="./files/icons/camera-brown.png" alt="add picture"></span>
                             </label>
-                            <button type="submit" name="uploadImage" class="sideButton save" id="upload">
+                            <button type="submit" name="uploadImage" oninput="cancePhotoUpload();" class="sideButton save" id="upload">
                                 <span><img class="icon" src="./files/icons/Save-brown.png" alt="add picture">
                                 </span></button>
                             <button type="submit" class="sideButton cancel" id="cancel" onclick="cancePhotoUpload();" name="cancelPhotoUpdate">
                                 <span><img class="icon" src="./files/icons/Cancel-brown.png" alt="add picture"></span></button>
-                            <input type="file" accept="image/*" onchange="pictureAdded();" name="AddPicture" id="AddPicture"></input>
+                            <input type="file" accept="image/*" oninput="pictureAdded();" name="AddPicture" id="AddPicture"></input>
+                            <!-- file uplopad will be handled by the javascript -->
                             <button type="button" class="sideButton" data-toggle="modal" data-target="#exampleModalCenter">
                                 <span><img class="icon" src="./files/icons/code-brown.png" alt="add picture"></span>
                             </button>
@@ -81,20 +99,13 @@ $BR = "<br/>";
                         </div>
                     </div>
                 </div>
-                <div class="CreateBlogBotom">
-                    <div class="author">
-                        <p>Author</p>
-                        <?php
-                        if (isset($_SESSION['userId'])) :
-                        ?>
-                            <p><?php echo $_SESSION['userFname'] . " " . $_SESSION['userLname'] ?></p>
-                        <?php endif; ?>
-                    </div>
-                    <label for="type">Type</label>
-                    <input type="text" name="type" class="simpleTextField" value="<?php echo $_SESSION['type'] ?>">
-                    <label for="title">Title</label>
-                    <input type="text" name="title" class="simpleTextField" value="<?php echo $_SESSION['title'] ?>">
-                </div>
+                <script>
+                    // const file = document.getElementById("AddPicture");
+                    // file.onchange = function() {
+                    //     console.log(this.files[0]);
+                    //     return;
+                    // }
+                </script>
             </div>
         </div>
         <div class="row">

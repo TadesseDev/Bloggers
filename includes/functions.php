@@ -55,10 +55,18 @@ function processMyimage($source, $destination, $w, $h, $ext)
     elseif (strcasecmp($ext, "png") == 0) :
         $img = imagecreatefrompng($source);
     elseif (strcasecmp($ext, "wbmp") == 0) :
+    elseif (strcasecmp($ext, "string") == 0) :
+        $img = imagecreatefromstring($source);
     endif;
-    $im = imagescale($img, 150);
-    // $newImg = imagecreatetruecolor($w, $h);
+    $newImg = imagecreatetruecolor($w, $h);
     // echo $w, " ", $h;
-    // imagecopyresampled($newImg, $img, 0, 0, 0, 0, $w, $h, $w_original, $h_original);
+    imagecopyresampled($newImg, $img, 0, 0, 0, 0, $w, $h, $w_original, $h_original);
+    imagejpeg($newImg, $destination);
+}
+
+function createTumnbnail($source, $destination, $TumbWidth)
+{
+
+    $im = imagescale($source, $TumbWidth);
     imagejpeg($im, $destination);
 }

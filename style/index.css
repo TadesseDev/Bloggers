@@ -5,13 +5,6 @@ html,
 body {
   margin: 0px;
   padding: 0px;
-  background-color: #34010000;
-}
-body {
-  background-image: url("../files/SVG/background-blue.svg");
-  background-size: cover;
-  background-size: contain;
-  min-height: 100vh;
 }
 * {
   outline: none;
@@ -24,13 +17,12 @@ body {
 *:focus-visible {
   outline: none;
 }
-.container {
-  padding: 20px 30px;
-  background-color: rgba(255, 255, 255, 0.767);
+.normalFlow {
 }
-.zero-top {
-  padding-top: 0px;
-  margin-top: 0px;
+.container-fluid {
+  width: 90%;
+  position: relative;
+  max-width: 1300px;
 }
 header {
   font-family: "menu";
@@ -39,6 +31,16 @@ header {
   text-transform: capitalize;
   margin-top: 20px;
   z-index: 1;
+}
+.heading {
+  background-color: #3d0302;
+}
+.heading .container-fluid {
+  background-color: white;
+  background-image: url("../files/SVG/jumbotron.svg");
+  mask-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 .logo {
   height: 35px;
@@ -51,21 +53,12 @@ svg {
   color: #340100;
   margin-right: 10px;
 }
-.jumbotron {
-  padding: 20px;
-  padding-bottom: 0px;
-  margin-bottom: 0px;
-  height: 300px;
+.leftTop {
   text-transform: capitalize;
-  background-color: var(--darkBrown);
-  border-radius: 0px;
-}
-.jumbotron .container {
-  background: transparent;
 }
 .textContent ol {
   font-family: "title";
-  font-size: 1.2em;
+  font-size: 1.5vw;
   list-style: none;
   color: var(--lightOrange);
   margin: 0px;
@@ -75,7 +68,7 @@ svg {
   margin-left: -40px;
   font-size: 1.4em;
 }
-.jumbotron img {
+.heading img {
   width: 100%;
 }
 .imageContainer {
@@ -185,7 +178,8 @@ textarea {
 }
 .preview {
   /* border: #ffa500 3px solid; */
-  position: relative;
+  /* position: relative; */
+  text-align: center;
 }
 .preview button {
   font-size: 18px;
@@ -269,8 +263,8 @@ a:hover {
 }
 .textareaContainer {
   margin-top: 20px;
-  height: 100px;
-  min-height: 100px;
+  height: 300px;
+  min-height: 300px;
 }
 pre.preview {
   max-height: 200px;

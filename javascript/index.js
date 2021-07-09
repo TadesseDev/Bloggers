@@ -1,19 +1,96 @@
+const upload = document.querySelector("#upload");
+const cancel = document.querySelector("#cancel");
+const selectFile = document.querySelector("label[for='AddPicture']");
+const file = document.getElementById("AddPicture");
 const pictureAdded = () => {
-  const selectFile = document.querySelector("label[for='AddPicture']");
   selectFile.style = "display: none";
-  const upload = document.querySelector("#upload");
   upload.style = "display: inline";
-  const cancel = document.querySelector("#cancel");
   cancel.style = "display: inline";
 };
 const cancePhotoUpload = () => {
-  const selectFile = document.querySelector("label[for='AddPicture']");
+  // const selectFile = document.querySelector("label[for='AddPicture']");
   selectFile.style = "display: inline";
-  const upload = document.querySelector("#upload");
+  // const upload = document.querySelector("#upload");
   upload.style = "display: none";
-  const cancel = document.querySelector("#cancel");
+  // const cancel = document.querySelector("#cancel");
   cancel.style = "display: none";
 };
+if (file) {
+  file.onchange = function () {
+    // console.log(this.files[0]);
+    const reader = new FileReader();
+    reader.readAsDataURL(this.files[0]);
+    reader.onload = function (e) {
+      const add = document.getElementsByClassName("add")[0];
+      const img = new Image();
+      img.src = this.result;
+      // console.log(img);
+      // add.appendChild(img);
+      img.onload = function () {
+        img.width = 100;
+        // const canvas = document.createEl
+        const altImage = new File(["CONTENT"], img);
+        // ement("canvas");
+        // canvas.width = 100;
+        // canvas.height = 100;
+        // let drawer = canvas.getContext("2d");
+        // drawer.drawImage(img, 0, 0, img.width, img.height, 0, 0, 100, 100);
+        // console.log(drawer.getImageData(0, 0, canvas.width, canvas.height));
+        // console.log(altImage);
+        // add.appendChild(img);
+        // file.value = img.src;
+      };
+      // file.value = "";
+    };
+  };
+}
+if (upload) {
+  upload.onclick = function (e) {
+    e.preventDefault();
+    cancePhotoUpload();
+    const formData = new FormData();
+    // const fileData = file.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file.files[0]);
+    reader.onload = function () {
+      const resixzeImg = new Image();
+      resixzeImg.src = reader.result;
+      resixzeImg.onload = function () {
+        const canvas = document.createElement("canvas");
+        const width = 1000;
+        const scaleRatio = width / resixzeImg.width;
+        const height = resixzeImg.height * scaleRatio;
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext("2d");
+        ctx.drawImage(resixzeImg, 0, 0, canvas.width, canvas.height);
+        // document.body.appendChild(canvas);
+        // const href = document.createElement("a");
+        // href.href = ctx.canvas.toDataURL("image/jpeg");
+        // href.download = "new file name";
+        // href.click();
+        // canvas.toBlob(function (e) {
+        //   const val = window.URL.createObjectURL(e);
+        //   console.log(val);
+        // }, "image/jpeg");
+        formData.append("uploadImage", true);
+        formData.append("AddPicture", ctx.canvas.toDataURL());
+        fetch("./uploadNewBlogData.php", {
+          method: "POST",
+          body: formData,
+        })
+          .then((e) => {
+            console.log(e);
+          })
+          .catch((e) => {
+            console.log("errore uploading form");
+          });
+      };
+    };
+    // console.log(fileData);
+  };
+}
+
 let suportedLanguage = [
   "Markup",
   "HTML",
@@ -288,25 +365,31 @@ const lang = document.getElementById("lang");
 let submitCodeContent = document.getElementById("submitCodeContent");
 let statusIcon = document.getElementById("statusIcon");
 
-submitCodeContent.disabled = true;
-submitCodeContent.style.backgroundColor = "#886A6C";
-lang.oninput = function () {
-  const exist = suportedLanguage.indexOf(this.value);
-  if (exist != -1) {
-    ValidLanguage = true;
-    submitCodeContent.disabled = false;
-    statusIcon.innerHTML = `<img class="icon" src="./files/icons/correct-green.png" alt="correct input">`;
-    submitCodeContent.style.backgroundColor = "#340100";
-  } else {
-    ValidLanguage = false;
-    submitCodeContent.disabled = true;
-    statusIcon.innerHTML = `<img class="icon" src="./files/icons/x-red.png" alt="add picture" disabled>`;
-    submitCodeContent.style.backgroundColor = "#886A6C";
-  }
-};
-submitCodeContent.onclick = function (x) {
-  if (!ValidLanguage) x.preventDefault();
-};
+submitCodeContent && [
+  (submitCodeContent.disabled = true),
+  (submitCodeContent.style.backgroundColor = "#886A6C"),
+];
+lang
+  ? (lang.oninput = function () {
+      const exist = suportedLanguage.indexOf(this.value);
+      if (exist != -1) {
+        ValidLanguage = true;
+        submitCodeContent.disabled = false;
+        statusIcon.innerHTML = `<img class="icon" src="./files/icons/correct-green.png" alt="correct input">`;
+        submitCodeContent.style.backgroundColor = "#340100";
+      } else {
+        ValidLanguage = false;
+        submitCodeContent.disabled = true;
+        statusIcon.innerHTML = `<img class="icon" src="./files/icons/x-red.png" alt="add picture" disabled>`;
+        submitCodeContent.style.backgroundColor = "#886A6C";
+      }
+    })
+  : lang;
+submitCodeContent
+  ? (submitCodeContent.onclick = function (x) {
+      if (!ValidLanguage) x.preventDefault();
+    })
+  : submitCodeContent;
 
 let textAreaContainer = $(".textareaContainer")[0];
 let textArea = $(".textareaContainer textarea")[0];
@@ -317,22 +400,26 @@ document.addEventListener(
     suportedLanguage.forEach((x) => {
       let newel = document.createElement("option");
       newel.value = `${x}`;
-      languages.appendChild(newel);
+      languages ? languages.appendChild(newel) : languages;
     });
-    if (textArea.scrollHeight > textAreaContainer.scrollHeight - 5) {
-      console.log(textArea.scrollHeight + "is the scrol height");
-      const oldWidth = textArea.scrollHeight + 10;
-      textAreaContainer.style.height = `${oldWidth}.px`;
+    if (textArea) {
+      if (textArea.scrollHeight > textAreaContainer.scrollHeight - 5) {
+        // console.log(textArea.scrollHeight + "is the scrol height");
+        const oldWidth = textArea.scrollHeight + 10;
+        textAreaContainer.style.height = `${oldWidth}.px`;
+      }
     }
   },
   false
 );
-textArea.oninput = function () {
-  if (this.scrollHeight > textAreaContainer.scrollHeight - 5) {
-    const oldWidth = this.scrollHeight + 10;
-    textAreaContainer.style.height = `${oldWidth}.px`;
-  } else {
-    console.log("function call");
-    textAreaContainer.style.height = "fit-contjlent";
-  }
-};
+textArea
+  ? (textArea.oninput = function () {
+      if (this.scrollHeight > textAreaContainer.scrollHeight - 5) {
+        const oldWidth = this.scrollHeight + 10;
+        textAreaContainer.style.height = `${oldWidth}.px`;
+      } else {
+        console.log("function call");
+        textAreaContainer.style.height = "fit-contjlent";
+      }
+    })
+  : textArea;

@@ -22,7 +22,6 @@ function updatePreviewOrder($id, $type, $element)
     // adds element to the order array so can be used latter in preview to preserve the order of user entered data 
     $_SESSION['order']["$id"] = [$type, $element];
 }
-
 // preserveuserData($_POST);
 if (isset($_POST['upload'])) {
     echo "form submited";
@@ -30,29 +29,39 @@ if (isset($_POST['upload'])) {
     setNull($_SESSION['order'], $_SESSION['preserve'], $_SESSION['type'], $_SESSION['title'], $_SESSION['textArea'], $_SESSION['images'], $_FILES['AddPicture'], $_SESSION['content']);
     header("location: AddBlog.php");
 } else if (isset($_POST['uploadImage'])) {
-    $fileName = $_FILES['AddPicture']['name'];
-    $tmpName = $_FILES['AddPicture']['tmp_name'];
-    $error = $_FILES['AddPicture']['error'];
-    $fileSize = $_FILES['AddPicture']['size'];
-    $validExt = ['jpg', 'JPG', 'jpeg', 'JPEG', 'png', 'PNG', 'gif', 'GIF', 'wbmp', 'WBMP', 'bmp', 'BMP', 'webp', 'WEBP'];
-    $ext = explode(".", $fileName);
-    $ext = end($ext);
-    // echo $ext;
-    if (!in_array($ext, $validExt)) :
-        echo "you canot upload such files as this are not image files";
-    elseif ($error != 0) :
-        echo "something went wrong in uploading image";
-    // elseif (($fileSize / (1024 * 1024)) > 1.5) :
-    //     echo "you cannot upload file morethan 1.5MB";
-    else :
-        $index = (sizeof($_SESSION['textArea']) - 1) + time() / 10000000000;
-        $_SESSION['images']["$index"] = $_FILES['AddPicture'];
-        updatePreviewOrder($index, "image", $_SESSION['images']["$index"]);
-        // move_uploaded_file($tmpName, "./files/blogsData/$fileName");
-        processMyimage($tmpName, "./files/blogsData/W-200/$index.$ext", 200, 150, $ext);
+    $img = $_POST['AddPicture'];
+    $img = str_replace('data:image/png;base64,', '', $img);
+    $img = str_replace(' ', '+', $img);
+    $data = base64_decode($img);
+    $newImage = imagecreatefromstring($data);
+    echo "<script> alert('deiver')</script>";
+    // $fileName = $_FILES['AddPicture']['name'];
+    // $tmpName = $_FILES['AddPicture']['tmp_name'];
+    // $error = $_FILES['AddPicture']['error'];
+    // $fileSize = $_FILES['AddPicture']['size'];
+    // $validExt = ['jpg', 'JPG', 'jpeg', 'JPEG', 'png', 'PNG', 'gif', 'GIF', 'wbmp', 'WBMP', 'bmp', 'BMP', 'webp', 'WEBP'];
+    // $ext = explode(".", $fileName);
+    // $ext = end($ext);
+    // // echo $ext;
+    // if (!in_array($ext, $validExt)) :
+    //     echo "you canot upload such files as this are not image files";
+    // elseif ($error != 0) :
+    //     echo "something went wrong in uploading image";
+    // // elseif (($fileSize / (1024 * 1024)) > 1.5) :
+    // //     echo "you cannot upload file morethan 1.5MB";
+    // else :
+    $index = (sizeof($_SESSION['textArea']) - 1) + time() / 10000000000;
+    $location = "./files/blogsData/images/$index.png";
+    $success = file_put_contents($location, $data);
+    $imageFile = imagecreatefrompng($location);
+    $_SESSION['images']["$index"] = $imageFile;
+    updatePreviewOrder($imageFile, "image", $_SESSION['images']["$index"]);
+    // move_uploaded_file($tmpName, "./files/blogsData/$fileName");
+    // processMyimage($imageFile, "./files/blogsData/W-200/$index.png", 200, 150, "png");
+    createTumnbnail($imageFile, "./files/blogsData/W-200/$index.png", 200);
     // unlink("./files/blogsData/$fileName");
     // echo "upload complet";
-    endif;
+    // endif;
     header("location: AddBlog.php");
 } else if (isset($_POST['preview'])) {
     header("location: AddBlog.php");
