@@ -12,7 +12,8 @@ if (isset($_POST['login'])) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
+<script lang="javascript" src="./javascript/functions.js">
+</script>
 
 <head>
     <meta charset="UTF-8">

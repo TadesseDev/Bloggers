@@ -66,7 +66,6 @@ function processMyimage($source, $destination, $w, $h, $ext)
 
 function createTumnbnail($source, $destination, $TumbWidth)
 {
-
     $im = imagescale($source, $TumbWidth);
     imagejpeg($im, $destination);
 }

@@ -272,3 +272,9 @@ pre.preview {
 pre {
   max-height: 400px;
 }
+.MWidth-500 {
+  max-width: 500px;
+}
+.MHeight-500 {
+  max-height: 500px;
+}

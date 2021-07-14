@@ -4,7 +4,7 @@ include "./includes/functions.php";
 $BR = "<br/>";
 $author_Id = null;
 // preserve user intered data 
-if (true) {
+if (!isset($_POST['uploadImage'])) {
     $_SESSION['type'] = $_POST['type'];
     $_SESSION['title'] = $_POST['title'];
     for ($i = 0; $i < sizeof($_SESSION['textArea']); $i++) {
@@ -34,7 +34,6 @@ if (isset($_POST['upload'])) {
     $img = str_replace(' ', '+', $img);
     $data = base64_decode($img);
     $newImage = imagecreatefromstring($data);
-    echo "<script> alert('deiver')</script>";
     // $fileName = $_FILES['AddPicture']['name'];
     // $tmpName = $_FILES['AddPicture']['tmp_name'];
     // $error = $_FILES['AddPicture']['error'];
@@ -51,14 +50,14 @@ if (isset($_POST['upload'])) {
     // //     echo "you cannot upload file morethan 1.5MB";
     // else :
     $index = (sizeof($_SESSION['textArea']) - 1) + time() / 10000000000;
-    $location = "./files/blogsData/images/$index.png";
+    $location = "./files/blogsData/tempoUpload/$index.png";
     $success = file_put_contents($location, $data);
     $imageFile = imagecreatefrompng($location);
     $_SESSION['images']["$index"] = $imageFile;
-    updatePreviewOrder($imageFile, "image", $_SESSION['images']["$index"]);
+    updatePreviewOrder($index, "image_" . $_POST['loaclSTR'], $_SESSION['images']["$index"]);
     // move_uploaded_file($tmpName, "./files/blogsData/$fileName");
     // processMyimage($imageFile, "./files/blogsData/W-200/$index.png", 200, 150, "png");
-    createTumnbnail($imageFile, "./files/blogsData/W-200/$index.png", 200);
+    // createTumnbnail($imageFile, "./files/blogsData/W-200/$index.png", 200);
     // unlink("./files/blogsData/$fileName");
     // echo "upload complet";
     // endif;

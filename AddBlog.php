@@ -54,8 +54,17 @@ $BR = "<br/>";
                         </div><?php
                                 foreach ($keys as $key) :
                                     if (floor((float)$key) == $i) {
-                                        if ($_SESSION['order'][$key][0] == 'image') {
-                                            echo $_SESSION['order'][$key][1]['name'] . $BR;
+                                        $vals = explode("_", $_SESSION['order'][$key][0]);
+                                        if ($vals[0] == 'image') {
+                                            // echo $_SESSION['order'][$key][1]['name'] . $BR;
+                                            if ($vals[1] !== "workOnServerData") {
+                                                echo "<img class='MHeight-500' id='" . $key . "'> </img>";
+                                                echo "<script>upFromLST($vals[1]," . $key . ")</script>";
+                                            } else {
+                                                echo "<img class='MHeight-500' id='" . $key . "' src='./files/blogsData/tempoUpload/$key.png'> </img>";
+                                                // echo  $key;
+                                            }
+                                            // echo "image is foun here";
                                         } else if ($_SESSION['order'][$key][0] == 'preservedText') {
                                 ?>
                                     <pre class="preview">
@@ -130,8 +139,18 @@ $BR = "<br/>";
                         }
                         foreach ($keys as $key) :
                             if (floor((float)$key) == $i) {
-                                if ($_SESSION['order'][$key][0] == 'image') {
-                                    echo $_SESSION['order'][$key][1]['name'] . $BR;
+                                $vals = explode("_", $_SESSION['order'][$key][0]);
+                                if ($vals[0] == 'image') {
+                                    // echo $_SESSION['order'][$key][1]['name'] . $BR;
+                                    if ($vals[1] !== "workOnServerData") {
+                                        echo "different data found";
+                                        echo "<img class='MHeight-500' id='" . $key . "'> </img>";
+                                        echo "<script>upFromLST($vals[1]," . $key . ")</script>";
+                                    } else {
+                                        echo "<img class='MHeight-500' id='" . $key . "' src='./files/blogsData/tempoUpload/$key.png'> </img>";
+                                        // echo  $key;
+                                    }
+                                    // echo "image is foun here";
                                 } else if ($_SESSION['order'][$key][0] == 'preservedText') {
                                     // ["content" => $_POST['PreservedText'], "language" => $_POST['category']]
                 ?>

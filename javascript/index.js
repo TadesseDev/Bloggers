@@ -75,12 +75,25 @@ if (upload) {
         // }, "image/jpeg");
         formData.append("uploadImage", true);
         formData.append("AddPicture", ctx.canvas.toDataURL());
+        let UniqTime = String(new Date().getTime());
+        try {
+          localStorage.setItem(UniqTime, ctx.canvas.toDataURL());
+          formData.append("loaclSTR", UniqTime);
+        } catch (e) {
+          console.log("cant store to local storage " + e);
+          console.log(
+            "working on server data this might triger performace issue"
+          );
+          formData.append("loaclSTR", "workOnServerData");
+        }
+        console.log(UniqTime);
+        // console.log(localStorage.getItem(UniqTime));
         fetch("./uploadNewBlogData.php", {
           method: "POST",
           body: formData,
         })
           .then((e) => {
-            console.log(e);
+            // console.log(e);
           })
           .catch((e) => {
             console.log("errore uploading form");
@@ -90,7 +103,6 @@ if (upload) {
     // console.log(fileData);
   };
 }
-
 let suportedLanguage = [
   "Markup",
   "HTML",
@@ -396,7 +408,7 @@ let textArea = $(".textareaContainer textarea")[0];
 document.addEventListener(
   "DOMContentLoaded",
   function () {
-    languages = document.getElementById("languages");
+    const languages = document.getElementById("languages");
     suportedLanguage.forEach((x) => {
       let newel = document.createElement("option");
       newel.value = `${x}`;
