@@ -53,32 +53,11 @@ $BR = "<br/>";
                         <div class="textareaContainer"><textarea class="" name="<?php echo $i ?>" placeholder="compile your blog here and preview will be available on the bottom of this page"><?php echo $_SESSION['textArea'][$i]; ?></textarea>
                         </div><?php
                                 foreach ($keys as $key) :
-                                    if (floor((float)$key) == $i) {
-                                        $vals = explode("_", $_SESSION['order'][$key][0]);
-                                        if ($vals[0] == 'image') {
-                                            // echo $_SESSION['order'][$key][1]['name'] . $BR;
-                                            if ($vals[1] !== "workOnServerData") {
-                                                echo "<img class='MHeight-500' id='" . $key . "'> </img>";
-                                                echo "<script>upFromLST($vals[1]," . $key . ")</script>";
-                                            } else {
-                                                echo "<img class='MHeight-500' id='" . $key . "' src='./files/blogsData/tempoUpload/$key.png'> </img>";
-                                                // echo  $key;
-                                            }
-                                            // echo "image is foun here";
-                                        } else if ($_SESSION['order'][$key][0] == 'preservedText') {
-                                ?>
-                                    <pre class="preview">
-                                <code class="language-<?php echo $_SESSION['order'][$key][1]['language']; ?>">
-                                <?php echo $_SESSION['order'][$key][1]['content'] . $BR; ?>
-                                </code>
-                                </pre>
-                        <?php
-                                        }
-                                    }
+
                                 endforeach;
                             endfor;
                             if (sizeof($_SESSION['textArea']) === 0) {
-                        ?>
+                                ?>
                         <div class="textareaContainer"><textarea name="<?php echo sizeof($_SESSION['textArea']) ?>" placeholder="compile your blog here and preview will be available on the bottom of this page"></textarea></div>
                     <?php } ?>
                     <div>
@@ -92,11 +71,9 @@ $BR = "<br/>";
                             <button type="submit" class="sideButton cancel" id="cancel" onclick="cancePhotoUpload();" name="cancelPhotoUpdate">
                                 <span><img class="icon" src="./files/icons/Cancel-brown.png" alt="add picture"></span></button>
                             <input type="file" accept="image/*" oninput="pictureAdded();" name="AddPicture" id="AddPicture"></input>
-                            <!-- file uplopad will be handled by the javascript -->
                             <button type="button" class="sideButton" data-toggle="modal" data-target="#exampleModalCenter">
                                 <span><img class="icon" src="./files/icons/code-brown.png" alt="add picture"></span>
                             </button>
-                            <!-- <input type="file" id="addPreserveText"></input> -->
                             <button type="submit" name="reset" class="sideButton">
                                 <span><img class="icon" src="./files/icons/Refresh-brown.png" alt="add picture"></span>
                             </button>
@@ -108,13 +85,6 @@ $BR = "<br/>";
                         </div>
                     </div>
                 </div>
-                <script>
-                    // const file = document.getElementById("AddPicture");
-                    // file.onchange = function() {
-                    //     console.log(this.files[0]);
-                    //     return;
-                    // }
-                </script>
             </div>
         </div>
         <div class="row">
@@ -143,16 +113,12 @@ $BR = "<br/>";
                                 if ($vals[0] == 'image') {
                                     // echo $_SESSION['order'][$key][1]['name'] . $BR;
                                     if ($vals[1] !== "workOnServerData") {
-                                        echo "different data found";
-                                        echo "<img class='MHeight-500' id='" . $key . "'> </img>";
+                                        echo "<img class='MHeight-500 margin-auto display-block' id='" . $key . "'> </img>";
                                         echo "<script>upFromLST($vals[1]," . $key . ")</script>";
                                     } else {
-                                        echo "<img class='MHeight-500' id='" . $key . "' src='./files/blogsData/tempoUpload/$key.png'> </img>";
-                                        // echo  $key;
+                                        echo "<img class='MHeight-500 margin-auto display-block' id='" . $key . "' src='./files/blogsData/tempoUpload/$key.png'> </img>";
                                     }
-                                    // echo "image is foun here";
                                 } else if ($_SESSION['order'][$key][0] == 'preservedText') {
-                                    // ["content" => $_POST['PreservedText'], "language" => $_POST['category']]
                 ?>
                                     <pre>
 
@@ -164,7 +130,6 @@ $BR = "<br/>";
                                 }
                             }
                         endforeach;
-                        // echo $x . $BR;
                         $i++;
                     }
                 }
@@ -188,8 +153,6 @@ $BR = "<br/>";
                                 <option value="JSON">
                             </datalist>
                             <span class="icon" id="statusIcon">
-                                <!-- <img class="icon" src="./files/icons/x-red.png" alt="add picture" disabled>
-                                <img class="icon" src="./files/icons/correct-green.png" alt="correct input" disabled> -->
                             </span>
                         </div>
                         <button type="button" class="close ColorOrange" data-dismiss="modal" aria-label="Close">

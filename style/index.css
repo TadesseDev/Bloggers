@@ -179,7 +179,7 @@ textarea {
 .preview {
   /* border: #ffa500 3px solid; */
   /* position: relative; */
-  text-align: center;
+  /* text-align: center; */
 }
 .preview button {
   font-size: 18px;
@@ -272,9 +272,20 @@ pre.preview {
 pre {
   max-height: 400px;
 }
+.preview img {
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.329);
+}
+
 .MWidth-500 {
   max-width: 500px;
 }
 .MHeight-500 {
   max-height: 500px;
+}
+.margin-auto {
+  margin: auto;
+}
+.display-block {
+  display: block;
 }
