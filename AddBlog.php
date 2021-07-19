@@ -39,10 +39,10 @@ $BR = "<br/>";
                             endif; ?>
                         </p>
                     </div>
-                    <label for="type">Type</label>
-                    <input type="text" name="type" class="simpleTextField" value="<?php echo $_SESSION['type'] ?>">
-                    <label for="title">Title</label>
-                    <input type="text" name="title" class="simpleTextField" value="<?php echo $_SESSION['title'] ?>">
+                    <label for="type" class="fontS-1_5em ">Blog Type</label>
+                    <input type="text" name="type" class="simpleTextField fontS-1_5em" value="<?php echo $_SESSION['type'] ?>">
+                    <label for="title" class="fontS-1_5em ">Blog Title</label>
+                    <input type="text" name="title" class="simpleTextField fontS-1_5em" value="<?php echo $_SESSION['title'] ?>">
                 </div>
                 <div class="editPost">
                     <?php
@@ -50,15 +50,22 @@ $BR = "<br/>";
                     $preservkeys = array_keys($_SESSION['preserve']);
                     for ($i = 0; $i < sizeof($_SESSION['textArea']); $i++) :
                     ?>
-                        <div class="textareaContainer"><textarea class="" name="<?php echo $i ?>" placeholder="compile your blog here and preview will be available on the bottom of this page"><?php echo $_SESSION['textArea'][$i]; ?></textarea>
+                        <div class="textareaContainer"><textarea class="blogCreateTA" name="<?php echo $i ?>" placeholder="compile your blog here and preview will be available on the bottom of this page"><?php echo $_SESSION['textArea'][$i]; ?></textarea>
                         </div><?php
                                 foreach ($keys as $key) :
-
+                                    if (floor((float)$key) == $i) {
+                                        $vals = explode("_", $_SESSION['order'][$key][0]);
+                                        if ($vals[0] == 'image') {
+                                            echo "<h3>image is here...</h3>";
+                                        } else if ($_SESSION['order'][$key][0] == 'preservedText') {
+                                            echo "<h3>programing code is here...</h3>";
+                                        }
+                                    }
                                 endforeach;
                             endfor;
                             if (sizeof($_SESSION['textArea']) === 0) {
                                 ?>
-                        <div class="textareaContainer"><textarea name="<?php echo sizeof($_SESSION['textArea']) ?>" placeholder="compile your blog here and preview will be available on the bottom of this page"></textarea></div>
+                        <div class="textareaContainer"><textarea class="blogCreateTA" name="<?php echo sizeof($_SESSION['textArea']) ?>" placeholder="compile your blog here and preview will be available on the bottom of this page"></textarea></div>
                     <?php } ?>
                     <div>
                         <div class=" add">
@@ -121,7 +128,6 @@ $BR = "<br/>";
                                 } else if ($_SESSION['order'][$key][0] == 'preservedText') {
                 ?>
                                     <pre>
-
                         <code class="language-<?php echo $_SESSION['order'][$key][1]['language']; ?>">
                         <?php echo $_SESSION['order'][$key][1]['content'] . $BR; ?>
                         </code>

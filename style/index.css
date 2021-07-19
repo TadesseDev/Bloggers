@@ -266,6 +266,11 @@ a:hover {
   height: 300px;
   min-height: 300px;
 }
+.author {
+  font-family: "zigzag";
+  font-size: 2em;
+  text-transform: capitalize;
+}
 pre.preview {
   max-height: 200px;
 }
@@ -276,7 +281,6 @@ pre {
   border-radius: 10px;
   box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.329);
 }
-
 .MWidth-500 {
   max-width: 500px;
 }
@@ -288,4 +292,7 @@ pre {
 }
 .display-block {
   display: block;
+}
+.fontS-1_5em {
+  font-size: 1.5em;
 }

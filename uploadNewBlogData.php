@@ -4,9 +4,11 @@ include "./includes/functions.php";
 $BR = "<br/>";
 $author_Id = null;
 // preserve user intered data 
-if (!isset($_POST['uploadImage'])) {
-    $_SESSION['type'] = $_POST['type'];
-    $_SESSION['title'] = $_POST['title'];
+if (true) {
+    if (!isset($_POST['uploadImage'])) {
+        $_SESSION['type'] = $_POST['type'];
+        $_SESSION['title'] = $_POST['title'];
+    }
     for ($i = 0; $i < sizeof($_SESSION['textArea']); $i++) {
         $_SESSION['textArea'][$i] = strip_tags($_POST["$i"]);
         // echo "processing $i" . $BR;
@@ -26,7 +28,9 @@ function updatePreviewOrder($id, $type, $element)
 if (isset($_POST['upload'])) {
     echo "form submited";
 } else if (isset($_POST['reset'])) {
-    setNull($_SESSION['order'], $_SESSION['preserve'], $_SESSION['type'], $_SESSION['title'], $_SESSION['textArea'], $_SESSION['images'], $_FILES['AddPicture'], $_SESSION['content']);
+    // $_SESSION['images']["$index"] = $imageFile;
+    clearBlogTempData();
+    // echo "<pre>" . print_r($keys) . "</pre>";
     header("location: AddBlog.php");
 } else if (isset($_POST['uploadImage'])) {
     $img = $_POST['AddPicture'];

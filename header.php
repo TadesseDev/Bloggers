@@ -1,11 +1,15 @@
-<?php session_start();
+<?php
+
+use function PHPSTORM_META\sql_injection_subst;
+
+session_start();
 // echo phpinfo();
 // session_destroy();
 include "./includes/functions.php";
 $con = mysqli_connect("localhost", "root", "", "blog") or die("cant connect to the database");
 $_SESSION['con'] = $con;
 if (isset($_POST['login'])) {
-    login($_POST['email'], $_POST['password']);
+    login(mysqli_real_escape_string($con, $_POST['email']), mysqli_real_escape_string($con, $_POST['password']));
 } else if (isset($_POST['LogOut'])) {
     logout();
 }

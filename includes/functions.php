@@ -1,6 +1,7 @@
 <?php
 function logout()
 {
+    clearBlogTempData();
     session_destroy();
 }
 function setNull(&...$args)
@@ -14,7 +15,8 @@ function login($email, $Password)
     $res = mysqli_query($_SESSION['con'], "select * from author where email='$email' and Password='$Password'");
     $namedResult = mysqli_fetch_assoc($res);
     // echo sizeof($namedResult);
-    if (sizeof($namedResult) > 0) {
+    // if (sizeof($namedResult) > 0) {
+    if ($namedResult) {
         $_SESSION['userId'] = $namedResult['id'];
         $_SESSION['userFname'] = $namedResult['Fname'];
         $_SESSION['userLname'] = $namedResult['Lname'];
@@ -24,6 +26,7 @@ function login($email, $Password)
         $_SESSION['userPassword'] = $namedResult['Password'];
         unset($_POST['RegisterNewUser']);
     }
+
     // echo "use is loged in";
 }
 function processMyimage($source, $destination, $w, $h, $ext)
@@ -68,4 +71,18 @@ function createTumnbnail($source, $destination, $TumbWidth)
 {
     $im = imagescale($source, $TumbWidth);
     imagejpeg($im, $destination);
+}
+function clearBlogTempData()
+{
+    echo "<script lang='javascript'>localStorage.clear();</script>";
+    if (isset($_SESSION['images'])) {
+        $keys = array_keys($_SESSION['images']);
+        foreach ($keys as $key) :
+            if (unlink("./files/blogsData/tempoUpload/$key.png")) :
+                unset($_SESSION['order']["$key"]);
+                unset($_SESSION['images']["$key"]);
+            endif;
+        endforeach;
+    }
+    setNull($_SESSION['order'], $_SESSION['preserve'], $_SESSION['type'], $_SESSION['title'], $_SESSION['textArea'], $_SESSION['images'], $_FILES['AddPicture'], $_SESSION['content']);
 }

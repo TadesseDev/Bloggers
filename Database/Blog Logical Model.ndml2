@@ -1,0 +1,473 @@
+{
+  "paper": {
+    "name": "A4",
+    "leftMargin": 0.5,
+    "rightMargin": 0.5,
+    "topMargin": 0.5,
+    "bottomMargin": 0.5,
+    "isPortriat": true
+  },
+  "modelVersion": 2.01,
+  "defaultSchema": "Default",
+  "server": {
+    "objectType": "Server_LOGICAL",
+    "name": "Default",
+    "schemas": [
+      {
+        "objectType": "Schema_LOGICAL",
+        "name": "Default",
+        "tables": [
+          {
+            "objectType": "Table_LOGICAL",
+            "name": "blog.author",
+            "comment": "",
+            "oldName": "author",
+            "fields": [
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "id",
+                "type": "INTEGER",
+                "length": 11,
+                "decimals": -2147483648,
+                "isNullable": false,
+                "defaultType": "Others",
+                "defaultValue": "",
+                "comment": "",
+                "oldName": "id"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "Fname",
+                "type": "CHARACTER VARYING",
+                "length": 50,
+                "decimals": -2147483648,
+                "isNullable": true,
+                "defaultType": "Null",
+                "defaultValue": "",
+                "comment": "",
+                "oldName": "Fname"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "Lname",
+                "type": "CHARACTER VARYING",
+                "length": 50,
+                "decimals": -2147483648,
+                "isNullable": true,
+                "defaultType": "Null",
+                "defaultValue": "",
+                "comment": "",
+                "oldName": "Lname"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "Title",
+                "type": "CHARACTER VARYING",
+                "length": 255,
+                "decimals": -2147483648,
+                "isNullable": true,
+                "defaultType": "Null",
+                "defaultValue": "",
+                "comment": "",
+                "oldName": "Title"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "Experties",
+                "type": "CHARACTER VARYING",
+                "length": 255,
+                "decimals": -2147483648,
+                "isNullable": true,
+                "defaultType": "Null",
+                "defaultValue": "",
+                "comment": "",
+                "oldName": "Experties"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "email",
+                "type": "CHARACTER VARYING",
+                "length": 255,
+                "decimals": -2147483648,
+                "isNullable": false,
+                "defaultType": "Others",
+                "defaultValue": "",
+                "comment": "",
+                "oldName": "email"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "Password",
+                "type": "CHARACTER VARYING",
+                "length": 255,
+                "decimals": -2147483648,
+                "isNullable": true,
+                "defaultType": "Null",
+                "defaultValue": "",
+                "comment": "",
+                "oldName": "Password"
+              }
+            ],
+            "foreignKeys": [
+              {
+                "objectType": "ForeignKey_LOGICAL",
+                "name": "fk_blog.author_blog.blog_1",
+                "fields": [
+                  "id"
+                ],
+                "referencedSchema": "Default",
+                "referencedTable": "blog.blog",
+                "referencedFields": [
+                  "id"
+                ],
+                "sourceCardinality": "NoneRelationship",
+                "targetCardinality": "OneOrManyRelationship",
+                "comment": "",
+                "oldName": ""
+              }
+            ],
+            "indexes": [
+              {
+                "objectType": "Index_LOGICAL",
+                "name": "email",
+                "fields": [
+                  "email"
+                ],
+                "type": "Unique",
+                "comment": "",
+                "oldName": "email"
+              }
+            ],
+            "uniques": [],
+            "primaryKey": {
+              "objectType": "PrimaryKey_LOGICAL",
+              "name": "",
+              "fields": [
+                "id"
+              ],
+              "oldName": ""
+            }
+          },
+          {
+            "objectType": "Table_LOGICAL",
+            "name": "blog.blog",
+            "comment": "",
+            "oldName": "blog",
+            "fields": [
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "id",
+                "type": "INTEGER",
+                "length": 11,
+                "decimals": -2147483648,
+                "isNullable": false,
+                "defaultType": "Others",
+                "defaultValue": "",
+                "comment": "",
+                "oldName": "id"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "timeof",
+                "type": "DATE",
+                "length": -2147483648,
+                "decimals": -2147483648,
+                "isNullable": true,
+                "defaultType": "Null",
+                "defaultValue": "",
+                "comment": "",
+                "oldName": "timeof"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "author",
+                "type": "INTEGER",
+                "length": 11,
+                "decimals": -2147483648,
+                "isNullable": true,
+                "defaultType": "Null",
+                "defaultValue": "",
+                "comment": "",
+                "oldName": "author"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "title",
+                "type": "CHARACTER VARYING",
+                "length": 255,
+                "decimals": -2147483648,
+                "isNullable": true,
+                "defaultType": "Null",
+                "defaultValue": "",
+                "comment": "",
+                "oldName": "title"
+              }
+            ],
+            "foreignKeys": [
+              {
+                "objectType": "ForeignKey_LOGICAL",
+                "name": "fk_blog.blog_blog.content_1",
+                "fields": [
+                  "id"
+                ],
+                "referencedSchema": "Default",
+                "referencedTable": "blog.content",
+                "referencedFields": [
+                  "Bid"
+                ],
+                "sourceCardinality": "NoneRelationship",
+                "targetCardinality": "OneOrManyRelationship",
+                "comment": "",
+                "oldName": ""
+              }
+            ],
+            "indexes": [
+              {
+                "objectType": "Index_LOGICAL",
+                "name": "author",
+                "fields": [
+                  "author"
+                ],
+                "type": "Default",
+                "comment": "",
+                "oldName": "author"
+              }
+            ],
+            "uniques": [],
+            "primaryKey": {
+              "objectType": "PrimaryKey_LOGICAL",
+              "name": "",
+              "fields": [
+                "id"
+              ],
+              "oldName": ""
+            }
+          },
+          {
+            "objectType": "Table_LOGICAL",
+            "name": "blog.content",
+            "comment": "",
+            "oldName": "content",
+            "fields": [
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "Bid",
+                "type": "INTEGER",
+                "length": 11,
+                "decimals": 0,
+                "isNullable": false,
+                "defaultType": "None",
+                "defaultValue": "",
+                "comment": "",
+                "oldName": "Bid"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "orderOf",
+                "type": "INTEGER",
+                "length": 11,
+                "decimals": 0,
+                "isNullable": false,
+                "defaultType": "None",
+                "defaultValue": "",
+                "comment": "",
+                "oldName": "orderOf"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "contentType",
+                "type": "INTEGER",
+                "length": 1,
+                "decimals": 0,
+                "isNullable": false,
+                "defaultType": "None",
+                "defaultValue": "",
+                "comment": "",
+                "oldName": "contentType"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "content",
+                "type": "CHARACTER VARYING",
+                "length": 4000,
+                "decimals": 0,
+                "isNullable": false,
+                "defaultType": "None",
+                "defaultValue": "",
+                "comment": "",
+                "oldName": "content"
+              }
+            ],
+            "foreignKeys": [],
+            "indexes": [
+              {
+                "objectType": "Index_LOGICAL",
+                "name": "Bid",
+                "fields": [
+                  "Bid"
+                ],
+                "type": "Default",
+                "comment": "",
+                "oldName": "Bid"
+              }
+            ],
+            "uniques": []
+          }
+        ]
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "name": "Diagram 1",
+      "paperWidth": 1,
+      "paperHeight": 1,
+      "tableFont": "Arial Unicode MS",
+      "tableFontSize": 14,
+      "isBalckWhite": false,
+      "showDBSchemaName": false,
+      "showViewRelations": true,
+      "notation": "default",
+      "showFieldComment": false,
+      "showTableComment": false,
+      "shapes": [
+        {
+          "type": "table",
+          "schemaName": "Default",
+          "tableName": "blog.author",
+          "x": 70,
+          "y": 100,
+          "width": 230,
+          "height": 190,
+          "isBold": false,
+          "titleColor": {
+            "r": 55,
+            "g": 131,
+            "b": 192,
+            "a": 1
+          }
+        },
+        {
+          "type": "table",
+          "schemaName": "Default",
+          "tableName": "blog.blog",
+          "x": 390,
+          "y": 110,
+          "width": 198,
+          "height": 130,
+          "isBold": false,
+          "titleColor": {
+            "r": 55,
+            "g": 131,
+            "b": 192,
+            "a": 1
+          }
+        },
+        {
+          "type": "table",
+          "schemaName": "Default",
+          "tableName": "blog.content",
+          "x": 390,
+          "y": 270,
+          "width": 220,
+          "height": 130,
+          "isBold": false,
+          "titleColor": {
+            "r": 55,
+            "g": 131,
+            "b": 192,
+            "a": 1
+          }
+        }
+      ],
+      "layers": [],
+      "relations": [
+        {
+          "name": "fk_blog.blog_blog.content_1",
+          "sourceTableName": "blog.blog",
+          "sourceSchemaName": "Default",
+          "lineWidth": 1,
+          "visible": true,
+          "vertices": [
+            {
+              "x": 603,
+              "y": 190
+            },
+            {
+              "x": 690,
+              "y": 190
+            },
+            {
+              "x": 690,
+              "y": 350
+            },
+            {
+              "x": 625,
+              "y": 350
+            }
+          ],
+          "label": {
+            "x": 593,
+            "y": 152,
+            "width": 197,
+            "height": 30,
+            "fontName": "Arial Unicode MS",
+            "fontSize": 14,
+            "fontColor": {
+              "r": 204,
+              "g": 204,
+              "b": 204,
+              "a": 1
+            },
+            "isFontBold": false,
+            "isFontItalic": false,
+            "isVisible": false
+          }
+        },
+        {
+          "name": "fk_blog.author_blog.blog_1",
+          "sourceTableName": "blog.author",
+          "sourceSchemaName": "Default",
+          "lineWidth": 1,
+          "visible": true,
+          "vertices": [
+            {
+              "x": 315,
+              "y": 150
+            },
+            {
+              "x": 350,
+              "y": 150
+            },
+            {
+              "x": 350,
+              "y": 200
+            },
+            {
+              "x": 375,
+              "y": 200
+            }
+          ],
+          "label": {
+            "x": 305,
+            "y": 112,
+            "width": 190,
+            "height": 30,
+            "fontName": "Arial Unicode MS",
+            "fontSize": 14,
+            "fontColor": {
+              "r": 204,
+              "g": 204,
+              "b": 204,
+              "a": 1
+            },
+            "isFontBold": false,
+            "isFontItalic": false,
+            "isVisible": false
+          }
+        }
+      ],
+      "viewRelations": []
+    }
+  ]
+}
