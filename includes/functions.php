@@ -95,4 +95,10 @@ function clearBlogTempData()
 
 function saveDataToDatabase()
 {
+    foreach ($_SESSION["textArea"] as $textArea) :
+        echo $textArea;
+    endforeach;
+    foreach ($_SESSION["order"] as $contents) :
+        echo print_r($contents);
+    endforeach;
 }

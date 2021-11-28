@@ -78,6 +78,8 @@ if (upload) {
         });
         formData.append("uploadImage", true);
         formData.append("AddPicture", ctx.canvas.toDataURL());
+        formData.append("title", document.querySelectorAll("input[name='title']")[0].value);
+        formData.append("type", document.querySelectorAll("input[name='type']")[0].value);
         let UniqTime = String(new Date().getTime());
         try {
           localStorage.setItem(UniqTime, ctx.canvas.toDataURL());

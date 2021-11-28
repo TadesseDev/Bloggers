@@ -23,26 +23,28 @@ if (!isset($_SESSION['order'])) {
 }
 $BR = "<br/>";
 ?>
-<div class="fullContainer" id="authorInfo">
-    <div class="CreateBlogHeader container ">
-        <div class="author">
-            <p>Author
-                <?php
-                if (isset($_SESSION['userId'])) :
-                    echo "<p>" . $_SESSION['userFname'] . " " . $_SESSION['userLname'] . "</p>";
-                else :
-                    echo "uknown user... pleas sign in";
-                endif; ?>
-            </p>
+<form action="uploadNewBlogData.php" method="POST" enctype="multipart/form-data">
+    <div class="fullContainer" id="authorInfo">
+        <div class="CreateBlogHeader container ">
+            <div class="author">
+                <p>Author
+                    <?php
+                    if (isset($_SESSION['userId'])) :
+                        echo "<p>" . $_SESSION['userFname'] . " " . $_SESSION['userLname'] . "</p>";
+                    else :
+                        echo "uknown user... pleas sign in";
+                    endif; ?>
+                </p>
+            </div>
+            <label for="type" class="fontS-1_5em ">Blog Type</label>
+            <input type="text" name="type" class="simpleTextField fontS-1_5em" value="<?php echo $_SESSION['type'] ?>">
+            <label for="title" class="fontS-1_5em ">Blog Title</label>
+            <input type="text" name="title" class="simpleTextField fontS-1_5em" value="<?php echo $_SESSION['title'] ?>">
         </div>
-        <label for="type" class="fontS-1_5em ">Blog Type</label>
-        <input type="text" name="type" class="simpleTextField fontS-1_5em" value="<?php echo $_SESSION['type'] ?>">
-        <label for="title" class="fontS-1_5em ">Blog Title</label>
-        <input type="text" name="title" class="simpleTextField fontS-1_5em" value="<?php echo $_SESSION['title'] ?>">
     </div>
-</div>
-<div class="container">
-    <form action="uploadNewBlogData.php" method="POST" enctype="multipart/form-data">
+    <div class="container">
+        <!-- <input type="text" name="type" value="<?php echo $_SESSION['type'] ?>" hidden>
+    <input type="text" name="title" value="<?php echo $_SESSION['title'] ?>" hidden> -->
         <div class="row CreateBloog">
             <div class="col-sm-12 textArea ">
                 <div class="editPost">
@@ -102,12 +104,9 @@ $BR = "<br/>";
                 if (sizeof($_SESSION['textArea']) < 1 && sizeof($_SESSION['preserve']) < 1)
                     echo "no preview yet" . $BR;
                 else {
-                    if ($_SESSION['title'] == null)
-                        echo "no title" . $BR;
-                    if ($_SESSION['type'] == null)
-                        echo "no type is set" . $BR;
-                    echo $_SESSION['title'] . $BR;
-                    echo $_SESSION['type'] . $BR;
+                    echo !$_SESSION['type'] ? "no type is set" . $BR : $_SESSION['type'] . $BR;
+                    echo !$_SESSION['title'] ? "no title" . $BR : $_SESSION['title'] . $BR;
+                    // echo $_SESSION['type'] . $BR;
                     $imageKeys = array_keys($_SESSION['images']);
                     $preservkeys = array_keys($_SESSION['preserve']);
                     $i = 0;
@@ -177,6 +176,6 @@ $BR = "<br/>";
                 </div>
             </div>
         </div>
-    </form>
+</form>
 </div>
 <?php include "footer.php"; ?>

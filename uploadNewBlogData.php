@@ -5,10 +5,10 @@ $BR = "<br/>";
 $author_Id = null;
 // preserve user intered data 
 if (true) {
-    if (isset($_POST['uploadImage'])) {
-        $_SESSION['type'] = $_POST['type'];
-        $_SESSION['title'] = $_POST['title'];
-    }
+    // if (isset($_POST['uploadImage'])) {
+    $_SESSION['type'] = $_POST['type'];
+    $_SESSION['title'] = $_POST['title'];
+    // }
     for ($i = 0; $i < sizeof($_SESSION['textArea']); $i++) {
         $_SESSION['textArea'][$i] = strip_tags($_POST["$i"]);
         // echo "processing $i" . $BR;
@@ -27,6 +27,7 @@ function updatePreviewOrder($id, $type, $element)
 // preserveuserData($_POST);
 if (isset($_POST['upload'])) {
     echo "form submited";
+    saveDataToDatabase();
 } else if (isset($_POST['reset'])) {
     // echo "<script lang='javascript'>localStorage.clear();alert('cleared')</script>";
     // $_SESSION['images']["$index"] = $imageFile;
@@ -72,6 +73,7 @@ if (isset($_POST['upload'])) {
 } else if (isset($_POST['preview'])) {
     header("location: ./AddBlog.php");
     // echo "this is preview page";
+    // echo $_SESSION['type'];
 } else if (isset($_POST['addTextArea'])) {
     if (!isset($_POST[sizeof($_SESSION['textArea'])]) && ($_POST[sizeof($_SESSION['textArea']) - 1] != null)) {
         array_push($_SESSION['textArea'], "");
