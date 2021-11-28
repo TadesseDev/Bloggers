@@ -14,7 +14,7 @@ const cancePhotoUpload = () => {
 };
 if (file) {
   file.onchange = function () {
-    // console.log(this.files[0]);
+    console.log(this.files[0]);
     const reader = new FileReader();
     reader.readAsDataURL(this.files[0]);
     reader.onload = function (e) {
@@ -91,12 +91,12 @@ if (upload) {
         }
         console.log(UniqTime);
         // console.log(localStorage.getItem(UniqTime));
-        fetch("./uploadNewBlogData.php", {
+        fetch("uploadNewBlogData.php", {
           method: "POST",
           body: formData,
         })
           .then((e) => {
-            // console.log(e);
+            console.log(e.status);
           })
           .catch((e) => {
             console.log("errore uploading form");
@@ -120,24 +120,25 @@ submitCodeContent && [
 ];
 lang
   ? (lang.oninput = function () {
-      const exist = suportedLanguage.indexOf(this.value);
-      if (exist != -1) {
-        ValidLanguage = true;
-        submitCodeContent.disabled = false;
-        statusIcon.innerHTML = `<img class="icon" src="./files/icons/correct-green.png" alt="correct input">`;
-        submitCodeContent.style.backgroundColor = "#340100";
-      } else {
-        ValidLanguage = false;
-        submitCodeContent.disabled = true;
-        statusIcon.innerHTML = `<img class="icon" src="./files/icons/x-red.png" alt="add picture" disabled>`;
-        submitCodeContent.style.backgroundColor = "#886A6C";
-      }
-    })
+    const exist = suportedLanguage.indexOf(this.value);
+    if (exist != -1) {
+      ValidLanguage = true;
+      submitCodeContent.disabled = false;
+      statusIcon.innerHTML = `<img class="icon" src="./files/icons/correct-green.png" alt="correct input">`;
+      submitCodeContent.style.backgroundColor = "#340100";
+      submitCodeContent.style.color = "white";
+    } else {
+      ValidLanguage = false;
+      submitCodeContent.disabled = true;
+      statusIcon.innerHTML = `<img class="icon" src="./files/icons/x-red.png" alt="add picture" disabled>`;
+      submitCodeContent.style.backgroundColor = "#886A6C";
+    }
+  })
   : lang;
 submitCodeContent
   ? (submitCodeContent.onclick = function (x) {
-      if (!ValidLanguage) x.preventDefault();
-    })
+    if (!ValidLanguage) x.preventDefault();
+  })
   : submitCodeContent;
 
 let textAreaContainer = $(".textareaContainer")[0];
@@ -163,18 +164,33 @@ document.addEventListener(
 );
 textArea
   ? (textArea.oninput = function () {
-      if (this.scrollHeight > textAreaContainer.scrollHeight - 5) {
-        const oldWidth = this.scrollHeight + 10;
-        textAreaContainer.style.height = `${oldWidth}.px`;
-      } else {
-        console.log("function call");
-        textAreaContainer.style.height = "fit-contjlent";
-      }
-    })
+    if (this.scrollHeight > textAreaContainer.scrollHeight - 5) {
+      const oldWidth = this.scrollHeight + 10;
+      textAreaContainer.style.height = `${oldWidth}.px`;
+    } else {
+      console.log("function call");
+      textAreaContainer.style.height = "fit-contjlent";
+    }
+  })
   : textArea;
 // reset our created blog page by removing session and other data related to it.
 window.onunload = function () {
   let form = new FormData();
-  form.append("reset", "the data doesnt matter");
-  fetch("./uploadNewBlogData.php", { method: "POST", body: form });
+  form.append("reset", null);
+  fetch("uploadNewBlogData.php", { method: "POST", body: form });
+  return null;
 };
+
+// this will manage the shadow adding on scroling for the element of author information in uploading a new blog
+
+let headerContainer = document.querySelector("header");
+let authorInfo = $("#authorInfo");
+let option = {};
+let observer = new IntersectionObserver(function (entries, observer) {
+  entries.forEach((entrie) => {
+    if (entrie.intersectionRatio == 0) authorInfo.addClass("bottom-boxShadow");
+    else if (entrie.intersectionRatio > 0)
+      authorInfo.removeClass("bottom-boxShadow");
+  });
+}, option);
+observer.observe(headerContainer);

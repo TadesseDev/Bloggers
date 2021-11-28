@@ -6,3 +6,10 @@ const upFromLST = (localStorageName, id) => {
   console.log(img);
   return img;
 };
+const clickObject = (id) => {
+  element = document.getElementById(id);
+  document.addEventListener("DOMContentLoaded", function () {
+    element.click();
+  });
+  // alert(element.id);
+};

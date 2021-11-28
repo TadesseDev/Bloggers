@@ -42,7 +42,7 @@ include "./includes/validateRegistration.php";
             if (!isset($_SESSION['userId'])) :
             ?>
                 <button class="button" type="submit" name="Register">Register</button>
-                <button class="button" type="button" name="showLoginModal" data-toggle="modal" data-target="#exampleModalCenter">Login</button>
+                <button id="login" class="button" type="button" name="showLoginModal" data-toggle="modal" data-target="#exampleModalCenter">Login</button>
             <?php else : ?>
                 <button class="button" type="submit" name="addBlog">Add Blog</button>
                 <button class="button" type="submit" name="LogOut">Logout</button>
@@ -66,6 +66,12 @@ include "./includes/validateRegistration.php";
                 <div class="modal-body">
                     <input type="text" class="simpleTextField half" name="email" placeholder="email">
                     <input type="text" class="simpleTextField half" name="password" placeholder="password">
+                    <?php if (isset($_GET['cantSignIn'])) {
+                        echo "<script>clickObject('login')</script>";
+                        echo "<span class='simpleErrore'>user name or Password is wrong</span>";
+                    }
+                    ?>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="button darkBrown ColorOrange" data-dismiss="modal">Close</button>

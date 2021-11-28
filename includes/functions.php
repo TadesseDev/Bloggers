@@ -3,6 +3,7 @@ function logout()
 {
     clearBlogTempData();
     session_destroy();
+    echo "<script>window.location='./';</script>";
 }
 function setNull(&...$args)
 {
@@ -25,10 +26,15 @@ function login($email, $Password)
         $_SESSION['userExperties'] = $namedResult['Experties'];
         $_SESSION['userPassword'] = $namedResult['Password'];
         unset($_POST['RegisterNewUser']);
+        echo "<script>window.location='http://localhost/winmac-blog/';</script>";
+    } else {
+        echo "<script>window.location='http://localhost/winmac-blog/?cantSignIn=1';</script>";
     }
-
     // echo "use is loged in";
 }
+
+
+// not used for the time beeing
 function processMyimage($source, $destination, $w, $h, $ext)
 {
     list($w_original, $h_original) = getimagesize($source);
@@ -74,7 +80,7 @@ function createTumnbnail($source, $destination, $TumbWidth)
 }
 function clearBlogTempData()
 {
-    echo "<script lang='javascript'>localStorage.clear();</script>";
+    // echo "<script lang='javascript'>localStorage.clear();alert('cleared')</script>";
     if (isset($_SESSION['images'])) {
         $keys = array_keys($_SESSION['images']);
         foreach ($keys as $key) :
@@ -85,4 +91,8 @@ function clearBlogTempData()
         endforeach;
     }
     setNull($_SESSION['order'], $_SESSION['preserve'], $_SESSION['type'], $_SESSION['title'], $_SESSION['textArea'], $_SESSION['images'], $_FILES['AddPicture'], $_SESSION['content']);
+}
+
+function saveDataToDatabase()
+{
 }

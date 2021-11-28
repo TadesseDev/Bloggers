@@ -5,7 +5,7 @@ $BR = "<br/>";
 $author_Id = null;
 // preserve user intered data 
 if (true) {
-    if (!isset($_POST['uploadImage'])) {
+    if (isset($_POST['uploadImage'])) {
         $_SESSION['type'] = $_POST['type'];
         $_SESSION['title'] = $_POST['title'];
     }
@@ -28,10 +28,11 @@ function updatePreviewOrder($id, $type, $element)
 if (isset($_POST['upload'])) {
     echo "form submited";
 } else if (isset($_POST['reset'])) {
+    // echo "<script lang='javascript'>localStorage.clear();alert('cleared')</script>";
     // $_SESSION['images']["$index"] = $imageFile;
     clearBlogTempData();
     // echo "<pre>" . print_r($keys) . "</pre>";
-    header("location: AddBlog.php");
+    header("location: ./AddBlog.php");
 } else if (isset($_POST['uploadImage'])) {
     $img = $_POST['AddPicture'];
     $img = str_replace('data:image/png;base64,', '', $img);
@@ -55,29 +56,32 @@ if (isset($_POST['upload'])) {
     // else :
     $index = (sizeof($_SESSION['textArea']) - 1) + time() / 10000000000;
     $location = "./files/blogsData/tempoUpload/$index.png";
-    $success = file_put_contents($location, $data);
     $imageFile = imagecreatefrompng($location);
     $_SESSION['images']["$index"] = $imageFile;
     updatePreviewOrder($index, "image_" . $_POST['loaclSTR'], $_SESSION['images']["$index"]);
+    $success = file_put_contents($location, $data);
+    // updatePreviewOrder("index6", "thi is image value", "this is value");
     // move_uploaded_file($tmpName, "./files/blogsData/$fileName");
     // processMyimage($imageFile, "./files/blogsData/W-200/$index.png", 200, 150, "png");
-    // createTumnbnail($imageFile, "./files/blogsData/W-200/$index.png", 200);
+    createTumnbnail($newImage, "./files/blogsData/W-200/$index.png", 200);
     // unlink("./files/blogsData/$fileName");
     // echo "upload complet";
     // endif;
-    header("location: AddBlog.php");
+    // header("location: ./AddBlog.php");
+    // echo "<script> console.log('updating order');</script>";
 } else if (isset($_POST['preview'])) {
-    header("location: AddBlog.php");
+    header("location: ./AddBlog.php");
+    // echo "this is preview page";
 } else if (isset($_POST['addTextArea'])) {
     if (!isset($_POST[sizeof($_SESSION['textArea'])]) && ($_POST[sizeof($_SESSION['textArea']) - 1] != null)) {
         array_push($_SESSION['textArea'], "");
     }
-    header("location: AddBlog.php");
+    header("location: ./AddBlog.php");
 } else if (isset($_POST['addSpecialCharacter'])) {
     $index = (sizeof($_SESSION['textArea']) - 1) + time() / 10000000000;
     $_SESSION['preserve']["$index"] = ["content" => htmlspecialchars($_POST['PreservedText']), "language" => $_POST['category']];
     updatePreviewOrder($index, "preservedText", $_SESSION['preserve']["$index"]);
-    header("location: AddBlog.php");
+    header("location: ./AddBlog.php");
 } else if (isset($_POST['cancelPhotoUpdate'])) {
-    header("location: AddBlog.php");
+    header("location: ./AddBlog.php");
 }

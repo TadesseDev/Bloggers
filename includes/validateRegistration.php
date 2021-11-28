@@ -20,9 +20,14 @@ if (isset($_POST['RegisterNewUser'])) :
             $_SESSION['userTitle'] = $title;
             $_SESSION['userExperties'] = $experties;
             $_SESSION['userPassword'] = $password;
+            $_SESSION['registrationStatus'] = 1;
             unset($_POST['RegisterNewUser']);
-            echo "registration till going on";
+            echo "<script>window.location='./';</script>";
         } else
-            echo $res . "<br/>problem occures";
+            $_SESSION['registrationStatus'] = -1;
     }
 endif;
+
+// echo "<script>window.location='./?success=1';</script>";
+// } else
+//     echo "<script>window.location='./?registrationFail=1';</script>";

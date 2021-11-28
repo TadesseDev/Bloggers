@@ -23,30 +23,32 @@ if (!isset($_SESSION['order'])) {
 }
 $BR = "<br/>";
 ?>
+<div class="fullContainer" id="authorInfo">
+    <div class="CreateBlogHeader container ">
+        <div class="author">
+            <p>Author
+                <?php
+                if (isset($_SESSION['userId'])) :
+                    echo "<p>" . $_SESSION['userFname'] . " " . $_SESSION['userLname'] . "</p>";
+                else :
+                    echo "uknown user... pleas sign in";
+                endif; ?>
+            </p>
+        </div>
+        <label for="type" class="fontS-1_5em ">Blog Type</label>
+        <input type="text" name="type" class="simpleTextField fontS-1_5em" value="<?php echo $_SESSION['type'] ?>">
+        <label for="title" class="fontS-1_5em ">Blog Title</label>
+        <input type="text" name="title" class="simpleTextField fontS-1_5em" value="<?php echo $_SESSION['title'] ?>">
+    </div>
+</div>
 <div class="container">
-    <form action="./uploadNewBlogData.php" method="POST" enctype="multipart/form-data">
+    <form action="uploadNewBlogData.php" method="POST" enctype="multipart/form-data">
         <div class="row CreateBloog">
             <div class="col-sm-12 textArea ">
-
-                <div class="CreateBlogBotom">
-                    <div class="author">
-                        <p>Author
-                            <?php
-                            if (isset($_SESSION['userId'])) :
-                                echo "<p>" . $_SESSION['userFname'] . " " . $_SESSION['userLname'] . "</p>";
-                            else :
-                                echo "uknown user... pleas sign in";
-                            endif; ?>
-                        </p>
-                    </div>
-                    <label for="type" class="fontS-1_5em ">Blog Type</label>
-                    <input type="text" name="type" class="simpleTextField fontS-1_5em" value="<?php echo $_SESSION['type'] ?>">
-                    <label for="title" class="fontS-1_5em ">Blog Title</label>
-                    <input type="text" name="title" class="simpleTextField fontS-1_5em" value="<?php echo $_SESSION['title'] ?>">
-                </div>
                 <div class="editPost">
                     <?php
                     $keys = array_keys($_SESSION['order']);
+                    // echo print_r($_SESSION['order']);
                     $preservkeys = array_keys($_SESSION['preserve']);
                     for ($i = 0; $i < sizeof($_SESSION['textArea']); $i++) :
                     ?>

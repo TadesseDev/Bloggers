@@ -3,6 +3,7 @@
   color: var(--darkBrown);
   text-align: center;
   font-size: 2em;
+  font-family: "Poppins", sans-serif;
 }
 .registration form {
   text-transform: capitalize;
@@ -14,6 +15,9 @@
 .registration form > input {
   width: 100%;
   border-radius: 10px;
+}
+.registration form > label {
+  font-family: "Poppins", sans-serif;
 }
 .registration form > input {
   border: 3px solid var(--orange);

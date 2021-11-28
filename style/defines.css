@@ -1,0 +1,64 @@
+/* colors */
+.orange {
+  background-color: var(--orange);
+}
+.darkBrown {
+  background-color: var(--darkBrown);
+}
+.lightOrange {
+  background-color: var(--lightOrange);
+}
+.green {
+  background-color: var(--green);
+}
+.LiGreen {
+  background-color: var(--lightGreen);
+}
+.Lired {
+  background-color: var(--lightRed);
+}
+.ColorOrange {
+  color: var(--orange);
+}
+.ColorDarkBrown {
+  color: var(--darkBrown);
+}
+.ColorLightOrange {
+  color: var(--lightOrange);
+}
+.ColorLiGreen {
+  color: var(--lightGreen);
+}
+.ColorLiRed {
+  color: var(--lightRed);
+}
+.red {
+  background-color: var(--red);
+}
+/*  */
+.MWidth-500 {
+  max-width: 500px;
+}
+.MHeight-500 {
+  max-height: 500px;
+}
+.margin-auto {
+  margin: auto;
+}
+.display-block {
+  display: block;
+}
+.fontS-1_5em {
+  font-size: 1.5em;
+}
+
+.half {
+  width: 49%;
+  padding: 1%;
+}
+.floatLeft {
+  float: left;
+}
+.icon {
+  height: 100%;
+}
