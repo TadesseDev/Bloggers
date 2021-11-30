@@ -95,10 +95,28 @@ function clearBlogTempData()
 
 function saveDataToDatabase()
 {
+    if (!isset($_SESSION['title']) || !isset($_SESSION['type'])) {
+        return "requiered fileds are empity";
+    }
+    $author = isset($_SESSION['userId']) ? $_SESSION['userId'] : "default";
+    $title = $_SESSION['title'];
+    $type = $_SESSION['type'];
+    echo $title . " " . $type;
+    $con = mysqli_connect($_SESSION['conInfo'][0], $_SESSION['conInfo'][1], $_SESSION['conInfo'][2], $_SESSION['conInfo'][3]);
+    mysqli_query($con, " LOCK TABLES `blog` WRITE");
+    $res = mysqli_query($con, "insert into blog(author, Title, type) values($author, '$title', '$type');");
+    if ($res != 1) {
+        mysqli_query($con, " UNLOCK TABLES");
+        return "cant write to the database";
+    }
+    $res = mysqli_query($con, "select max(id) as thisBlogId from  blog");
+    mysqli_query($con, "UNLOCK TABLES");
+    $BlogId = mysqli_fetch_assoc($res)["thisBlogId"];
     foreach ($_SESSION["textArea"] as $textArea) :
-        echo $textArea;
+        echo $textArea . "<br/>";
     endforeach;
     foreach ($_SESSION["order"] as $contents) :
         echo print_r($contents);
     endforeach;
+    return "sucess";
 }

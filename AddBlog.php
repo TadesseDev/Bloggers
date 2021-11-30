@@ -37,14 +37,12 @@ $BR = "<br/>";
                 </p>
             </div>
             <label for="type" class="fontS-1_5em ">Blog Type</label>
-            <input type="text" name="type" class="simpleTextField fontS-1_5em" value="<?php echo $_SESSION['type'] ?>">
+            <input type="text" name="type" class="simpleTextField fontS-1_5em" value="<?php echo $_SESSION['type'] ?>" required>
             <label for="title" class="fontS-1_5em ">Blog Title</label>
-            <input type="text" name="title" class="simpleTextField fontS-1_5em" value="<?php echo $_SESSION['title'] ?>">
+            <input type="text" name="title" class="simpleTextField fontS-1_5em" value="<?php echo $_SESSION['title'] ?> " required>
         </div>
     </div>
     <div class="container">
-        <!-- <input type="text" name="type" value="<?php echo $_SESSION['type'] ?>" hidden>
-    <input type="text" name="title" value="<?php echo $_SESSION['title'] ?>" hidden> -->
         <div class="row CreateBloog">
             <div class="col-sm-12 textArea ">
                 <div class="editPost">
