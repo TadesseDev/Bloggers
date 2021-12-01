@@ -101,7 +101,7 @@ function saveDataToDatabase()
     $author = isset($_SESSION['userId']) ? $_SESSION['userId'] : "default";
     $title = $_SESSION['title'];
     $type = $_SESSION['type'];
-    echo $title . " " . $type;
+    // echo $title . " " . $type;
     $con = mysqli_connect($_SESSION['conInfo'][0], $_SESSION['conInfo'][1], $_SESSION['conInfo'][2], $_SESSION['conInfo'][3]);
     mysqli_query($con, " LOCK TABLES `blog` WRITE");
     $res = mysqli_query($con, "insert into blog(author, Title, type) values($author, '$title', '$type');");
@@ -112,11 +112,28 @@ function saveDataToDatabase()
     $res = mysqli_query($con, "select max(id) as thisBlogId from  blog");
     mysqli_query($con, "UNLOCK TABLES");
     $BlogId = mysqli_fetch_assoc($res)["thisBlogId"];
-    foreach ($_SESSION["textArea"] as $textArea) :
-        echo $textArea . "<br/>";
-    endforeach;
-    foreach ($_SESSION["order"] as $contents) :
-        echo print_r($contents);
+
+    for ($i = 0; $i < sizeof($_SESSION["textArea"]); $i++) :
+        $text = $_SESSION["textArea"][$i];
+        $res = mysqli_query($con, "insert into content(Bid,orderOf,contentType,content) values($BlogId,$i,1,'$text')");
+    // insert into content(Bid,orderOf,contentType,content) values(1,-0.8361730166,1,"When ");
+    // echo $_SESSION["textArea"][$i] . "<br/>";
+    endfor;
+    $keys = array_keys($_SESSION['order']);
+    foreach ($keys as $key) :
+        $content = "";
+        $contentType = 2;
+        $remark = "not set";
+        if (explode("_", $_SESSION["order"][$key][0])[0] == "image") {
+            $content = "files/blogsData/tempoUpload/$key.png";
+            $contentType = 3;
+        } else {
+            $content = mysqli_real_escape_string($con, $_SESSION["order"][$key][1]["content"]);
+            $remark = $_SESSION["order"][$key][1]["language"];
+        }
+        //  = explode("_", $_SESSION["order"][$key][0])[0] == "image" ? 3 : 2;
+        $res = mysqli_query($con, "insert into content(Bid,orderOf,contentType,content,remark) values($BlogId,$key,$contentType,'$content','$remark')");
+        echo print_r($key) . "<br/>";
     endforeach;
     return "sucess";
 }

@@ -58,15 +58,28 @@ $BR = "<br/>";
                                     if (floor((float)$key) == $i) {
                                         $vals = explode("_", $_SESSION['order'][$key][0]);
                                         if ($vals[0] == 'image') {
-                                            echo "<h3>image is here...</h3>";
+                                            // echo "<h3>image is here...</h3>";
+                                            if ($vals[1] !== "workOnServerData") {
+                                                echo "<img class='MHeight-500 margin-auto display-block' id='" . $key . "'> </img>";
+                                                echo "<script>upFromLST($vals[1]," . $key . ")</script>";
+                                            } else {
+                                                echo "<img class='MHeight-500 margin-auto display-block' id='" . $key . "' src='./files/blogsData/tempoUpload/$key.png'> </img>";
+                                            }
                                         } else if ($_SESSION['order'][$key][0] == 'preservedText') {
-                                            echo "<h3>programing code is here...</h3>";
+                                ?>
+                                    <!-- echo "<h3>programing code is here...</h3>"; -->
+                                    <pre>
+                                            <code class="language-<?php echo $_SESSION['order'][$key][1]['language']; ?>">
+                                            <?php echo $_SESSION['order'][$key][1]['content'] . $BR; ?>
+                                            </code>
+                                            </pre>
+                        <?php
                                         }
                                     }
                                 endforeach;
                             endfor;
                             if (sizeof($_SESSION['textArea']) === 0) {
-                                ?>
+                        ?>
                         <div class="textareaContainer"><textarea class="blogCreateTA" name="<?php echo sizeof($_SESSION['textArea']) ?>" placeholder="compile your blog here and preview will be available on the bottom of this page"></textarea></div>
                     <?php } ?>
                     <div>
@@ -99,45 +112,47 @@ $BR = "<br/>";
         <div class="row">
             <div class="col-sm-12 preview">
                 <?php
-                if (sizeof($_SESSION['textArea']) < 1 && sizeof($_SESSION['preserve']) < 1)
-                    echo "no preview yet" . $BR;
-                else {
-                    echo !$_SESSION['type'] ? "no type is set" . $BR : $_SESSION['type'] . $BR;
-                    echo !$_SESSION['title'] ? "no title" . $BR : $_SESSION['title'] . $BR;
-                    // echo $_SESSION['type'] . $BR;
-                    $imageKeys = array_keys($_SESSION['images']);
-                    $preservkeys = array_keys($_SESSION['preserve']);
-                    $i = 0;
-                    foreach ($_SESSION['textArea'] as $x) {
-                        $paras = explode("\n", $x);
-                        foreach ($paras as $para) {
-                            echo $para . $BR;
-                        }
-                        foreach ($keys as $key) :
-                            if (floor((float)$key) == $i) {
-                                $vals = explode("_", $_SESSION['order'][$key][0]);
-                                if ($vals[0] == 'image') {
-                                    // echo $_SESSION['order'][$key][1]['name'] . $BR;
-                                    if ($vals[1] !== "workOnServerData") {
-                                        echo "<img class='MHeight-500 margin-auto display-block' id='" . $key . "'> </img>";
-                                        echo "<script>upFromLST($vals[1]," . $key . ")</script>";
-                                    } else {
-                                        echo "<img class='MHeight-500 margin-auto display-block' id='" . $key . "' src='./files/blogsData/tempoUpload/$key.png'> </img>";
-                                    }
-                                } else if ($_SESSION['order'][$key][0] == 'preservedText') {
+                // if (sizeof($_SESSION['textArea']) < 1 && sizeof($_SESSION['preserve']) < 1)
+                //     echo "no preview yet" . $BR;
+                // else {
+                //     echo !$_SESSION['type'] ? "no type is set" . $BR : $_SESSION['type'] . $BR;
+                //     echo !$_SESSION['title'] ? "no title" . $BR : $_SESSION['title'] . $BR;
+                //     // echo $_SESSION['type'] . $BR;
+                //     $imageKeys = array_keys($_SESSION['images']);
+                //     $preservkeys = array_keys($_SESSION['preserve']);
+                //     $i = 0;
+                //     foreach ($_SESSION['textArea'] as $x) {
+                //         $paras = explode("\n", $x);
+                //         foreach ($paras as $para) {
+                //             echo $para . $BR;
+                //         }
+                //         foreach ($keys as $key) :
+                //             if (floor((float)$key) == $i) {
+                //                 $vals = explode("_", $_SESSION['order'][$key][0]);
+                //                 if ($vals[0] == 'image') {
+                //                     // echo $_SESSION['order'][$key][1]['name'] . $BR;
+                //                     if ($vals[1] !== "workOnServerData") {
+                //                         echo "<img class='MHeight-500 margin-auto display-block' id='" . $key . "'> </img>";
+                //                         echo "<script>upFromLST($vals[1]," . $key . ")</script>";
+                //                     } else {
+                //                         echo "<img class='MHeight-500 margin-auto display-block' id='" . $key . "' src='./files/blogsData/tempoUpload/$key.png'> </img>";
+                //                     }
+                //                 } else if ($_SESSION['order'][$key][0] == 'preservedText') {
                 ?>
-                                    <pre>
-                        <code class="language-<?php echo $_SESSION['order'][$key][1]['language']; ?>">
-                        <?php echo $_SESSION['order'][$key][1]['content'] . $BR; ?>
-                        </code>
-                        </pre>
+                <!-- <pre> -->
+                <!-- <code class="language-<?php echo $_SESSION['order'][$key][1]['language']; ?>"> -->
                 <?php
-                                }
-                            }
-                        endforeach;
-                        $i++;
-                    }
-                }
+                // echo $_SESSION['order'][$key][1]['content'] . $BR; 
+                ?>
+                <!-- </code>
+                        </pre> -->
+                <?php
+                //                 }
+                //             }
+                //         endforeach;
+                //         $i++;
+                //     }
+                // }
                 ?>
                 <button type="submit" name="upload">Publish</button>
             </div>
