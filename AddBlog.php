@@ -10,7 +10,7 @@ if (!isset($_SESSION['title'])) {
     $_SESSION['title'] = null;
 }
 if (!isset($_SESSION['textArea'])) {
-    $_SESSION['textArea'] = array();
+    $_SESSION['textArea'] = array("");
 }
 if (!isset($_SESSION['images'])) {
     $_SESSION['images'] = array();
@@ -74,6 +74,8 @@ $BR = "<br/>";
                                             </code>
                                             </pre>
                         <?php
+                                        } else if ($_SESSION['order'][$key][0] == 'subTitle') {
+                                            echo "<h2>" . $_SESSION['order'][$key][1] . "</h2>";
                                         }
                                     }
                                 endforeach;
@@ -88,21 +90,24 @@ $BR = "<br/>";
                                 <span><img class="icon" src="./files/icons/camera-brown.png" alt="add picture"></span>
                             </label>
                             <button type="submit" name="uploadImage" oninput="cancePhotoUpload();" class="sideButton save" id="upload">
-                                <span><img class="icon" src="./files/icons/Save-brown.png" alt="add picture">
+                                <span><img class="icon" src="./files/icons/Save-brown.png" alt="save picture">
                                 </span></button>
                             <button type="submit" class="sideButton cancel" id="cancel" onclick="cancePhotoUpload();" name="cancelPhotoUpdate">
-                                <span><img class="icon" src="./files/icons/Cancel-brown.png" alt="add picture"></span></button>
+                                <span><img class="icon" src="./files/icons/Cancel-brown.png" alt="dont save"></span></button>
                             <input type="file" accept="image/*" oninput="pictureAdded();" name="AddPicture" id="AddPicture"></input>
                             <button type="button" class="sideButton" data-toggle="modal" data-target="#exampleModalCenter">
-                                <span><img class="icon" src="./files/icons/code-brown.png" alt="add picture"></span>
+                                <span><img class="icon" src="./files/icons/code-brown.png" alt="add programing code"></span>
                             </button>
                             <button type="submit" name="reset" class="sideButton">
-                                <span><img class="icon" src="./files/icons/Refresh-brown.png" alt="add picture"></span>
+                                <span><img class="icon" src="./files/icons/Refresh-brown.png" alt="reset everything"></span>
                             </button>
                             <button type="submit" name="preview" class="sideButton">
-                                <span><img class="icon" src="./files/icons/Eye-brown.png" alt="add picture"></span></button>
+                                <span><img class="icon" src="./files/icons/Eye-brown.png" alt="preview your compose"></span></button>
+                            <button type="button" name="addsubTitle" class="sideButton" data-toggle="modal" data-target="#BlogTitle">
+                                <span><img class="icon" src="./files/icons/title.svg" alt="add a title" disabled></span>
+                            </button>
                             <button type="clear" name="addTextArea" class="sideButton">
-                                <span><img class="icon" src="./files/icons/Add-text-area-brown.png" alt="add picture" disabled></span>
+                                <span><img class="icon" src="./files/icons/Add-text-area-brown.png" alt="create text area here" disabled></span>
                             </button>
                         </div>
                     </div>
@@ -140,7 +145,9 @@ $BR = "<br/>";
                 //                 } else if ($_SESSION['order'][$key][0] == 'preservedText') {
                 ?>
                 <!-- <pre> -->
-                <!-- <code class="language-<?php echo $_SESSION['order'][$key][1]['language']; ?>"> -->
+                <!-- <code class="language-<?
+                                            // php echo $_SESSION['order'][$key][1]['language']; 
+                                            ?>"> -->
                 <?php
                 // echo $_SESSION['order'][$key][1]['content'] . $BR; 
                 ?>
@@ -157,38 +164,8 @@ $BR = "<br/>";
                 <button type="submit" name="upload">Publish</button>
             </div>
         </div>
-        <div class=" modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="codeBlock modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header darkBrown">
-                        <h5 class="modal-title ColorOrange" id="exampleModalLongTitle">chose your language</h5>
-                        <div class="languageOption">
-                            <input type="text" list="languages" name="category" id="lang" class="select" placeholder="select lang">
-                            <datalist id="languages">
-                                <option value="HTML">
-                                <option value="PHP">
-                                <option value="Java">
-                                <option value="SQL">
-                                <option value="JavaScript">
-                                <option value="JSON">
-                            </datalist>
-                            <span class="icon" id="statusIcon">
-                            </span>
-                        </div>
-                        <button type="button" class="close ColorOrange" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <textarea name="PreservedText" cols="30" rows="10"></textarea>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="button darkBrown ColorOrange" data-dismiss="modal">cancel</button>
-                        <button type="submit" class="button darkBrown ColorOrange" name="addSpecialCharacter" id="submitCodeContent">submit</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <?php include "./includes/modals.php"; ?>
 </form>
 </div>
-<?php include "footer.php"; ?>
+<?php
+include "footer.php"; ?>

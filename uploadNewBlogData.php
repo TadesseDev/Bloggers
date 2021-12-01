@@ -87,4 +87,15 @@ if (isset($_POST['upload'])) {
     header("location: ./AddBlog.php");
 } else if (isset($_POST['cancelPhotoUpdate'])) {
     header("location: ./AddBlog.php");
+} else if (isset($_POST['addSubTitle'])) {
+    if ($_POST['subTitle'] == "") {
+        header("location: ./AddBlog.php");
+        // echo "adding a title";
+    }
+    // echo $_POST['subTitle'];
+    else {
+        $index = (sizeof($_SESSION['textArea']) - 1) + time() / 10000000000;
+        updatePreviewOrder($index, "subTitle", $_POST['subTitle']);
+        header("location: ./AddBlog.php");
+    }
 }

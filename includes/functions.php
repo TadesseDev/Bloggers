@@ -127,9 +127,12 @@ function saveDataToDatabase()
         if (explode("_", $_SESSION["order"][$key][0])[0] == "image") {
             $content = "files/blogsData/tempoUpload/$key.png";
             $contentType = 3;
-        } else {
+        } else if ($_SESSION['order'][$key][0] == 'preservedText') {
             $content = mysqli_real_escape_string($con, $_SESSION["order"][$key][1]["content"]);
             $remark = $_SESSION["order"][$key][1]["language"];
+        } else if ($_SESSION['order'][$key][0] == 'subTitle') {
+            $content = mysqli_real_escape_string($con, $_SESSION["order"][$key][1]);
+            $contentType = 0;
         }
         //  = explode("_", $_SESSION["order"][$key][0])[0] == "image" ? 3 : 2;
         $res = mysqli_query($con, "insert into content(Bid,orderOf,contentType,content,remark) values($BlogId,$key,$contentType,'$content','$remark')");

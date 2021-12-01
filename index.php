@@ -12,19 +12,19 @@ include "./includes/validateRegistration.php";
                 <div class="textContent">
                     <ol>
                         <li class="title">
-                            <p>what we do here ?</p>
+                            <p>you can be a bloger ?</p>
                         </li>
                         <li>
-                            <p>provide a space for anyone to share their thought. </p>
+                            <p>sign in / register</p>
                         </li>
                         <li>
-                            <p>respond for a request blog in a specific area. </p>
+                            <p>compile your blog</p>
                         </li>
                         <li>
-                            <p>subscribe to receive latest posts.</p>
+                            <p>publish / share</p>
                         </li>
                         <li>
-                            <p>or contact us for any guidance. </p>
+                            <!-- <p>or contact us for any guidance. </p> -->
                         </li>
                     </ol>
                 </div>

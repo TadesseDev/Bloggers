@@ -19,6 +19,7 @@ if (isset($_POST['login'])) {
 </script>
 
 <head>
+    <link rel="icon" href="./files/3D tube WM.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Poppins:wght@100;500&family=Roboto+Mono:wght@200&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
