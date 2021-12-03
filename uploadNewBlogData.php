@@ -28,7 +28,13 @@ function updatePreviewOrder($id, $type, $element)
 if (isset($_POST['upload'])) {
     // echo "form submited";
     $ret = saveDataToDatabase();
-    echo $ret;
+    if ($ret == "success") {
+        echo "success";
+        clearBlogTempData();
+    } else {
+        echo $ret;
+    }
+    // echo $ret;
 } else if (isset($_POST['reset'])) {
     // echo "<script lang='javascript'>localStorage.clear();alert('cleared')</script>";
     // $_SESSION['images']["$index"] = $imageFile;

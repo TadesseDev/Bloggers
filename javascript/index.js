@@ -2,6 +2,10 @@ const upload = document.querySelector("#upload");
 const cancel = document.querySelector("#cancel");
 const selectFile = document.querySelector("label[for='AddPicture']");
 const file = document.getElementById("AddPicture");
+const BlogTitle = document.getElementById("title");
+const BlogType = document.getElementById("type");
+const BlogTypePreview = document.getElementById("BlogTypePreview");
+const BlogTitlePreview = document.getElementById("BlogTitlePreview");
 const pictureAdded = () => {
   selectFile.style = "display: none";
   upload.style = "display: inline";
@@ -196,3 +200,15 @@ let observer = new IntersectionObserver(function (entries, observer) {
   });
 }, option);
 observer.observe(headerContainer);
+
+BlogTitle ? BlogTitle.oninput = (x) => {
+  BlogTitlePreview.getElementsByTagName("p")[0].innerText = x.target.value;
+} : null;
+BlogType ? BlogType.oninput = (x) => {
+  BlogTypePreview.getElementsByTagName("p")[0].innerText = x.target.value;
+} : null;
+
+BlogType ? BlogTypePreview.getElementsByTagName("p")[0].innerText = BlogType.value : null;
+BlogTitle ? BlogTitlePreview.getElementsByTagName("p")[0].innerText = BlogTitle.value : null;
+
+

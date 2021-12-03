@@ -136,7 +136,7 @@ function saveDataToDatabase()
         }
         //  = explode("_", $_SESSION["order"][$key][0])[0] == "image" ? 3 : 2;
         $res = mysqli_query($con, "insert into content(Bid,orderOf,contentType,content,remark) values($BlogId,$key,$contentType,'$content','$remark')");
-        echo print_r($key) . "<br/>";
+    // echo print_r($key) . "<br/>";
     endforeach;
-    return "sucess";
+    return "success";
 }

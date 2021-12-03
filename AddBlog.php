@@ -37,15 +37,21 @@ $BR = "<br/>";
                 </p>
             </div>
             <label for="type" class="fontS-1_5em ">Blog Type</label>
-            <input type="text" name="type" class="simpleTextField fontS-1_5em" value="<?php echo $_SESSION['type'] ?>" required>
+            <input type="text" id="type" name="type" class="simpleTextField fontS-1_5em" value="<?php echo $_SESSION['type'] ?>" required>
             <label for="title" class="fontS-1_5em ">Blog Title</label>
-            <input type="text" name="title" class="simpleTextField fontS-1_5em" value="<?php echo $_SESSION['title'] ?> " required>
+            <input type="text" id="title" name="title" class="simpleTextField fontS-1_5em" value="<?php echo $_SESSION['title'] ?> " required>
         </div>
     </div>
     <div class="container">
         <div class="row CreateBloog">
             <div class="col-sm-12 textArea ">
                 <div class="editPost">
+                    <div id="BlogTypePreview">
+                        <p class="font-open-sans fontS-1_5em"></p>
+                    </div>
+                    <div id="BlogTitlePreview">
+                        <p class="font-open-sans fontS-2em"></p>
+                    </div>
                     <?php
                     $keys = array_keys($_SESSION['order']);
                     // echo print_r($_SESSION['order']);
@@ -98,17 +104,17 @@ $BR = "<br/>";
                             <button type="button" class="sideButton" data-toggle="modal" data-target="#exampleModalCenter">
                                 <span><img class="icon" src="./files/icons/code-brown.png" alt="add programing code"></span>
                             </button>
-                            <button type="submit" name="reset" class="sideButton">
-                                <span><img class="icon" src="./files/icons/Refresh-brown.png" alt="reset everything"></span>
-                            </button>
-                            <button type="submit" name="preview" class="sideButton">
-                                <span><img class="icon" src="./files/icons/Eye-brown.png" alt="preview your compose"></span></button>
                             <button type="button" name="addsubTitle" class="sideButton" data-toggle="modal" data-target="#BlogTitle">
                                 <span><img class="icon" src="./files/icons/title.svg" alt="add a title" disabled></span>
                             </button>
                             <button type="clear" name="addTextArea" class="sideButton">
                                 <span><img class="icon" src="./files/icons/Add-text-area-brown.png" alt="create text area here" disabled></span>
                             </button>
+                            <button type="submit" name="reset" class="sideButton">
+                                <span><img class="icon" src="./files/icons/Refresh-brown.png" alt="reset everything"></span>
+                            </button>
+                            <button type="submit" name="preview" class="sideButton">
+                                <span><img class="icon" src="./files/icons/Eye-brown.png" alt="preview your compose"></span></button>
                         </div>
                     </div>
                 </div>

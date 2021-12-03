@@ -8,7 +8,7 @@ include "./includes/validateRegistration.php";
 <div class="heading">
     <div class="container-fluid">
         <div class="row align-items-center">
-            <div class="col-sm-8">
+            <div class="col-sm-6">
                 <div class="textContent">
                     <ol>
                         <li class="title">
@@ -29,8 +29,13 @@ include "./includes/validateRegistration.php";
                     </ol>
                 </div>
             </div>
-            <div class="col-sm-4 imageContainer">
-                <img src="./files/3D tube WM.png" alt="winmac Text">
+            <div class="col-sm-6">
+                <div class="profileContainer">
+                    <span id="prifileImage">
+                        <img src="./files/icons/anonymous_user.svg" alt="winmac Text">
+                    </span>
+                    <span>Not Signed In</span>
+                </div>
             </div>
         </div>
     </div>

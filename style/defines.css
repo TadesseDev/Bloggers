@@ -51,6 +51,9 @@
 .fontS-1_5em {
   font-size: 1.5em;
 }
+.fontS-2em {
+  font-size: 2em;
+}
 
 .half {
   width: 49%;
@@ -61,4 +64,7 @@
 }
 .icon {
   height: 100%;
+}
+.font-open-sans {
+  font-family: "Open Sans", sans-serif;
 }
