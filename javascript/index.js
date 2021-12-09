@@ -6,6 +6,7 @@ const BlogTitle = document.getElementById("title");
 const BlogType = document.getElementById("type");
 const BlogTypePreview = document.getElementById("BlogTypePreview");
 const BlogTitlePreview = document.getElementById("BlogTitlePreview");
+const BlogcoverImage = $("#blogCoverImage");
 const pictureAdded = () => {
   selectFile.style = "display: none";
   upload.style = "display: inline";
@@ -82,8 +83,8 @@ if (upload) {
         });
         formData.append("uploadImage", true);
         formData.append("AddPicture", ctx.canvas.toDataURL());
-        formData.append("title", document.querySelectorAll("input[name='title']")[0].value);
-        formData.append("type", document.querySelectorAll("input[name='type']")[0].value);
+        formData.append("title", BlogTitle.value);
+        formData.append("type", BlogTitle.value);
         let UniqTime = String(new Date().getTime());
         try {
           localStorage.setItem(UniqTime, ctx.canvas.toDataURL());
@@ -111,6 +112,75 @@ if (upload) {
     };
     // console.log(fileData);
   };
+}
+if (BlogcoverImage) {
+  let $modal = $("#modal");
+  let image = document.getElementById("sample_image");
+  var croper;
+  BlogcoverImage.change(event => {
+    let files = event.target.files;
+    var don = (url) => {
+      image.src = url;
+      $modal.modal("show");
+    }
+    if (files && files.length > 0) {
+      reader = new FileReader();
+      reader.onload = (event) => {
+        don(reader.result);
+      };
+      reader.readAsDataURL(files[0]);
+      // CroperModal.modal("show");
+    }
+    $modal.on('shown.bs.modal', function () {
+      cropper = new Cropper(image, {
+        aspectRatio: 1,
+        viewMode: 3,
+        preview: '.preview'
+      });
+    }).on('hidden.bs.modal', function () {
+      cropper.destroy();
+      cropper = null;
+    });
+    // console.log(CroperModal);
+    // console.log(val);
+  });
+  $("#crop").click(function () {
+    console.log($(".cropper-crop-box").innerHTML);
+    let canvase = cropper.getCroppedCanvas(
+      {
+        width: 400,
+        height: 400
+      }
+    );
+    // console.log(canvase);
+    canvase.toBlob(function (blob) {
+      url = URL.createObjectURL(blob);
+      let reader = new FileReader();
+      reader.readAsDataURL(blob);
+      reader.onload = function () {
+        let base64Image = reader.result;
+        const formData = new FormData();
+        formData.append("uploadBlogCover", true);
+        formData.append("blogCover", base64Image);
+        formData.append("title", BlogTitle.value);
+        formData.append("type", BlogTitle.value);
+        fetch("uploadNewBlogData.php", {
+          method: "POST",
+          body: formData,
+        })
+          .then((e) => {
+            console.log(e.status);
+            $modal.modal("hide");
+          })
+          .catch((e) => {
+            console.log("errore uploading form");
+          });
+        console.log(blob);
+      }
+      // image.src = url;
+      // console.log(url);
+    });
+  });
 }
 
 // special character or code will be submited with only a valid language
@@ -201,14 +271,19 @@ let observer = new IntersectionObserver(function (entries, observer) {
 }, option);
 observer.observe(headerContainer);
 
-BlogTitle ? BlogTitle.oninput = (x) => {
-  BlogTitlePreview.getElementsByTagName("p")[0].innerText = x.target.value;
-} : null;
-BlogType ? BlogType.oninput = (x) => {
-  BlogTypePreview.getElementsByTagName("p")[0].innerText = x.target.value;
-} : null;
+if (BlogTitle) {
+  BlogTitle.oninput = (x) => {
+    BlogTitlePreview.getElementsByTagName("p")[0].innerText = x.target.value;
+  }
+  BlogType.oninput = (x) => {
+    BlogTypePreview.getElementsByTagName("p")[0].innerText = x.target.value;
+  }
+  BlogTypePreview.getElementsByTagName("p")[0].innerText = BlogType.value;
+  BlogTitlePreview.getElementsByTagName("p")[0].innerText = BlogTitle.value;
+}
 
-BlogType ? BlogTypePreview.getElementsByTagName("p")[0].innerText = BlogType.value : null;
-BlogTitle ? BlogTitlePreview.getElementsByTagName("p")[0].innerText = BlogTitle.value : null;
+
+
+
 
 

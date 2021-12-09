@@ -200,11 +200,20 @@ textarea {
   font-family: "Open Sans", sans-serif;
 }
 .preview {
-  /* border: #ffa500 3px solid; */
-  /* position: relative; */
-  /* text-align: center; */
+  border: #ffa500 3px solid;
+  position: relative;
+  text-align: center;
+  width: 200%;
+  height: 200px;
+  overflow: hidden;
+  margin-left: 10px;
 }
-.preview button {
+.preview img {
+  width: 100%;
+  height: auto;
+  transform: none;
+}
+#publish {
   font-size: 18px;
   position: fixed;
   bottom: 2%;
@@ -276,16 +285,16 @@ a:hover {
   font-size: 2em;
   text-transform: capitalize;
 }
-pre.preview {
+/* pre.preview {
   max-height: 200px;
-}
+} */
 pre {
   max-height: 400px;
 }
-.preview img {
+/* .preview img {
   border-radius: 10px;
   box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.329);
-}
+} */
 #BlogTypePreview {
   display: flex;
   justify-content: end;
@@ -297,3 +306,12 @@ pre {
 #BlogTitlePreview p {
   text-decoration: underline var(--orange);
 }
+#modal img {
+  /* border-radius: 50%; */
+  height: 100%;
+  max-height: 400px;
+  width: auto;
+  /* max-width: 100%; */
+}
+/* #modal .preview {
+} */

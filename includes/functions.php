@@ -116,13 +116,11 @@ function saveDataToDatabase()
     for ($i = 0; $i < sizeof($_SESSION["textArea"]); $i++) :
         $text = $_SESSION["textArea"][$i];
         $res = mysqli_query($con, "insert into content(Bid,orderOf,contentType,content) values($BlogId,$i,1,'$text')");
-    // insert into content(Bid,orderOf,contentType,content) values(1,-0.8361730166,1,"When ");
-    // echo $_SESSION["textArea"][$i] . "<br/>";
     endfor;
     $keys = array_keys($_SESSION['order']);
     foreach ($keys as $key) :
         $content = "";
-        $contentType = 2;
+        $contentType = "";
         $remark = "not set";
         if (explode("_", $_SESSION["order"][$key][0])[0] == "image") {
             $content = "files/blogsData/tempoUpload/$key.png";
@@ -130,6 +128,7 @@ function saveDataToDatabase()
         } else if ($_SESSION['order'][$key][0] == 'preservedText') {
             $content = mysqli_real_escape_string($con, $_SESSION["order"][$key][1]["content"]);
             $remark = $_SESSION["order"][$key][1]["language"];
+            $contentType = 2;
         } else if ($_SESSION['order'][$key][0] == 'subTitle') {
             $content = mysqli_real_escape_string($con, $_SESSION["order"][$key][1]);
             $contentType = 0;

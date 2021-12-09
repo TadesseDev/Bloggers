@@ -104,4 +104,12 @@ if (isset($_POST['upload'])) {
         updatePreviewOrder($index, "subTitle", $_POST['subTitle']);
         header("location: ./AddBlog.php");
     }
+} else if (isset($_POST['uploadBlogCover'])) {
+    $img = $_POST['blogCover'];
+    $img = str_replace('data:image/png;base64,', '', $img);
+    $img = str_replace(' ', '+', $img);
+    $data = base64_decode($img);
+    $newImage = imagecreatefromstring($data);
+    $location = "./files/blogsData/temp-cover/" . session_id() . ".png";
+    createTumnbnail($newImage, $location, 200);
 }
