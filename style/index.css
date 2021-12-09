@@ -51,10 +51,16 @@ header {
 svg {
   height: 100%;
 }
-.menu a {
+.menu {
   text-decoration: none;
   color: #340100;
+}
+.menu a {
+  color: inherit;
   margin-right: 10px;
+}
+.menu a:hover {
+  text-decoration: underline;
 }
 .leftTop {
   text-transform: capitalize;

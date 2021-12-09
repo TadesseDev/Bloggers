@@ -8,6 +8,10 @@ if (true) {
     $_SESSION['type'] = $_POST['type'];
     $_SESSION['title'] = $_POST['title'];
     for ($i = 0; $i < sizeof($_SESSION['textArea']); $i++) {
+        if ($_SESSION['textArea'][$i] == "") {
+            array_splice($_SESSION['textArea'], $i, 1);
+            continue;
+        }
         $_SESSION['textArea'][$i] = strip_tags($_POST["$i"]);
     }
     if (isset($_POST[sizeof($_SESSION['textArea'])])) {
@@ -26,6 +30,7 @@ if (isset($_POST['upload'])) {
     if ($ret == "success") {
         echo "success";
         clearBlogTempData();
+        session_regenerate_id();
     } else {
         echo $ret;
     }
@@ -71,6 +76,6 @@ if (isset($_POST['upload'])) {
     $img = str_replace(' ', '+', $img);
     $data = base64_decode($img);
     $newImage = imagecreatefromstring($data);
-    $location = "./files/blogsData/temp-cover/" . session_id() . ".png";
+    $location = "./files/blogsData/temp-cover/" . session_id() . "_cover.png";
     createTumnbnail($newImage, $location, 200);
 }

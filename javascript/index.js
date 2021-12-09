@@ -134,7 +134,7 @@ if (BlogcoverImage) {
     $modal.on('shown.bs.modal', function () {
       cropper = new Cropper(image, {
         aspectRatio: 1,
-        viewMode: 3,
+        viewMode: 1,
         preview: '.preview'
       });
     }).on('hidden.bs.modal', function () {
@@ -160,6 +160,12 @@ if (BlogcoverImage) {
       reader.onload = function () {
         let base64Image = reader.result;
         const formData = new FormData();
+        const textAreas = document.querySelectorAll(".blogCreateTA");
+        let i = 0;
+        textAreas.forEach((e) => {
+          formData.append(`${i}`, e.value);
+          i++;
+        });
         formData.append("uploadBlogCover", true);
         formData.append("blogCover", base64Image);
         formData.append("title", BlogTitle.value);
@@ -281,6 +287,13 @@ if (BlogTitle) {
   BlogTypePreview.getElementsByTagName("p")[0].innerText = BlogType.value;
   BlogTitlePreview.getElementsByTagName("p")[0].innerText = BlogTitle.value;
 }
+
+$(document).ready(function () {
+  if (window.location.pathname == '/winmac-blog/AddBlog.php') {
+    scrollWindowToBottom();
+  }
+  console.log("ready!");
+});
 
 
 

@@ -47,7 +47,7 @@ include "./includes/validateRegistration.php";
             if (!isset($_SESSION['userId'])) :
             ?>
                 <button class="button" type="submit" name="Register">Register</button>
-                <button id="login" class="button" type="button" name="showLoginModal" data-toggle="modal" data-target="#exampleModalCenter">Login</button>
+                <button id="login" class="button" type="button" name="showLoginModal" data-toggle="modal" data-target="#LoginModal">Login</button>
             <?php else : ?>
                 <button class="button" type="submit" name="addBlog">Add Blog</button>
                 <button class="button" type="submit" name="LogOut">Logout</button>
@@ -58,35 +58,16 @@ include "./includes/validateRegistration.php";
         include "./includes/registerationForm.php";
     endif; ?>
 </div>
-<div class=" modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header darkBrown">
-                <h5 class="modal-title ColorOrange" id="exampleModalLongTitle">Login... Do More</h5>
-                <button type="button" class="close ColorOrange" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form action="" method="POST">
-                <div class="modal-body">
-                    <input type="text" class="simpleTextField half" name="email" placeholder="email">
-                    <input type="text" class="simpleTextField half" name="password" placeholder="password">
-                    <?php if (isset($_GET['cantSignIn'])) {
-                        echo "<script>clickObject('login')</script>";
-                        echo "<span class='simpleErrore'>user name or Password is wrong</span>";
-                    }
-                    ?>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="button darkBrown ColorOrange" data-dismiss="modal">Close</button>
-                    <button type="submit" class="button darkBrown ColorOrange" name="login">Login</button>
-                </div>
-            </form>
+<?php include "./includes/modals.php" ?>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12 menu">
+            <a href="#">most recent</a>/
+            <a href="#">most ranked</a>
         </div>
     </div>
 </div>
-<div class=" container-fluid Home">
+<div class="container-fluid Home">
     <div class="row">
         <div class="col-sm-8">
             <div class="blogTitle">this is paragraph</div>

@@ -104,7 +104,21 @@ function saveDataToDatabase()
     // echo $title . " " . $type;
     $con = mysqli_connect($_SESSION['conInfo'][0], $_SESSION['conInfo'][1], $_SESSION['conInfo'][2], $_SESSION['conInfo'][3]);
     mysqli_query($con, " LOCK TABLES `blog` WRITE");
-    $res = mysqli_query($con, "insert into blog(author, Title, type) values($author, '$title', '$type');");
+    $cover = "";
+    if (file_exists("files/blogsData/temp-cover/" . session_id() . "_cover.png")) {
+        $cover = "file is found";
+        $destination = "files/blogsData/images/blogCover/" . session_id() . "_cover.png";
+        $source = "files/blogsData/temp-cover/" . session_id() . "_cover.png";
+        try {
+            rename($source, $destination);
+        } catch (exception $exce) {
+            echo $exce;
+        };
+        $cover = $destination;
+    } else {
+        $cover = "default";
+    }
+    $res = mysqli_query($con, "insert into blog(author, Title, type, cover) values($author, '$title', '$type','$cover');");
     if ($res != 1) {
         mysqli_query($con, " UNLOCK TABLES");
         return "cant write to the database";
@@ -112,7 +126,6 @@ function saveDataToDatabase()
     $res = mysqli_query($con, "select max(id) as thisBlogId from  blog");
     mysqli_query($con, "UNLOCK TABLES");
     $BlogId = mysqli_fetch_assoc($res)["thisBlogId"];
-
     for ($i = 0; $i < sizeof($_SESSION["textArea"]); $i++) :
         $text = $_SESSION["textArea"][$i];
         $res = mysqli_query($con, "insert into content(Bid,orderOf,contentType,content) values($BlogId,$i,1,'$text')");
@@ -123,7 +136,14 @@ function saveDataToDatabase()
         $contentType = "";
         $remark = "not set";
         if (explode("_", $_SESSION["order"][$key][0])[0] == "image") {
-            $content = "files/blogsData/tempoUpload/$key.png";
+            $destination = "files/blogsData/images/blogPart/$key.png";
+            $source = "files/blogsData/tempoUpload/$key.png";
+            try {
+                rename($source, $destination);
+            } catch (exception $exce) {
+                echo $exce;
+            };
+            $content = $destination;
             $contentType = 3;
         } else if ($_SESSION['order'][$key][0] == 'preservedText') {
             $content = mysqli_real_escape_string($con, $_SESSION["order"][$key][1]["content"]);

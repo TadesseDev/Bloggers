@@ -110,15 +110,16 @@ $BR = "<br/>";
                             <button type="clear" name="addTextArea" class="sideButton">
                                 <span><img class="icon" src="./files/icons/Add-text-area-brown.png" alt="create text area here" disabled></span>
                             </button>
-                            <button type="submit" name="reset" class="sideButton">
-                                <span><img class="icon" src="./files/icons/Refresh-brown.png" alt="reset everything"></span>
-                            </button>
-                            <button type="submit" name="preview" class="sideButton">
-                                <span><img class="icon" src="./files/icons/Eye-brown.png" alt="preview your compose"></span></button>
                             <label for="blogCoverImage" class="sideButton">
                                 <span><img class="icon" src="./files/icons/cover.svg" alt="image where here" /></span>
                             </label>
+                            <button type="submit" name="preview" class="sideButton">
+                                <span><img class="icon" src="./files/icons/save.svg" alt="preview your compose"></span>
+                            </button>
                             <input type="file" accept="image/*" name="BlogCover" id="blogCoverImage"></input>
+                            <button type="submit" name="reset" class="sideButton">
+                                <span><img class="icon" src="./files/icons/Refresh-brown.png" alt="reset everything"></span>
+                            </button>
                         </div>
                     </div>
                 </div>

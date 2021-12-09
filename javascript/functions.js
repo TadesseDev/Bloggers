@@ -14,4 +14,10 @@ const clickObject = (id) => {
   // alert(element.id);
 };
 
+const scrollWindowToBottom = () => {
+  let body = document.getElementsByTagName("body")[0];
+  let scrolHeight = window.outerHeight > body.scrollHeight ? window.outerHeight : body.scrollHeight;
+  window.scrollBy(0, scrolHeight);
+}
+
 

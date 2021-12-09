@@ -94,3 +94,32 @@
         </div>
     </div>
 </div>
+
+<div class=" modal fade" id="LoginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header darkBrown">
+                <h5 class="modal-title ColorOrange" id="exampleModalLongTitle">Login... Do More</h5>
+                <button type="button" class="close ColorOrange" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="" method="POST">
+                <div class="modal-body">
+                    <input type="text" class="simpleTextField half" name="email" placeholder="email">
+                    <input type="text" class="simpleTextField half" name="password" placeholder="password">
+                    <?php if (isset($_GET['cantSignIn'])) {
+                        echo "<script>clickObject('login')</script>";
+                        echo "<span class='simpleErrore'>user name or Password is wrong</span>";
+                    }
+                    ?>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="button darkBrown ColorOrange" data-dismiss="modal">Close</button>
+                    <button type="submit" class="button darkBrown ColorOrange" name="login">Login</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
