@@ -11,6 +11,14 @@ if (isset($_POST['login'])) {
     login(mysqli_real_escape_string($con, $_POST['email']), mysqli_real_escape_string($con, $_POST['password']));
 } else if (isset($_POST['LogOut'])) {
     logout();
+} else if (isset($_POST["uploadProfilePicture"])) {
+    if (isset($_SESSION['userId'])) {
+        $location = "./files/blogsData/images/profilePicture/profile" . $_SESSION['userId'] . ".png";
+        $data = $_POST["profileImage"];
+        processABase46ImageFile($data, $location, "profilePicture");
+    } else {
+        echo "<script>alert('you cannot upload image before login');</script>";
+    }
 }
 ?>
 <!DOCTYPE html>

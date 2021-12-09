@@ -13,10 +13,10 @@
             author email
         </label>
         <input type="email" id="email" name="email" placeholder="author@domain.com">
-        <label for="title">
+        <label for="authorTitle">
             author title
         </label>
-        <input type="text" id="title" name="title" placeholder="M'r, Engineer, DR, Pro...">
+        <input type="text" id="authorTitle" name="title" placeholder="M'r, Engineer, DR, Pro...">
         <label for="expertie">
             author profession
         </label>

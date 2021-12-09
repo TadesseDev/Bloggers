@@ -30,11 +30,17 @@ include "./includes/validateRegistration.php";
                 </div>
             </div>
             <div class="col-sm-6">
-                <div class="profileContainer">
-                    <span id="prifileImage">
-                        <img src="./files/icons/anonymous_user.svg" alt="winmac Text">
-                    </span>
-                    <span>Not Signed In</span>
+                <div class="profileContainer row">
+                    <div class="col-sm-6">
+                        <div id="prifileImage">
+                            <img src="./files/icons/anonymous_user.svg" alt="winmac Text">
+                            <label for="userProfileImage"></label>
+                            <input type="file" accept="image/*" name="addProfilePicture" id="userProfileImage" hidden></input>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <span>Not Signed In</span>
+                    </div>
                 </div>
             </div>
         </div>

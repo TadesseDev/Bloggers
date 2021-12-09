@@ -73,6 +73,20 @@ function processMyimage($source, $destination, $w, $h, $ext)
     imagejpeg($newImg, $destination);
 }
 
+function processABase46ImageFile($base64, $location, $remark)
+{
+    $img = $base64;
+    $img = str_replace('data:image/png;base64,', '', $img);
+    $img = str_replace(' ', '+', $img);
+    $data = base64_decode($img);
+    // $imageFile = imagecreatefrompng($location);
+    $success = file_put_contents($location, $data);
+    if ($remark == "profilePicture") {
+        $con = mysqli_connect($_SESSION['conInfo'][0], $_SESSION['conInfo'][1], $_SESSION['conInfo'][2], $_SESSION['conInfo'][3]);
+        $userId = $_SESSION['userId'];
+        $qry = mysqli_query($con, "update author set profilePic='$location' where author.id=$userId");
+    }
+}
 function createTumnbnail($source, $destination, $TumbWidth)
 {
     $im = imagescale($source, $TumbWidth);

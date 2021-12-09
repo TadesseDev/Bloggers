@@ -78,10 +78,9 @@ svg {
   font-size: 1.4em;
 }
 .heading img {
-  width: 100%;
+  /* width: 100%; */
 }
 .profileContainer {
-  /* background-color: red; */
   display: flex;
   align-items: center;
   height: 200px;
@@ -90,7 +89,7 @@ svg {
   font-size: 1.5em;
 }
 #prifileImage {
-  height: 80%;
+  position: relative;
   border-radius: 50%;
   margin-right: 10px;
   overflow: hidden;
@@ -98,6 +97,27 @@ svg {
 }
 #prifileImage img {
   height: 100%;
+  width: auto;
+  min-height: 160px;
+  max-height: 200px;
+}
+#prifileImage label {
+  display: block;
+  margin: 0px;
+}
+#uploadPicture {
+  position: absolute;
+  z-index: 1;
+  color: black;
+  bottom: 0px;
+  width: 100%;
+  height: 50%;
+  background: rgba(192, 192, 192, 0.603);
+  background-image: url("../files/icons/upload.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  background-size: 50px;
 }
 .BlogSideImage {
   padding: 20px;
@@ -312,7 +332,7 @@ pre {
 #BlogTitlePreview p {
   text-decoration: underline var(--orange);
 }
-#modal img {
+#BlogCoverModal img {
   /* border-radius: 50%; */
   height: 100%;
   max-height: 400px;

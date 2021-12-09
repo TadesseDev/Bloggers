@@ -7,6 +7,7 @@ const BlogType = document.getElementById("type");
 const BlogTypePreview = document.getElementById("BlogTypePreview");
 const BlogTitlePreview = document.getElementById("BlogTitlePreview");
 const BlogcoverImage = $("#blogCoverImage");
+const profileImage = $("#prifileImage");
 const pictureAdded = () => {
   selectFile.style = "display: none";
   upload.style = "display: inline";
@@ -113,11 +114,11 @@ if (upload) {
     // console.log(fileData);
   };
 }
-if (BlogcoverImage) {
-  let $modal = $("#modal");
+if (BlogcoverImage || profileImage) {
+  let $modal = $("#BlogCoverModal");
   let image = document.getElementById("sample_image");
   var croper;
-  BlogcoverImage.change(event => {
+  const changeLoader = event => {
     let files = event.target.files;
     var don = (url) => {
       image.src = url;
@@ -143,13 +144,15 @@ if (BlogcoverImage) {
     });
     // console.log(CroperModal);
     // console.log(val);
-  });
+  }
+  BlogcoverImage ? BlogcoverImage.change(changeLoader) : null;
+  profileImage ? profileImage.change(changeLoader) : null;
   $("#crop").click(function () {
-    console.log($(".cropper-crop-box").innerHTML);
+    console.log("xxx");
     let canvase = cropper.getCroppedCanvas(
       {
-        width: 400,
-        height: 400
+        width: 600,
+        height: 600
       }
     );
     // console.log(canvase);
@@ -160,22 +163,33 @@ if (BlogcoverImage) {
       reader.onload = function () {
         let base64Image = reader.result;
         const formData = new FormData();
-        const textAreas = document.querySelectorAll(".blogCreateTA");
-        let i = 0;
-        textAreas.forEach((e) => {
-          formData.append(`${i}`, e.value);
-          i++;
-        });
-        formData.append("uploadBlogCover", true);
-        formData.append("blogCover", base64Image);
-        formData.append("title", BlogTitle.value);
-        formData.append("type", BlogTitle.value);
-        fetch("uploadNewBlogData.php", {
+        let post_url = "unknown";
+        // console.log(BlogcoverImage)
+        if (BlogcoverImage[0]) {
+          const textAreas = document.querySelectorAll(".blogCreateTA");
+          let i = 0;
+          textAreas.forEach((e) => {
+            formData.append(`${i}`, e.value);
+            i++;
+          });
+          formData.append("uploadBlogCover", true);
+          formData.append("blogCover", base64Image);
+          formData.append("title", BlogTitle.value);
+          formData.append("type", BlogTitle.value);
+        }
+        else if (profileImage) {
+          formData.append("uploadProfilePicture", true);
+          formData.append("profileImage", base64Image);
+          post_url = "header.php"
+
+          console.log("uploading a profile picture");
+        }
+        fetch(post_url, {
           method: "POST",
           body: formData,
         })
           .then((e) => {
-            console.log(e.status);
+            console.log(e);
             $modal.modal("hide");
           })
           .catch((e) => {
@@ -292,7 +306,15 @@ $(document).ready(function () {
   if (window.location.pathname == '/winmac-blog/AddBlog.php') {
     scrollWindowToBottom();
   }
-  console.log("ready!");
+  if (profileImage) {
+    profilePic = $(profileImage);
+    profilePic.on("mouseenter", () => {
+      $(profilePic.find("> label")).attr("id", "uploadPicture");
+    });
+    profilePic.on("mouseleave", () => {
+      $(profilePic.find("> label")).attr("id", "");
+    });
+  }
 });
 
 
