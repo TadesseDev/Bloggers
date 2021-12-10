@@ -7,7 +7,7 @@ const BlogType = document.getElementById("type");
 const BlogTypePreview = document.getElementById("BlogTypePreview");
 const BlogTitlePreview = document.getElementById("BlogTitlePreview");
 const BlogcoverImage = $("#blogCoverImage");
-const profileImage = $("#prifileImage");
+const profileImage = $("#profileImage");
 const pictureAdded = () => {
   selectFile.style = "display: none";
   upload.style = "display: inline";
@@ -308,11 +308,26 @@ $(document).ready(function () {
   }
   if (profileImage) {
     profilePic = $(profileImage);
+    label = $(profilePic.find("> label"));
     profilePic.on("mouseenter", () => {
-      $(profilePic.find("> label")).attr("id", "uploadPicture");
+      label.attr("id", "uploadPicture");
+      if (!label.attr("data-userid")) {
+        label.css({
+          "background-image": "none",
+          "color": `black`,
+          "text-align": "center",
+          "font-size": "15px",
+        });
+        label.html("<p>pleas sign in<br/>first</p>");
+        console.log("user signed in");
+      }
     });
     profilePic.on("mouseleave", () => {
-      $(profilePic.find("> label")).attr("id", "");
+      label.attr("id", "");
+      label.css({
+        "background-image": `url("./files/icons/upload.svg")`
+      });
+      label.html("");
     });
   }
 });

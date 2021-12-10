@@ -88,20 +88,20 @@ svg {
   color: white;
   font-size: 1.5em;
 }
-#prifileImage {
+#profileImage {
   position: relative;
   border-radius: 50%;
   margin-right: 10px;
   overflow: hidden;
   background-color: white;
 }
-#prifileImage img {
+#profileImage img {
   height: 100%;
   width: auto;
   min-height: 160px;
   max-height: 200px;
 }
-#prifileImage label {
+#profileImage label {
   display: block;
   margin: 0px;
 }

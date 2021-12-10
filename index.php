@@ -32,9 +32,15 @@ include "./includes/validateRegistration.php";
             <div class="col-sm-6">
                 <div class="profileContainer row">
                     <div class="col-sm-6">
-                        <div id="prifileImage">
+                        <div id="profileImage">
                             <img src="./files/icons/anonymous_user.svg" alt="winmac Text">
-                            <label for="userProfileImage"></label>
+                            <?php
+                            $data_target = "";
+                            if (isset($_SESSION['userId'])) :
+                                $data_target = "data-userId='" . $_SESSION['userId'] . "'";
+                            endif;
+                            ?>
+                            <label for="userProfileImage" <?php echo $data_target ?>></label>
                             <input type="file" accept="image/*" name="addProfilePicture" id="userProfileImage" hidden></input>
                         </div>
                     </div>
