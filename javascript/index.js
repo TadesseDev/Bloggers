@@ -188,15 +188,18 @@ if (BlogcoverImage || profileImage) {
           body: formData,
         })
           .then((e) => {
-            // if (e.ok && profileImage) {
-            //   formData = null;
-            //   formData.append("updateProfilePicture", true);
-            //   fetch("index.php", {
-            //     method: "POST",
-            //     body: formData,
-            //   });
-            //   console.log(formData);
-            // }
+            if (e.ok && profileImage) {
+              $.post("./includes/ajax.php", {
+                getProfilePicture: true
+              }, function (newImage, status) {
+                const profilePicture = document.getElementById("profileImage");
+                // console.log(profilePicture);
+                // profilePicture.style.backgroundImage = `url(${newImage})`
+                updateAbackgroundPicture(newImage, profilePicture);
+                console.log(newImage);
+                console.log(profilePicture);
+              });
+            }
             console.log(e);
             $modal.modal("hide");
           })

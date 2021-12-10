@@ -21,9 +21,16 @@ const scrollWindowToBottom = () => {
   window.scrollBy(0, scrolHeight);
 }
 
-const updateAbackgroundPicture = (img = null, element = null) => {
-  // console.log(element);
-  element.style.backgroundImage = `url("${img}")`
+const updateAbackgroundPicture = (img, element) => {
+  if (!element[0]) {
+    ele = $(element);
+  }
+  ele.css({
+    "background-image": "none",
+  });
+  ele.css({
+    "background-image": `url("${img}")`
+  });
 }
 
 

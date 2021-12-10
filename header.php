@@ -20,9 +20,16 @@ if (isset($_POST['login'])) {
         echo "<script>alert('you cannot upload image before login');</script>";
     }
 }
+// else if (isset($_POST['getProfilePicture'])) {
+//     $uid = $_SESSION['userId'];
+//     $profilePic =  mysqli_fetch_assoc(getQueryResult("select profilePic from author where id='$uid'"))['profilePic'];
+//     echo $profilePic;
+// }
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
+<script lang="javascipt" src="./javascript/jquery-3.6.0.min.js"></script>
 <script lang="javascript" src="./javascript/functions.js">
 </script>
 
