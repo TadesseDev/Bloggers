@@ -33,11 +33,23 @@ include "./includes/validateRegistration.php";
                 <div class="profileContainer row">
                     <div class="col-sm-6">
                         <div id="profileImage">
-                            <img src="./files/icons/anonymous_user.svg" alt="winmac Text">
+                            <!-- <img src="./files/icons/anonymous_user.svg" alt="winmac Text"> -->
                             <?php
                             $data_target = "";
-                            if (isset($_SESSION['userId'])) :
-                                $data_target = "data-userId='" . $_SESSION['userId'] . "'";
+                            if (isset($_SESSION['userId']) || isset($_POST['updateProfilePicture'])) :
+                                $uid = $_SESSION['userId'];
+                                $data_target = "data-userId='$uid'";
+                                $profilePic =  mysqli_fetch_assoc(getQueryResult("select profilePic from author where id='$uid'"))['profilePic'];
+                                if (!$profilePic == "") {
+                            ?>
+                                    <script lang="javascript" type="text/javascript">
+                                        const profilePicture = document.getElementById("profileImage");
+                                        // console.log(profilePicture);
+                                        updateAbackgroundPicture(`<?php echo  $profilePic ?>`,
+                                            profilePicture);
+                                    </script>
+                            <?php
+                                }
                             endif;
                             ?>
                             <label for="userProfileImage" <?php echo $data_target ?>></label>

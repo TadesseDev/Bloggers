@@ -94,13 +94,18 @@ svg {
   margin-right: 10px;
   overflow: hidden;
   background-color: white;
+  background-image: url("../files/icons/anonymous_user.svg");
+  background-position: center;
+  background-size: contain;
+  height: 180px;
+  width: 180px;
 }
-#profileImage img {
+/* #profileImage img {
   height: 100%;
   width: auto;
   min-height: 160px;
   max-height: 200px;
-}
+} */
 #profileImage label {
   display: block;
   margin: 0px;

@@ -148,7 +148,6 @@ if (BlogcoverImage || profileImage) {
   BlogcoverImage ? BlogcoverImage.change(changeLoader) : null;
   profileImage ? profileImage.change(changeLoader) : null;
   $("#crop").click(function () {
-    console.log("xxx");
     let canvase = cropper.getCroppedCanvas(
       {
         width: 600,
@@ -176,12 +175,12 @@ if (BlogcoverImage || profileImage) {
           formData.append("blogCover", base64Image);
           formData.append("title", BlogTitle.value);
           formData.append("type", BlogTitle.value);
+          post_url = "uploadNewBlogData.php"
         }
         else if (profileImage) {
           formData.append("uploadProfilePicture", true);
           formData.append("profileImage", base64Image);
           post_url = "header.php"
-
           console.log("uploading a profile picture");
         }
         fetch(post_url, {
@@ -189,13 +188,22 @@ if (BlogcoverImage || profileImage) {
           body: formData,
         })
           .then((e) => {
+            // if (e.ok && profileImage) {
+            //   formData = null;
+            //   formData.append("updateProfilePicture", true);
+            //   fetch("index.php", {
+            //     method: "POST",
+            //     body: formData,
+            //   });
+            //   console.log(formData);
+            // }
             console.log(e);
             $modal.modal("hide");
           })
           .catch((e) => {
             console.log("errore uploading form");
           });
-        console.log(blob);
+        // console.log(blob);
       }
       // image.src = url;
       // console.log(url);
@@ -312,13 +320,20 @@ $(document).ready(function () {
     profilePic.on("mouseenter", () => {
       label.attr("id", "uploadPicture");
       if (!label.attr("data-userid")) {
+        label.html("<p>pleas sign in<br/>first</p>");
         label.css({
           "background-image": "none",
           "color": `black`,
           "text-align": "center",
           "font-size": "15px",
         });
-        label.html("<p>pleas sign in<br/>first</p>");
+        $(label).find("p").css({
+          "display": "inline-block",
+          "backgroud-color": "red",
+          "margin": "auto",
+          "font-family": `"Open Sans", sans-serif`,
+          "font-weight": "bold"
+        });
         console.log("user signed in");
       }
     });

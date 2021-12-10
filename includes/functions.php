@@ -173,3 +173,10 @@ function saveDataToDatabase()
     endforeach;
     return "success";
 }
+
+function getQueryResult($query)
+{
+    $con = mysqli_connect($_SESSION['conInfo'][0], $_SESSION['conInfo'][1], $_SESSION['conInfo'][2], $_SESSION['conInfo'][3]);
+    $qry = mysqli_query($con, $query);
+    return $qry;
+}
