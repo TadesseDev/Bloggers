@@ -23,12 +23,12 @@ const scrollWindowToBottom = () => {
 
 const updateAbackgroundPicture = (img, element) => {
   if (!element[0]) {
-    ele = $(element);
+    element = $(element);
   }
-  ele.css({
+  element.css({
     "background-image": "none",
   });
-  ele.css({
+  element.css({
     "background-image": `url("${img}")`
   });
 }

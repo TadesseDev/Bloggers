@@ -181,7 +181,6 @@ if (BlogcoverImage || profileImage) {
           formData.append("uploadProfilePicture", true);
           formData.append("profileImage", base64Image);
           post_url = "header.php"
-          console.log("uploading a profile picture");
         }
         fetch(post_url, {
           method: "POST",
@@ -192,15 +191,11 @@ if (BlogcoverImage || profileImage) {
               $.post("./includes/ajax.php", {
                 getProfilePicture: true
               }, function (newImage, status) {
-                const profilePicture = document.getElementById("profileImage");
-                // console.log(profilePicture);
-                // profilePicture.style.backgroundImage = `url(${newImage})`
-                updateAbackgroundPicture(newImage, profilePicture);
-                console.log(newImage);
-                console.log(profilePicture);
+                if (status === "success") {
+                  updateAbackgroundPicture(newImage, profileImage);
+                }
               });
             }
-            console.log(e);
             $modal.modal("hide");
           })
           .catch((e) => {
@@ -337,14 +332,18 @@ $(document).ready(function () {
           "font-family": `"Open Sans", sans-serif`,
           "font-weight": "bold"
         });
-        console.log("user signed in");
+        $(profilePic.find("> input")).prop('disabled', true);
+      } else {
       }
     });
     profilePic.on("mouseleave", () => {
+      if (label.attr("data-userid")) {
+        label.css({
+          "background-image": `url("./files/icons/upload.svg")`
+        });
+        $(profilePic.find("> input")).prop('disabled', false);
+      }
       label.attr("id", "");
-      label.css({
-        "background-image": `url("./files/icons/upload.svg")`
-      });
       label.html("");
     });
   }

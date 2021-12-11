@@ -83,15 +83,14 @@ include "./includes/validateRegistration.php";
     endif; ?>
 </div>
 <?php include "./includes/modals.php" ?>
-<div class="container-fluid">
-    <div class="row">
+
+<div class="container-fluid Home">
+    <div class="row ">
         <div class="col-xs-12 menu">
-            <a href="#">most recent</a>/
-            <a href="#">most ranked</a>
+            <a href="#" class="blog-selection">most recent</a>|
+            <a href="#" class="blog-selection">most ranked</a>
         </div>
     </div>
-</div>
-<div class="container-fluid Home">
     <div class="row">
         <div class="col-sm-8">
             <div class="blogTitle">this is paragraph</div>
@@ -102,17 +101,55 @@ include "./includes/validateRegistration.php";
         </div>
     </div>
     <div class="row align-items-center BlogList">
-        <div class="col-md-6">
-            <div class="row halfSide">
-                <div class="col-md-8">
-                    <div class="blogTitle">this is paragraph</div>
-                    <p> this is paragraph this is paragraph this is paragraph this is paragraph this is paragraph this is paragraph this is paragraph this is paragraph this is paragraph this is paragraph this is paragraph this is </p>
-                </div>
-                <div class="col-md-4 BlogSideImage">
-                    <img src="./files/Angular@1x.png" alt="angular">
+        <?php
+        $getAllBlogs = mysqli_fetch_all(getQueryResult("select b.id, b.timeOf, b.author, b.title, b.type, b.cover from blog as b;"), 1);
+        // echo print_r(mysqli_num_rows($getAllBlogs));
+        $blogDetail = [[[], [], []]];
+
+        for ($i = 0; $i < count($getAllBlogs); $i++) {
+            // echo $i . "<br/>";
+            // echo print_r($getAllBlogs[$i]) . "<br/>";
+            $blog = $getAllBlogs[$i];
+            // echo print_r($blog['timeOf']) . "<br/>";
+            $bId = $blog['id'];
+            $bAId = $blog['author'];
+            $blogInfo = ["id" => $bId, "time" => $blog['timeOf'], "author" => $bAId, "title" => $blog['title'], "type" => [$blog['type']], "cover" => $blog['cover']];
+            $blogDetail[$i][0] = [];
+            array_push($blogDetail[$i][0], $blogInfo);
+            $res = getQueryResult("select a.fname, a.lname, a.title, a.experties, a.email, a.profilePic from author as a where a.id=$bAId;");
+            // echo print_r($res) . "<br/>";
+            if ($res) {
+                $author = mysqli_fetch_assoc($res);
+                $auuthorInfo = ["id" => $bAId, "fname" => $author['fname'], "lname" => $author['lname'], "title" => $author['title'], "experties" => $author['email'], "email" => $author['experties'], "profilePic" => $author['profilePic']];
+                $blogDetail[$i][1] = [];
+                array_push($blogDetail[$i][1], $auuthorInfo);
+            }
+            $content = getQueryResult("select c.orderOf, c.contentType, c.content, c.remark from content as c where c.bid=$bId;");
+            $blogDetail[$i][2] = [];
+            array_push($blogDetail[$i][2], $content);
+            // echo $key . "<br/>";
+            // echo print_r($blog) . "<br/>";
+            $i++;
+        }
+        // echo print_r($blogDetail) . "<br/>";
+        foreach ($blogDetail as $key => $blog) :
+            // echo print_r($blog);
+        ?>
+            <div class="col-md-6">
+                <div class="row halfSide">
+                    <div class="col-md-8">
+                        <div class="blogTitle">this is paragraph</div>
+                        <p> this is paragraph this is paragraph this is paragraph this is paragraph this is paragraph this is paragraph this is paragraph this is paragraph this is paragraph this is paragraph this is paragraph this is </p>
+                    </div>
+                    <div class="col-md-4 BlogSideImage">
+                        <img src="./files/Angular@1x.png" alt="angular">
+                    </div>
                 </div>
             </div>
-        </div>
+        <?php
+        endforeach;
+        ?>
+        <!--
         <div class="col-md-6 halfSide">
             <div class="row">
                 <div class="col-md-8">
@@ -123,7 +160,7 @@ include "./includes/validateRegistration.php";
                     <img src="./files/vue@2x.png" alt="angular">
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>
 <?php include "footer.php"; ?>

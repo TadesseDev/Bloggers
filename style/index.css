@@ -99,6 +99,7 @@ svg {
   background-size: contain;
   height: 180px;
   width: 180px;
+  box-shadow: 0px 0px 10px 10px #c0c0c042;
 }
 /* #profileImage img {
   height: 100%;
@@ -146,7 +147,10 @@ svg {
   border-radius: 10px;
   border: #ffa500 solid 1px;
 }
-/* create blog css */
+.BlogList .col-md-6:nth-child(even) .halfSide {
+  margin-left: 5px;
+  /* create blog css */
+}
 .CreateBloog {
   flex-direction: column;
   /* height: 80vh; */
@@ -343,6 +347,10 @@ pre {
   max-height: 400px;
   width: auto;
   /* max-width: 100%; */
+}
+.blog-selection {
+  font-family: "Open Sans", sans-serif;
+  font-weight: bold;
 }
 /* #modal .preview {
 } */
