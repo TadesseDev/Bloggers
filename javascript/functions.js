@@ -32,4 +32,9 @@ const updateAbackgroundPicture = (img, element) => {
   });
 }
 
+const displaySingleBlog = (bid, container) => {
+  $(container).html();
+  console.log(bid);
+}
+
 

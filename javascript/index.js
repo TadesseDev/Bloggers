@@ -361,7 +361,9 @@ $(document).ready(function () {
     }
     );
   }
+  scrollWindowToBottom();
 });
+
 
 
 

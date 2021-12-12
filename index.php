@@ -85,7 +85,37 @@ include "./includes/validateRegistration.php";
     </div>
 </div>
 <?php include "./includes/modals.php" ?>
+<?php
+$getAllBlogs = mysqli_fetch_all(getQueryResult("select b.id, b.timeOf, b.author, b.title, b.type, b.cover from blog as b;"), 1);
+// echo print_r($getAllBlogs);
+$blogDetail = [[[], [], []]];
 
+for ($i = 0; $i < count($getAllBlogs); $i++) {
+    // echo $i . "<br/>";
+    // echo print_r($getAllBlogs[$i]) . "<br/>";
+    $blog = $getAllBlogs[$i];
+    // echo print_r($blog['timeOf']) . "<br/>";
+    $bId = $blog['id'];
+    $bAId = $blog['author'];
+    $blogInfo = ["id" => $bId, "time" => $blog['timeOf'], "author" => $bAId, "title" => $blog['title'], "type" => $blog['type'], "cover" => $blog['cover']];
+    // $blogDetail[$i][0] = [];
+    $blogDetail[$i][0] = $blogInfo;
+    $res = getQueryResult("select a.fname, a.lname, a.title, a.experties, a.email, a.profilePic from author as a where a.id=$bAId;");
+    // echo print_r($res) . "<br/>";
+    if ($res) {
+        $author = mysqli_fetch_assoc($res);
+        $auuthorInfo = ["id" => $bAId, "fname" => $author['fname'], "lname" => $author['lname'], "title" => $author['title'], "experties" => $author['email'], "email" => $author['experties'], "profilePic" => $author['profilePic']];
+        // $blogDetail[$i][1] = [];
+        $blogDetail[$i][1] = $auuthorInfo;
+    } else {
+        $blogDetail[$i][1] = null;
+    }
+    $content =  mysqli_fetch_all(getQueryResult("select c.orderOf, c.contentType, c.content, c.remark from content as c where c.bid=$bId;"), 1);
+    // $blogDetail[$i][2] = [];
+    $blogDetail[$i][2] = $content;
+    // echo $key . "<br/>";
+    // echo print_r($content) . "<br/>";
+} ?>
 <div class="container-fluid Home">
     <div class="row ">
         <div class="col-xs-12 menu">
@@ -104,34 +134,6 @@ include "./includes/validateRegistration.php";
     </div> -->
     <div class="row align-items-center BlogList">
         <?php
-        $getAllBlogs = mysqli_fetch_all(getQueryResult("select b.id, b.timeOf, b.author, b.title, b.type, b.cover from blog as b;"), 1);
-        // echo print_r($getAllBlogs);
-        $blogDetail = [[[], [], []]];
-
-        for ($i = 0; $i < count($getAllBlogs); $i++) {
-            // echo $i . "<br/>";
-            // echo print_r($getAllBlogs[$i]) . "<br/>";
-            $blog = $getAllBlogs[$i];
-            // echo print_r($blog['timeOf']) . "<br/>";
-            $bId = $blog['id'];
-            $bAId = $blog['author'];
-            $blogInfo = ["id" => $bId, "time" => $blog['timeOf'], "author" => $bAId, "title" => $blog['title'], "type" => [$blog['type']], "cover" => $blog['cover']];
-            // $blogDetail[$i][0] = [];
-            $blogDetail[$i][0] = $blogInfo;
-            $res = getQueryResult("select a.fname, a.lname, a.title, a.experties, a.email, a.profilePic from author as a where a.id=$bAId;");
-            // echo print_r($res) . "<br/>";
-            if ($res) {
-                $author = mysqli_fetch_assoc($res);
-                $auuthorInfo = ["id" => $bAId, "fname" => $author['fname'], "lname" => $author['lname'], "title" => $author['title'], "experties" => $author['email'], "email" => $author['experties'], "profilePic" => $author['profilePic']];
-                // $blogDetail[$i][1] = [];
-                $blogDetail[$i][1] = $auuthorInfo;
-            }
-            $content =  mysqli_fetch_all(getQueryResult("select c.orderOf, c.contentType, c.content, c.remark from content as c where c.bid=$bId;"), 1);
-            // $blogDetail[$i][2] = [];
-            $blogDetail[$i][2] = $content;
-            // echo $key . "<br/>";
-            // echo print_r($content) . "<br/>";
-        }
         foreach ($blogDetail as $key => $blog) :
             $preview = "";
             // echo print_r($blog[0]['title']) . "<br/>";
@@ -145,17 +147,26 @@ include "./includes/validateRegistration.php";
             <div class="col-md-6">
                 <div class="row halfSide">
                     <div class="col-md-12">
-                        <div class="blogTitle">
+                        <div class="blogPreviewTitle">
                             <p><?php echo $blog[0]['title'] ?></p>
                         </div>
                         <div class="previewContetn">
                             <div class="BlogSideImage">
                                 <img src="<?php echo $blog[0]['cover'] ?>" alt="angular">
                             </div>
-                            <?php echo $preview ?>
+                            <span class="textContent">
+                                <div class="blogPreviewInfo">
+                                    <p> Area: <?php echo $blog[0]['type'] ?></p>
+                                    <a href="#">
+                                        <p> By: <?php echo  $blog[1] != null ? $blog[1]['fname'] . $blog[1]['lname'] : "anonymous" ?></p>
+                                    </a>
+                                </div>
+                                <?php echo $preview ?>
+                            </span>
                         </div>
                         <div class="halfsideFooter">
-                            <a href="#">read more...</a>
+                            <a href="#" id="<?php echo $blog[0]['id'] ?>" onclick="displaySingleBlog({bid: <?php echo $blog[0]['id'] ?>,container: '1234'})">read more...</a>
+                            <p>time: <?php echo $blog[0]['time'] ?></p>
                         </div>
                     </div>
                 </div>

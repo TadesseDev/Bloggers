@@ -142,7 +142,7 @@ svg {
   float: right;
   border-radius: 5px;
 }
-.blogTitle {
+.blogPreviewTitle {
   /* text-decoration: underline; */
   font-family: "title";
   text-transform: capitalize;
@@ -155,7 +155,7 @@ svg {
   background: rgba(235, 234, 233, 0.863);
   border-bottom: 2px solid var(--Blue);
 }
-.blogTitle p {
+.blogPreviewTitle p {
   margin-left: 20px;
   display: inline;
 }
@@ -164,16 +164,34 @@ svg {
   margin-bottom: 0px;
   overflow: hidden;
 }
+.blogPreviewInfo {
+  font-size: 0.8rem;
+  color: var(--darkBrown);
+}
+.blogPreviewInfo p {
+  margin-bottom: 0.5rem;
+}
+.blogPreviewInfo a {
+  color: inherit;
+}
+.blogPreviewInfo a:hover {
+  text-decoration: underline;
+  font-weight: bold;
+}
 .halfsideFooter {
   margin: 0px 20px 10px 20px;
   margin-top: 0px;
-  float: right;
   display: block;
   font-weight: bold;
   letter-spacing: 1.5px;
 }
 .halfsideFooter a {
   font-family: "Open Sans", sans-serif;
+  float: right;
+}
+.halfsideFooter p {
+  font-size: 0.7rem;
+  margin-top: 5px;
 }
 .halfSide {
   box-shadow: 0px 0px 20px 1px rgba(0, 0, 0, 0.096);
