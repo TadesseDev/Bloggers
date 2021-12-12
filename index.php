@@ -36,7 +36,13 @@ include "./includes/validateRegistration.php";
                             <!-- <img src="./files/icons/anonymous_user.svg" alt="winmac Text"> -->
                             <?php
                             $data_target = "";
+                            $user_status = "Not Signed In";
+
                             if (isset($_SESSION['userId']) || isset($_POST['updateProfilePicture'])) :
+                                $user_status = "<p>" . $_SESSION['userTitle'] . ", " . $_SESSION['userFname'] . " " . $_SESSION['userLname'] . "<p/>";
+                                $user_status = $user_status . "<p>" . $_SESSION['userExperties'] . "</p>";
+                                $user_status = $user_status . "<p>" . $_SESSION['userEmail'] . "</p>";
+                                $user_status = $user_status . "<p>Rank: </p>";
                                 $uid = $_SESSION['userId'];
                                 $data_target = "data-userId='$uid'";
                                 $profilePic =  mysqli_fetch_assoc(getQueryResult("select profilePic from author where id='$uid'"))['profilePic'];
@@ -57,7 +63,7 @@ include "./includes/validateRegistration.php";
                         </div>
                     </div>
                     <div class="col-sm-6">
-                        <span>Not Signed In</span>
+                        <span class="userDetil"><?php echo $user_status; ?></span>
                     </div>
                 </div>
             </div>
@@ -85,37 +91,7 @@ include "./includes/validateRegistration.php";
     </div>
 </div>
 <?php include "./includes/modals.php" ?>
-<?php
-$getAllBlogs = mysqli_fetch_all(getQueryResult("select b.id, b.timeOf, b.author, b.title, b.type, b.cover from blog as b;"), 1);
-// echo print_r($getAllBlogs);
-$blogDetail = [[[], [], []]];
 
-for ($i = 0; $i < count($getAllBlogs); $i++) {
-    // echo $i . "<br/>";
-    // echo print_r($getAllBlogs[$i]) . "<br/>";
-    $blog = $getAllBlogs[$i];
-    // echo print_r($blog['timeOf']) . "<br/>";
-    $bId = $blog['id'];
-    $bAId = $blog['author'];
-    $blogInfo = ["id" => $bId, "time" => $blog['timeOf'], "author" => $bAId, "title" => $blog['title'], "type" => $blog['type'], "cover" => $blog['cover']];
-    // $blogDetail[$i][0] = [];
-    $blogDetail[$i][0] = $blogInfo;
-    $res = getQueryResult("select a.fname, a.lname, a.title, a.experties, a.email, a.profilePic from author as a where a.id=$bAId;");
-    // echo print_r($res) . "<br/>";
-    if ($res) {
-        $author = mysqli_fetch_assoc($res);
-        $auuthorInfo = ["id" => $bAId, "fname" => $author['fname'], "lname" => $author['lname'], "title" => $author['title'], "experties" => $author['email'], "email" => $author['experties'], "profilePic" => $author['profilePic']];
-        // $blogDetail[$i][1] = [];
-        $blogDetail[$i][1] = $auuthorInfo;
-    } else {
-        $blogDetail[$i][1] = null;
-    }
-    $content =  mysqli_fetch_all(getQueryResult("select c.orderOf, c.contentType, c.content, c.remark from content as c where c.bid=$bId;"), 1);
-    // $blogDetail[$i][2] = [];
-    $blogDetail[$i][2] = $content;
-    // echo $key . "<br/>";
-    // echo print_r($content) . "<br/>";
-} ?>
 <div class="container-fluid Home">
     <div class="row ">
         <div class="col-xs-12 menu">
@@ -132,60 +108,12 @@ for ($i = 0; $i < count($getAllBlogs); $i++) {
             <img src="./files/react@2x.png" alt="angular">
         </div>
     </div> -->
-    <div class="row align-items-center BlogList">
+
+    <div id="HomePagecontainer">
         <?php
-        foreach ($blogDetail as $key => $blog) :
-            $preview = "";
-            // echo print_r($blog[0]['title']) . "<br/>";
-            for ($i = 0; $i < count($blog[2]) && strlen($preview) < 300; $i++) {
-                if ($blog[2][$i]['contentType'] == 1) {
-                    $preview = $preview . $blog[2][$i]['content'];
-                }
-            }
-            $preview = substr($preview, 0, 300) . "....";
+        // include "./pages/ListOfBlog.php";
+        include "./pages/singleBlog.php";
         ?>
-            <div class="col-md-6">
-                <div class="row halfSide">
-                    <div class="col-md-12">
-                        <div class="blogPreviewTitle">
-                            <p><?php echo $blog[0]['title'] ?></p>
-                        </div>
-                        <div class="previewContetn">
-                            <div class="BlogSideImage">
-                                <img src="<?php echo $blog[0]['cover'] ?>" alt="angular">
-                            </div>
-                            <span class="textContent">
-                                <div class="blogPreviewInfo">
-                                    <p> Area: <?php echo $blog[0]['type'] ?></p>
-                                    <a href="#">
-                                        <p> By: <?php echo  $blog[1] != null ? $blog[1]['fname'] . $blog[1]['lname'] : "anonymous" ?></p>
-                                    </a>
-                                </div>
-                                <?php echo $preview ?>
-                            </span>
-                        </div>
-                        <div class="halfsideFooter">
-                            <a href="#" id="<?php echo $blog[0]['id'] ?>" onclick="displaySingleBlog({bid: <?php echo $blog[0]['id'] ?>,container: '1234'})">read more...</a>
-                            <p>time: <?php echo $blog[0]['time'] ?></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        <?php
-        endforeach;
-        ?>
-        <!--
-        <div class="col-md-6 halfSide">
-            <div class="row">
-                <div class="col-md-8">
-                    <div class="blogTitle">this is paragraph</div>
-                    <p> this is paragraph this is paragraph this is paragraph this is paragraph this is paragraph this is paragraph this is paragraph this is paragraph this is paragraph this is paragraph this is paragraph this is </p>
-                </div>
-                <div class="col-md-4 BlogSideImage">
-                    <img src="./files/vue@2x.png" alt="angular">
-                </div>
-            </div>
-        </div> -->
     </div>
 </div>
 <?php include "footer.php"; ?>

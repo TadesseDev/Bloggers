@@ -88,6 +88,10 @@ svg {
   color: white;
   font-size: 1.5em;
 }
+.userDetil {
+  text-align: right;
+  font-size: 0.9rem;
+}
 #profileImage {
   position: relative;
   border-radius: 50%;
@@ -410,5 +414,29 @@ pre {
   font-family: "Open Sans", sans-serif;
   font-weight: bold;
 }
-/* #modal .preview {
-} */
+
+/* single blog reading page design*/
+.singleBlog > div {
+  padding: 0px;
+}
+.singleBlog > div:nth-child(1) {
+  padding-right: 20px;
+}
+.singleBlog > div:nth-child(2) {
+  padding-left: 20px;
+}
+.singleBlog > div > div {
+  background-color: rgba(192, 192, 192, 0.253);
+  padding: 10px;
+  box-shadow: 0px 0px 100px #c0c0c03f;
+  border-radius: 5px;
+}
+.singleBlog .rightContent {
+  margin-bottom: 50px;
+}
+.rightContent .authorInfo {
+  text-align: left;
+}
+.rightContent .authorInfo .title {
+  text-align: right;
+}

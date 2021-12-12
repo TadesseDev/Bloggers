@@ -32,9 +32,17 @@ const updateAbackgroundPicture = (img, element) => {
   });
 }
 
-const displaySingleBlog = (bid, container) => {
-  $(container).html();
+const displaySingleBlog = (bid) => {
+  $("#HomePagecontainer").load("./pages/singleBlog.php", {}, function () {
+    console.log("returned");
+  });
   console.log(bid);
+}
+const displayBlogList = () => {
+  $("#HomePagecontainer").load("./pages/ListOfBlog.php", {}, function () {
+    console.log("returned");
+  });
+  // console.log(bid);
 }
 
 

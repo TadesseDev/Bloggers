@@ -361,7 +361,7 @@ $(document).ready(function () {
     }
     );
   }
-  scrollWindowToBottom();
+  // scrollWindowToBottom();
 });
 
 
