@@ -66,7 +66,7 @@ if (isset($_POST['login'])) {
                         </div>
                     </a>
                     <div class="menu">
-                        <a href="AddBlog.php">+Blog</a>
+                        <a href="AddBlog.php" id="addBlog">+Blog</a>
                         <a href="#" aria-disabled="true">subscribe</a>
                         <a href="#">contact</a>
                     </div>

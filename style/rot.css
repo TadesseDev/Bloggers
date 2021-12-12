@@ -6,6 +6,7 @@
   --green: #32cd34;
   --lightRed: #fd1501;
   --red: #a52013;
+  --Blue: #007bff;
 }
 html::-webkit-scrollbar {
   width: 10px;

@@ -67,5 +67,5 @@
     unset($_SESSION["registrationStatus"]);
 endif;
 ?>
-<?php include "./includes/modals.php" ?>
+<?php include "modals.php" ?>
 <!-- Modal -->

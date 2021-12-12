@@ -9,10 +9,9 @@ const upFromLST = (localStorageName, id) => {
 };
 const clickObject = (id) => {
   element = document.getElementById(id);
-  document.addEventListener("DOMContentLoaded", function () {
-    element.click();
-  });
-  // alert(element.id);
+  console.log(element);
+  $(document).ready(
+    element.click());
 };
 
 const scrollWindowToBottom = () => {

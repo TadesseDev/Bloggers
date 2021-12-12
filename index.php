@@ -70,17 +70,19 @@ include "./includes/validateRegistration.php";
             <?php
             if (!isset($_SESSION['userId'])) :
             ?>
-                <button class="button" type="submit" name="Register">Register</button>
+                <button class="button" type="submit" name="Register" id="registerUserButton">Register</button>
                 <button id="login" class="button" type="button" name="showLoginModal" data-toggle="modal" data-target="#LoginModal">Login</button>
             <?php else : ?>
-                <button class="button" type="submit" name="addBlog">Add Blog</button>
+                <button class="button" type="button" name="addBlog" onclick="clickObject('addBlog');">Add Blog</button>
                 <button class="button" type="submit" name="LogOut">Logout</button>
             <?php endif; ?>
         </form>
     </div>
-    <?php if (isset($_POST['Register']) || isset($_POST['RegisterNewUser'])) :
-        include "./includes/registerationForm.php";
-    endif; ?>
+    <div id="registrationFormPlace">
+        <?php if (isset($_POST['Register']) || isset($_POST['RegisterNewUser'])) :
+            include "./includes/registerationForm.php";
+        endif; ?>
+    </div>
 </div>
 <?php include "./includes/modals.php" ?>
 
@@ -91,19 +93,19 @@ include "./includes/validateRegistration.php";
             <a href="#" class="blog-selection">most ranked</a>
         </div>
     </div>
-    <div class="row">
+    <!-- <div class="row">
         <div class="col-sm-8">
             <div class="blogTitle">this is paragraph</div>
             <p> this is paragraph this is paragraph this is paragraph this is paragraph this is paragraph this is paragraph this is paragraph this is paragraph this is paragraph this is paragraph this is paragraph this is paragraph this is paragraph this is paragraph this is paragraph this is paragraph this is paragraph this is paragraph this is paragraph this is paragraph this is paragraph </p>
         </div>
-        <div class="col-sm-4 BlogSideImage">
+        <div class="col-sm-4 BlogSideImage topImage">
             <img src="./files/react@2x.png" alt="angular">
         </div>
-    </div>
+    </div> -->
     <div class="row align-items-center BlogList">
         <?php
         $getAllBlogs = mysqli_fetch_all(getQueryResult("select b.id, b.timeOf, b.author, b.title, b.type, b.cover from blog as b;"), 1);
-        // echo print_r(mysqli_num_rows($getAllBlogs));
+        // echo print_r($getAllBlogs);
         $blogDetail = [[[], [], []]];
 
         for ($i = 0; $i < count($getAllBlogs); $i++) {
@@ -114,35 +116,47 @@ include "./includes/validateRegistration.php";
             $bId = $blog['id'];
             $bAId = $blog['author'];
             $blogInfo = ["id" => $bId, "time" => $blog['timeOf'], "author" => $bAId, "title" => $blog['title'], "type" => [$blog['type']], "cover" => $blog['cover']];
-            $blogDetail[$i][0] = [];
-            array_push($blogDetail[$i][0], $blogInfo);
+            // $blogDetail[$i][0] = [];
+            $blogDetail[$i][0] = $blogInfo;
             $res = getQueryResult("select a.fname, a.lname, a.title, a.experties, a.email, a.profilePic from author as a where a.id=$bAId;");
             // echo print_r($res) . "<br/>";
             if ($res) {
                 $author = mysqli_fetch_assoc($res);
                 $auuthorInfo = ["id" => $bAId, "fname" => $author['fname'], "lname" => $author['lname'], "title" => $author['title'], "experties" => $author['email'], "email" => $author['experties'], "profilePic" => $author['profilePic']];
-                $blogDetail[$i][1] = [];
-                array_push($blogDetail[$i][1], $auuthorInfo);
+                // $blogDetail[$i][1] = [];
+                $blogDetail[$i][1] = $auuthorInfo;
             }
-            $content = getQueryResult("select c.orderOf, c.contentType, c.content, c.remark from content as c where c.bid=$bId;");
-            $blogDetail[$i][2] = [];
-            array_push($blogDetail[$i][2], $content);
+            $content =  mysqli_fetch_all(getQueryResult("select c.orderOf, c.contentType, c.content, c.remark from content as c where c.bid=$bId;"), 1);
+            // $blogDetail[$i][2] = [];
+            $blogDetail[$i][2] = $content;
             // echo $key . "<br/>";
-            // echo print_r($blog) . "<br/>";
-            $i++;
+            // echo print_r($content) . "<br/>";
         }
-        // echo print_r($blogDetail) . "<br/>";
         foreach ($blogDetail as $key => $blog) :
-            // echo print_r($blog);
+            $preview = "";
+            // echo print_r($blog[0]['title']) . "<br/>";
+            for ($i = 0; $i < count($blog[2]) && strlen($preview) < 300; $i++) {
+                if ($blog[2][$i]['contentType'] == 1) {
+                    $preview = $preview . $blog[2][$i]['content'];
+                }
+            }
+            $preview = substr($preview, 0, 300) . "....";
         ?>
             <div class="col-md-6">
                 <div class="row halfSide">
-                    <div class="col-md-8">
-                        <div class="blogTitle">this is paragraph</div>
-                        <p> this is paragraph this is paragraph this is paragraph this is paragraph this is paragraph this is paragraph this is paragraph this is paragraph this is paragraph this is paragraph this is paragraph this is </p>
-                    </div>
-                    <div class="col-md-4 BlogSideImage">
-                        <img src="./files/Angular@1x.png" alt="angular">
+                    <div class="col-md-12">
+                        <div class="blogTitle">
+                            <p><?php echo $blog[0]['title'] ?></p>
+                        </div>
+                        <div class="previewContetn">
+                            <div class="BlogSideImage">
+                                <img src="<?php echo $blog[0]['cover'] ?>" alt="angular">
+                            </div>
+                            <?php echo $preview ?>
+                        </div>
+                        <div class="halfsideFooter">
+                            <a href="#">read more...</a>
+                        </div>
                     </div>
                 </div>
             </div>

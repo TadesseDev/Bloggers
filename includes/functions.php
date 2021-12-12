@@ -104,6 +104,10 @@ function clearBlogTempData()
             endif;
         endforeach;
     }
+    if (isset($_SESSION['cover'])) {
+        unset($_SESSION['cover']);
+        unlink("./files/blogsData/temp-cover/" . $_SESSION['cover'] . "_cover.png");
+    }
     setNull($_SESSION['order'], $_SESSION['preserve'], $_SESSION['type'], $_SESSION['title'], $_SESSION['textArea'], $_SESSION['images'], $_FILES['AddPicture'], $_SESSION['content']);
 }
 
@@ -119,10 +123,13 @@ function saveDataToDatabase()
     $con = mysqli_connect($_SESSION['conInfo'][0], $_SESSION['conInfo'][1], $_SESSION['conInfo'][2], $_SESSION['conInfo'][3]);
     mysqli_query($con, " LOCK TABLES `blog` WRITE");
     $cover = "";
-    if (file_exists("files/blogsData/temp-cover/" . session_id() . "_cover.png")) {
+    if (
+        isset($_SESSION['cover']) &&
+        file_exists("files/blogsData/temp-cover/" . $_SESSION['cover'] . "_cover.png")
+    ) {
         $cover = "file is found";
-        $destination = "files/blogsData/images/blogCover/" . session_id() . "_cover.png";
-        $source = "files/blogsData/temp-cover/" . session_id() . "_cover.png";
+        $destination = "files/blogsData/images/blogCover/" . $_SESSION['cover'] . "_cover.png";
+        $source = "files/blogsData/temp-cover/" . $_SESSION['cover'] . "_cover.png";
         try {
             rename($source, $destination);
         } catch (exception $exce) {

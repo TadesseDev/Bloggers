@@ -11,7 +11,8 @@ if (isset($_POST['RegisterNewUser'])) :
     if ($password != $confirmationPassword) {
         $message = "password does not match";
     } else {
-        $res = mysqli_query($_SESSION['con'], "insert into author values(default,'$firstName','$lastName','$title','$experties','$email','$password')");
+        $res = mysqli_query($_SESSION['con'], "insert into author(id,Fname,Lname,Title,Experties,email,`Password`,profilePic)
+         values(default,'$firstName','$lastName','$title','$experties','$email','$password',default)");
         if ($res > 0) {
             $_SESSION['userId'] = mysqli_fetch_assoc(mysqli_query($_SESSION['con'], "select max(id) as id from AUTHOR"))['id'];
             $_SESSION['userFname'] = $firstName;

@@ -76,6 +76,10 @@ if (isset($_POST['upload'])) {
     $img = str_replace(' ', '+', $img);
     $data = base64_decode($img);
     $newImage = imagecreatefromstring($data);
-    $location = "./files/blogsData/temp-cover/" . session_id() . "_cover.png";
+    if (isset($_SESSION['cover'])) {
+        unlink("./files/blogsData/temp-cover/" . $_SESSION['cover'] . "_cover.png");
+    }
+    $_SESSION['cover'] = time();
+    $location = "./files/blogsData/temp-cover/" . $_SESSION['cover'] . "_cover.png";
     createTumnbnail($newImage, $location, 200);
 }
