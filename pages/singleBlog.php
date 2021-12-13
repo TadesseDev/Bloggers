@@ -1,7 +1,7 @@
 <?php
 @include_once("../includes/functions.php");
 isset($_SESSION) ? "" : session_start();
-$_POST['blogId'] = 1;
+// $_POST['blogId'] = 1;
 if (isset($_POST['blogId'])) :
     $bid = $_POST['blogId'];
     // echo $bid;
@@ -25,7 +25,12 @@ if (isset($_POST['blogId'])) :
     $contents = mysqli_fetch_all(getQueryResult("select c.orderOf, c.contentType, c.content, c.remark from content as c where c.bid=$bid order by(orderOf);"), 1);
 ?>
     <div class="row ">
-        <a class="ColorDarkBrown" href="#" id="backToListOfBlog" onclick="displayBlogList()"><i class=" fontS-1_5em  bi bi-skip-backward-fill"></i></a>
+        <a class="ColorDarkBrown" href="#" id="backToListOfBlog" onclick="displayBlogList()"><i class=" fontS-1_5em  bi bi-skip-backward-fill"></i>
+            <span style="display: inline-block; font-weight: bold">Home</span>
+        </a>
+        <span class="">
+
+        </span>
     </div>
     <div class="row singleBlog">
         <div class=" col-md-8">
@@ -44,9 +49,10 @@ if (isset($_POST['blogId'])) :
                             <p class="subTitle"><?php echo $data['content']; ?></p>
                         <?php
                         } else if ($data['contentType'] == 1) {
-                        ?>
-                            <p class="subTitle"><?php echo $data['content']; ?></p>
-                        <?php
+                            $lines = explode("\n", $data['content']);
+                            foreach ($lines as $p) :
+                                echo "<p>" . $p . "</p>";
+                            endforeach;
                         } else if ($data['contentType'] == 2) {
 
                         ?>
@@ -71,15 +77,33 @@ if (isset($_POST['blogId'])) :
         </div>
         <div class=" col-md-4">
             <div class="rightContent">
+                xx
+            </div>
+            <div class="rightContent">
                 <div class="authorInfo">
-                    <p class="title"> made possible by</p>
+                    <p class="title"> Published by</p>
                     <p><?php echo $AFullName; ?></p>
                     <p><?php echo $ATitle; ?></p>
                     <p><?php echo $AEmail; ?></p>
                 </div>
             </div>
             <div class="rightContent">
-                xx
+                <div class="recentBlogs">
+                    <p class="title"> recent blogs </p>
+                    <div class="lists">
+
+                    </div>
+                </div>
+                <script>
+                    loadTopBlogs({
+                        amount: 10,
+                        by: "timeOf",
+                        fields: ['title'],
+                        target: $(".recentBlogs .lists"),
+                        id: "title"
+                    });
+                </script>
+
             </div>
         </div>
     </div>
@@ -89,3 +113,4 @@ else :
     echo "no Blog Id is submited ";
 endif;
 ?>
+<script lang="javascript" src="./javascript/prism.js"></script>

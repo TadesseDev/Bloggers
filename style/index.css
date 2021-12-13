@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz:wght@400&display=swap");
 @import url("./fonts/registr.css");
 @import url("./registrationForm.css");
 @import url("./rot.css");
@@ -428,7 +429,7 @@ pre {
 .singleBlog > div > div {
   background-color: rgba(192, 192, 192, 0.253);
   padding: 10px;
-  box-shadow: 0px 0px 100px #c0c0c03f;
+  box-shadow: 0px 0px 10px #c0c0c0b8;
   border-radius: 5px;
 }
 .singleBlog .rightContent {
@@ -436,7 +437,40 @@ pre {
 }
 .rightContent .authorInfo {
   text-align: left;
+  margin: 1rem;
 }
-.rightContent .authorInfo .title {
+.rightContent .title {
   text-align: right;
+}
+.rightContent .lists .list {
+  border-bottom: 2px solid black;
+  font-size: 1.1rem;
+}
+.rightContent .lists .list:hover {
+  font-size: 1.05rem;
+}
+.singleBlog .about p {
+  display: inline-block;
+  margin-left: 100%;
+  min-width: max-content;
+  transform: translate(-100%, 0px);
+}
+.mainContent .about,
+.mainContent .title p {
+  font-weight: bold;
+  margin: 20px;
+  font-size: 2rem;
+  font-family: "Yanone Kaffeesatz", sans-serif;
+}
+.mainContent .title {
+  text-decoration: underline;
+  text-align: center;
+}
+.mainContent p {
+  font-family: "Yanone Kaffeesatz", sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.1rem;
+}
+.subTitle {
+  font-size: 1.5rem;
 }

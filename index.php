@@ -111,8 +111,8 @@ include "./includes/validateRegistration.php";
 
     <div id="HomePagecontainer">
         <?php
-        // include "./pages/ListOfBlog.php";
-        include "./pages/singleBlog.php";
+        include "./pages/ListOfBlog.php";
+        // include "./pages/singleBlog.php";
         ?>
     </div>
 </div>

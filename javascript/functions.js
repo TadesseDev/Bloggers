@@ -32,17 +32,51 @@ const updateAbackgroundPicture = (img, element) => {
   });
 }
 
-const displaySingleBlog = (bid) => {
-  $("#HomePagecontainer").load("./pages/singleBlog.php", {}, function () {
-    console.log("returned");
+const displaySingleBlog = (coming) => {
+  $("#HomePagecontainer").load("./pages/singleBlog.php", {
+    blogId: coming.bid
+  }, function () {
+    // console.log("returned");
   });
-  console.log(bid);
+  // console.log(bid);
 }
 const displayBlogList = () => {
   $("#HomePagecontainer").load("./pages/ListOfBlog.php", {}, function () {
     console.log("returned");
   });
   // console.log(bid);
+}
+const loadTopBlogs = (coming) => {
+  $(document).ready(() => {
+    // console.log(coming.amount);
+    $.ajax({
+      url: './includes/ajax.php',
+      type: 'POST',
+      dataType: 'JSON',
+      data: {
+        getTopBlog: true,
+        amount: coming.amount,
+        by: coming.by,
+      },
+      success: function (response) {
+        if (coming.id == "title") {
+          response.forEach(blog => {
+            let ele = document.createElement("p");
+            ele.innerText = blog.title;
+            ele.setAttribute("id", blog.id);
+            ele.setAttribute("class", "list");
+            // ele.setAttribute("onclick", () =>);
+            $(ele).on("click", () => {
+              displaySingleBlog({ bid: blog.id });
+            });
+            // console.log(ele);
+            coming.target.append(ele);
+          })
+        }
+        // console.log(coming.fields);
+      }
+    });
+  });
 }
 
 
