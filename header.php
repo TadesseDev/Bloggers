@@ -34,13 +34,13 @@ if (isset($_POST['login'])) {
 </script>
 
 <head>
-    <link rel="icon" href="./files/3D tube WM.png" type="image/x-icon">
+    <link rel="icon" href="./files/icons/title-logo.svg" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Poppins:wght@100;500&family=Roboto+Mono:wght@200&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>We-Blog</title>
+    <title>Bloggers</title>
     <link rel="stylesheet" href="./style/bootstrap-4.5.3-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="./style/cropperjs-main/cropper.min.css">
     <link rel="stylesheet" href="./style/prism.css">

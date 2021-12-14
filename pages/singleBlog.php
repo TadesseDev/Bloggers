@@ -77,11 +77,13 @@ if (isset($_POST['blogId'])) :
         </div>
         <div class=" col-md-4">
             <div class="rightContent">
-                xx
+                ..
             </div>
             <div class="rightContent">
                 <div class="authorInfo">
-                    <p class="title"> Published by</p>
+                    <div class="authorPic">
+                    </div>
+                    <hr id="autorBottom">
                     <p><?php echo $AFullName; ?></p>
                     <p><?php echo $ATitle; ?></p>
                     <p><?php echo $AEmail; ?></p>
@@ -102,6 +104,22 @@ if (isset($_POST['blogId'])) :
                         target: $(".recentBlogs .lists"),
                         id: "title"
                     });
+                    $(".authorInfo .authorPic").css({
+                        "display": "none"
+                    });
+                    try {
+                        let img = new Image();
+                        img.src = '<?php echo $author['profilePic'] ?>';
+                        img.onload = function() {
+                            console.log(img.src);
+                            updateAbackgroundPicture(this.src, $(".authorInfo .authorPic"))
+                            $(".authorInfo .authorPic").css({
+                                "display": "block"
+                            });
+                        };
+                    } catch (exc) {
+                        console.log(exc);
+                    }
                 </script>
 
             </div>

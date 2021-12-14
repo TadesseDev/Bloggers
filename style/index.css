@@ -432,7 +432,8 @@ pre {
   box-shadow: 0px 0px 10px #c0c0c0b8;
   border-radius: 5px;
 }
-.singleBlog .rightContent {
+.singleBlog .rightContent,
+.singleBlog .mainContent {
   margin-bottom: 50px;
 }
 .rightContent .authorInfo {
@@ -473,4 +474,16 @@ pre {
 }
 .subTitle {
   font-size: 1.5rem;
+}
+.authorInfo .authorPic {
+  width: 150px;
+  height: 150px;
+  background-size: contain;
+  border-radius: 50%;
+  margin: auto;
+  margin-top: 20px;
+}
+#autorBottom {
+  border-bottom: 2px solid var(--darkBrown);
+  margin-bottom: 20px;
 }

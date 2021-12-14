@@ -21,14 +21,16 @@ const scrollWindowToBottom = () => {
 }
 
 const updateAbackgroundPicture = (img, element) => {
-  if (!element[0]) {
-    element = $(element);
-  }
-  element.css({
-    "background-image": "none",
-  });
-  element.css({
-    "background-image": `url("${img}")`
+  $(document).ready(function () {
+    if (!element[0]) {
+      element = $(element);
+    }
+    element.css({
+      "background-image": "none",
+    });
+    element.css({
+      "background-image": `url("${img}")`
+    });
   });
 }
 
