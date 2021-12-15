@@ -2,6 +2,10 @@
 
 use function PHPSTORM_META\type;
 
+isset($_SESSION) ? "" : session_start();
+if (!isset($_SESSION['userId'])) {
+    header("location: ./");
+}
 include "header.php";
 if (!isset($_SESSION['type'])) {
     $_SESSION['type'] = null;

@@ -2,7 +2,7 @@
 
 use function PHPSTORM_META\sql_injection_subst;
 
-session_start();
+isset($_SESSION) ? "" : session_start();
 $_SESSION['conInfo'] = ["localhost", "root", "", "blog"];
 $con = mysqli_connect("localhost", "root", "", "blog") or die("cant connect to the database");
 $_SESSION['con'] = $con; // only beeing used on login page
@@ -62,12 +62,15 @@ if (isset($_POST['login'])) {
                                 </defs>
                                 <rect id="Asset_3-8" data-name="Asset 3-8" width="115" height="56" fill="url(#pattern)" />
                             </svg>
-
                         </div>
                     </a>
                     <div class="menu">
-                        <a href="AddBlog.php" id="addBlog">+Blog</a>
-                        <a href="#" aria-disabled="true">subscribe</a>
+                        <?php if (isset($_SESSION['userId'])) { ?>
+                            <a href="AddBlog.php" id="addBlog">+Blog</a>
+                        <?php } else { ?>
+                            <a href="#" id="addBlog" onclick="showModal({modalId: 'LoginModal'});">+Blog</a>
+                        <?php } ?>
+                        <a href="#" aria-disabled="true" onclick="excuteQuery({id: 'emailSubscription',value: ''})">subscribe</a>
                         <a href="#">contact</a>
                     </div>
                 </div><?php

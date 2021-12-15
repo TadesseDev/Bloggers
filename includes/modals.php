@@ -106,8 +106,8 @@
             </div>
             <form action="" method="POST">
                 <div class="modal-body">
-                    <input type="text" class="simpleTextField half" name="email" placeholder="email">
-                    <input type="text" class="simpleTextField half" name="password" placeholder="password">
+                    <input type="email" class="simpleTextField " name="email" placeholder="email" required>
+                    <input type="password" class="simpleTextField " name="password" placeholder="password" required>
                     <?php if (isset($_GET['cantSignIn'])) {
                         echo "<script>clickObject('login')</script>";
                         echo "<span class='simpleErrore'>user name or Password is wrong</span>";

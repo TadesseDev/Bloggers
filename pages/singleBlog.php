@@ -96,6 +96,7 @@ if (isset($_POST['blogId'])) :
 
                     </div>
                 </div>
+
                 <script>
                     loadTopBlogs({
                         amount: 10,
@@ -108,10 +109,10 @@ if (isset($_POST['blogId'])) :
                         "display": "none"
                     });
                     try {
+                        console.log('');
                         let img = new Image();
                         img.src = '<?php echo $author['profilePic'] ?>';
                         img.onload = function() {
-                            console.log(img.src);
                             updateAbackgroundPicture(this.src, $(".authorInfo .authorPic"))
                             $(".authorInfo .authorPic").css({
                                 "display": "block"

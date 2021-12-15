@@ -1,4 +1,4 @@
-<div class="registration">
+<div class="registration" id="registrationForm">
     <form action="" method="POST">
         <p class="formTitle">registr and post, comment, request and more...</p>
         <label for="firstName">
@@ -28,7 +28,7 @@
         <input type="password" id="confirmationPassword" name="confirmationPassword" placeholder="confirmation Password" required="true">
         <button class="button darkBrown ColorOrange" type="submit" name="RegisterNewUser">Register</button>
         <button class="button darkBrown ColorOrange" type="reset" name="cancel">Reset</button>
-        <a class="button darkBrown ColorOrange" onclick="window.location='index.php'">cancel</a>
+        <a class="button darkBrown ColorOrange" onclick="updateDom({elementId: 'registrationForm',content: ''})">cancel</a>
         <span><?php echo "<span class='simpleErrore'>" . $message . "</span>" ?></span>
     </form>
 </div>

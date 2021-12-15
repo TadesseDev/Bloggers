@@ -60,7 +60,7 @@ for ($i = 0; $i < count($getAllBlogs); $i++) {
                                     <p> By: <?php echo  $blog[1] != null ? $blog[1]['title'] . ", " . $blog[1]['fname'] . $blog[1]['lname'] : "anonymous" ?></p>
                                 </a>
                             </div>
-                            <?php echo $preview ?>
+                            <p><?php echo $preview ?></p>
                         </span>
                     </div>
                     <div class="halfsideFooter">

@@ -8,10 +8,12 @@ const upFromLST = (localStorageName, id) => {
   return img;
 };
 const clickObject = (id) => {
-  element = document.getElementById(id);
-  console.log(element);
-  $(document).ready(
-    element.click());
+  $(document).ready(() => {
+    element = document.getElementById(id);
+    console.log(element);
+    element.click()
+  }
+  );
 };
 
 const scrollWindowToBottom = () => {
@@ -81,4 +83,21 @@ const loadTopBlogs = (coming) => {
   });
 }
 
+const showModal = (coming) => {
+  let modal = $(`#${coming.modalId}`);
+  modal.modal("show");
+}
 
+const updateDom = (coming) => {
+  $(document).ready(() => {
+    let element = $(`#${coming.elementId}`);
+    let content = coming.content;
+    element.html(content);
+  });
+}
+
+const excuteQuery = (coming) => {
+  if (coming.id === 'emailSubscription') {
+    console.log('reading email');
+  }
+}

@@ -7,7 +7,7 @@ const BlogType = document.getElementById("type");
 const BlogTypePreview = document.getElementById("BlogTypePreview");
 const BlogTitlePreview = document.getElementById("BlogTitlePreview");
 const register = document.getElementById("registerUserButton");
-const registrationFormPlace = document.getElementById("registrationFormPlace");
+// const registrationFormPlace = document.getElementById("registrationFormPlace");
 const BlogcoverImage = $("#blogCoverImage");
 const profileImage = $("#profileImage");
 const pictureAdded = () => {
@@ -326,6 +326,7 @@ $(document).ready(function () {
           "color": `black`,
           "text-align": "center",
           "font-size": "15px",
+          "z-index": '0'
         });
         $(label).find("p").css({
           "display": "inline-block",
@@ -355,8 +356,12 @@ $(document).ready(function () {
       $.post("./includes/ajax.php", {
         Register: true
       }, function (data, status) {
-        $(registrationFormPlace).html(data);
-        console.log(registrationFormPlace);
+        updateDom({
+          elementId: 'registrationFormPlace',
+          content: data
+        });
+        // $(registrationFormPlace).html(data);
+        // console.log(registrationFormPlace);
       });
     }
     );
