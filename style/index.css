@@ -491,3 +491,41 @@ p.subTitle {
   border-bottom: 2px solid var(--darkBrown);
   margin-bottom: 20px;
 }
+
+.subscribe-container {
+  display: inline-block;
+  position: relative;
+  min-width: fit-content;
+}
+.subscribe-container .subscriptionBody {
+  color: white;
+  position: absolute;
+  z-index: 2;
+  transform: translate(-50%, 0px);
+  margin-left: 50%;
+  display: none;
+}
+.subscribe-container img {
+  width: 20px;
+  display: block;
+  margin: auto;
+  transform: rotate(180deg);
+  margin-bottom: -7px;
+}
+.subscribe-container .subscriptionBody > div {
+  margin: 0px;
+  background-color: var(--darkBrown);
+  padding: 20px;
+  border: 2px solid var(--orange);
+}
+.subscribe-container input {
+  color: white;
+}
+.subscribe-container .button {
+  margin-left: 100%;
+  transform: translate(-100%, 0px);
+  padding: 5px 20px;
+  margin-top: 5px;
+  display: inline-block;
+  border-radius: 5px;
+}

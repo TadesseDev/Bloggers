@@ -7,6 +7,7 @@ const BlogType = document.getElementById("type");
 const BlogTypePreview = document.getElementById("BlogTypePreview");
 const BlogTitlePreview = document.getElementById("BlogTitlePreview");
 const register = document.getElementById("registerUserButton");
+const subscribe = document.getElementsByClassName("subscribe-container")[0];
 // const registrationFormPlace = document.getElementById("registrationFormPlace");
 const BlogcoverImage = $("#blogCoverImage");
 const profileImage = $("#profileImage");
@@ -366,6 +367,51 @@ $(document).ready(function () {
     }
     );
   }
+  // console.log(subscribe);
+  let subscriptionBody = $('.subscribe-container .subscriptionBody');
+  let subscribeButton = document.getElementById("SubscribeEmail");
+  let email = document.getElementById('subscriptionEmail');
+  subscribeButton.setAttribute('disabled', true);
+  $(subscribeButton).css({
+    "opacity": "0.5"
+  });
+  subscribe.onmouseenter = function (e) {
+    email.oninput = function (e) {
+      let reg = /^[0-9a-z]{2,}@[0-9a-z]{2,}[.]{1,1}[0-9a-z]{2,}$/ig;
+      if (reg.test(e.target.value)) {
+        $(subscribeButton).css({
+          "opacity": "1"
+        });
+        subscribeButton.removeAttribute('disabled');
+      }
+      else {
+        $(subscribeButton).css({
+          "opacity": "0.5"
+        });
+      }
+      // console.log(e.target.value)
+      // console.log(reg.test(e.target.value))
+    }
+    e.preventDefault();
+    subscriptionBody.css({
+      "display": "block",
+    });
+  }
+  subscribe.onmouseleave = function (e) {
+    subscriptionBody.css({
+      "display": "none",
+    });
+  }
+  $(subscribeButton).click(function (t) {
+    t.preventDefault();
+    excuteQuery({
+      id: "emailSubscription",
+      value: email.value
+    });
+    subscriptionBody.css({
+      "display": "none",
+    });
+  })
   // scrollWindowToBottom();
 });
 

@@ -98,6 +98,14 @@ const updateDom = (coming) => {
 
 const excuteQuery = (coming) => {
   if (coming.id === 'emailSubscription') {
-    console.log('reading email');
+    console.log(coming.value);
+    $.post('./includes/ajax.php', { 
+      executeQuery: true,
+      id: "emailSubscription",
+      email: coming.value
+     }, (data, response) => {
+      console.log(data);
+    });
   }
+
 }

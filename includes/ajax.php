@@ -19,8 +19,16 @@ if (isset($_POST['getTopBlog'])) {
     // echo $by;
     $blogs =  mysqli_fetch_all(getQueryResult("select * from blog order by($by) LIMIT $amount;"), 1);
     echo json_encode($blogs);
-    foreach ($blogs as $blog) :
+    // foreach ($blogs as $blog) :
     // echo print_r($blog);
-    endforeach;
+    // endforeach;
     // echo "gettin top blogs";
+}
+
+if (isset($_POST['executeQuery'])) {
+    if ($_POST['id'] == 'emailSubscription') {
+        $value = $_POST['email'];
+        $res = getQueryResult("insert into subscriptions (id,email)value(default,'$value');");
+        echo $res;
+    }
 }

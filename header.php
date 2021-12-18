@@ -69,8 +69,19 @@ if (isset($_POST['login'])) {
                             <a href="AddBlog.php" id="addBlog">+Blog</a>
                         <?php } else { ?>
                             <a href="#" id="addBlog" onclick="showModal({modalId: 'LoginModal'});">+Blog</a>
-                        <?php } ?>
-                        <a href="#" aria-disabled="true" onclick="excuteQuery({id: 'emailSubscription',value: ''})">subscribe</a>
+                        <?php } ?><div class="subscribe-container">
+                            <a href="#" aria-disabled="true" id="subscribe">subscribe</a>
+                            <div class="subscriptionBody">
+                                <span> <img src="./files/icons/triangle_arrow-up.svg" alt="" /></span>
+                                <div>
+                                    <form action=""> <input type="email" class="simpleTextField" name='email' id="subscriptionEmail" placeholder='your email' autocomplete="off" required>
+
+                                        <button class="button" type="submit" name='email' id="SubscribeEmail">Go</button>
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                         <a href="#">contact</a>
                     </div>
                 </div><?php
