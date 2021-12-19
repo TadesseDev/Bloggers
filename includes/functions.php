@@ -117,8 +117,8 @@ function saveDataToDatabase()
         return "requiered fileds are empity";
     }
     $author = isset($_SESSION['userId']) ? $_SESSION['userId'] : "default";
-    $title = $_SESSION['title'];
-    $type = $_SESSION['type'];
+    $title = trim($_SESSION['title']);
+    $type = trim($_SESSION['type']);
     // echo $title . " " . $type;
     $con = mysqli_connect($_SESSION['conInfo'][0], $_SESSION['conInfo'][1], $_SESSION['conInfo'][2], $_SESSION['conInfo'][3]);
     mysqli_query($con, " LOCK TABLES `blog` WRITE");

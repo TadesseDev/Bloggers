@@ -157,12 +157,14 @@ svg {
   border-top-right-radius: 5px;
   box-shadow: 0px 5px 1px 0px #c0c0c021;
   margin-bottom: 10px;
-  background: rgba(235, 234, 233, 0.863);
-  border-bottom: 2px solid var(--Blue);
+  background: var(--darkBrown);
+  /* background: rgba(235, 234, 233, 0.863); */
+  border-bottom: 2px solid var(--orange);
 }
 .blogPreviewTitle p {
   margin-left: 20px;
   display: inline;
+  color: white;
 }
 .previewContetn {
   margin: 20px;

@@ -116,4 +116,26 @@ include "./includes/validateRegistration.php";
         ?>
     </div>
 </div>
-<?php include "footer.php"; ?>
+<?php include "footer.php";
+require_once './vendor/autoload.php';
+// Create the Transport
+$transport = (new Swift_SmtpTransport('smtp.gmail.com', 587, 'tls'))
+    ->setUsername('blog.ers.cf@gmail.com')
+    ->setPassword('TAD1986tad');
+
+// Create the Mailer using your created Transport
+$mailer = new Swift_Mailer($transport);
+
+// Create a message
+$message = (new Swift_Message('New Blog is published'))
+    ->setFrom(['blog.ers.cf@gmail.com' => 'Bloggers'])
+    ->setTo(['itsamateroflife@gmail.com'])
+    ->setBody('click the link to get there http://localhost/winmac-blog/');
+// Send the message
+// $result = $mailer->send($message);
+// if ($result) {
+//     echo "email is sent";
+// } else {
+//     echo "sending email fails";
+// }
+?>
