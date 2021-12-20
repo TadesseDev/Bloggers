@@ -1,4 +1,5 @@
 <?php
+require_once('./includes/constant.php');
 function logout()
 {
     clearBlogTempData();
@@ -186,4 +187,38 @@ function getQueryResult($query)
     $con = mysqli_connect($_SESSION['conInfo'][0], $_SESSION['conInfo'][1], $_SESSION['conInfo'][2], $_SESSION['conInfo'][3]);
     $qry = mysqli_query($con, $query);
     return $qry;
+}
+
+function sentMail(
+    $sender = EMAIL,
+    $senderPass = EMAILPass,
+    $header = 'New blog Publish',
+    $emailAlias = 'Bloggers',
+    $to = [],
+    $body = 'click the link to get there http://localhost/winmac-blog/'
+) {
+    require_once './vendor/autoload.php';
+    // Create the Transport
+    $transport = (new Swift_SmtpTransport('smtp.gmail.com', 587, 'tls'))
+        ->setUsername($sender)
+        ->setPassword($senderPass);
+
+    // Create the Mailer using your created Transport
+    $mailer = new Swift_Mailer($transport);
+
+    // Create a message
+    // foreach ($to as $reciver) {
+    $message = (new Swift_Message($header))
+        ->setFrom([$sender => $emailAlias])
+        ->setTo($to)
+        ->setBody($body);
+    // Send the message
+    $result = $mailer->send($message);
+    return $result;
+    // if ($result) {
+    //     echo "email is sent";
+    // } else {
+    //     echo "sending email fails";
+    // }
+    // }
 }
