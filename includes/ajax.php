@@ -29,8 +29,10 @@ if (isset($_POST['executeQuery'])) {
     if ($_POST['id'] == 'emailSubscription') {
         $value = $_POST['email'];
         $res = getQueryResult("insert into subscriptions (id,email)value(default,'$value');");
-        echo $res;
-        echo $value;
-        // echo sentMail(to: $value);
+        // echo $res;
+        // echo $value;
+        echo sentMail(to: $value, header: 'successful subscription to the blogers page.', body: 'Now we will happyly let you know whenever we have a new blog published. 
+Thank you for beeing a part of this growing platform
+http://localhost/winmac-blog/');
     }
 }

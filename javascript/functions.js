@@ -98,13 +98,27 @@ const updateDom = (coming) => {
 
 const excuteQuery = (coming) => {
   if (coming.id === 'emailSubscription') {
-    console.log(coming.value);
-    $.post('./includes/ajax.php', { 
+    // console.log(coming.value);
+    $.post('./includes/ajax.php', {
       executeQuery: true,
       id: "emailSubscription",
       email: coming.value
-     }, (data, response) => {
-      console.log(data);
+    }, (data, response) => {
+      if (response) {
+        if (Number(data) === 1) {
+          console.log(data);
+          $(infoModal).find('#modalTitle').text('Success');
+          $(infoModal).find('#imfoBody').html('<h4>pleas check your email for confirmation</h4>');
+          $(infoModal).modal('show');
+        }
+        else {
+          console.log(data);
+          console.log('subscription fails');
+          $(infoModal).find('#modalTitle').text('failer');
+          $(infoModal).find('#imfoBody').html('<h4>subscription fails pleas try again</h4>');
+          $(infoModal).modal('show');
+        }
+      }
     });
   }
 

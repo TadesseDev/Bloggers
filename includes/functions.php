@@ -1,5 +1,8 @@
 <?php
-require_once('./includes/constant.php');
+if (file_exists('./includes/constant.php'))
+    require_once('./includes/constant.php');
+else
+    require_once('constant.php');
 function logout()
 {
     clearBlogTempData();
@@ -197,7 +200,14 @@ function sentMail(
     $to = [],
     $body = 'click the link to get there http://localhost/winmac-blog/'
 ) {
-    require_once './vendor/autoload.php';
+    try {
+        if (file_exists('../vendor/autoload.php'))
+            require_once '../vendor/autoload.php';
+        else
+            require_once './vendor/autoload.php';
+    } catch (Exception $exc) {
+        require_once './vendor/autoload.php';
+    }
     // Create the Transport
     $transport = (new Swift_SmtpTransport('smtp.gmail.com', 587, 'tls'))
         ->setUsername($sender)

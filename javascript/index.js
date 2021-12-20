@@ -406,7 +406,8 @@ $(document).ready(function () {
     t.preventDefault();
     excuteQuery({
       id: "emailSubscription",
-      value: email.value
+      value: email.value,
+      element: subscribe
     });
     subscriptionBody.css({
       "display": "none",

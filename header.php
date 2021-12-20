@@ -30,7 +30,8 @@ if (isset($_POST['login'])) {
 <html lang="en">
 
 <script lang="javascipt" src="./javascript/jquery-3.6.0.min.js"></script>
-<script lang="javascript" src="./javascript/functions.js">
+<script lang="javascipt" src="./javascript/defined.js"></script>
+<script script script lang="javascript" src="./javascript/functions.js">
 </script>
 
 <head>

@@ -31,6 +31,8 @@ if (isset($_POST['upload'])) {
         echo "success";
         clearBlogTempData();
         session_regenerate_id();
+        // $result = getQueryResult("select DISTINCT email from blog.subscriptions;");
+        // print_r($result);
     } else {
         echo $ret;
     }
