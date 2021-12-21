@@ -31,8 +31,14 @@ if (isset($_POST['upload'])) {
         echo "success";
         clearBlogTempData();
         session_regenerate_id();
-        // $result = getQueryResult("select DISTINCT email from blog.subscriptions;");
-        // print_r($result);
+        $result = mysqli_fetch_all(getQueryResult("select DISTINCT email from blog.subscriptions;"), 1);
+        $emails = [];
+        foreach ($result as $row) {
+            array_push($emails, $row['email']);
+        }
+        sentMail(to: $emails);
+        $_SESSION['published'] = true;
+        header("location: ./AddBlog.php");
     } else {
         echo $ret;
     }

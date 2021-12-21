@@ -107,19 +107,72 @@ const excuteQuery = (coming) => {
       if (response) {
         if (Number(data) === 1) {
           console.log(data);
-          $(infoModal).find('#modalTitle').text('Success');
-          $(infoModal).find('#imfoBody').html('<h4>pleas check your email for confirmation</h4>');
-          $(infoModal).modal('show');
+          showSuccessModal({ title: "Success", body: "pleas check your email for confirmation" });
+          // $(infoModal).find('#modalTitle').text('Success');
+          // $(infoModal).find('#imfoBody').html('<h4>pleas check your email for confirmation</h4>');
         }
         else {
           console.log(data);
+          showSuccessModal({ title: "failer", body: "subscription fails pleas try again" });
           console.log('subscription fails');
-          $(infoModal).find('#modalTitle').text('failer');
-          $(infoModal).find('#imfoBody').html('<h4>subscription fails pleas try again</h4>');
-          $(infoModal).modal('show');
+          // $(infoModal).find('#modalTitle').text('failer');
+          // $(infoModal).find('#imfoBody').html('<h4>subscription fails pleas try again</h4>');
+          // $(infoModal).modal('show');
         }
       }
     });
   }
 
+}
+// showSuccessModal({ title: 'sucess', body: 'Now your blog is published<br/> we will notify others about your blog' })
+function showSuccessModal(coming) {
+  infoModal.innerHTML = `  
+  <div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-content">
+      <div class="modal-header green">
+          <h5 class="modal-title ColorDarkBrown" id="modalTitle">${coming.title}</h5>
+          <button type="button" class="close ColorOrange" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+          </button>
+      </div>
+      <form action="" method="">
+          <div class="modal-body" id="imfoBody">
+          ${coming.body}
+          </div>
+          <div class="modal-footer">
+              <button type="button"  data-dismiss="modal" class="btn green ColorDarkBrown" name="" onclick="(x)=>{console.log(x)}">okay</button>
+          </div>
+      </form>
+  </div>
+  </div>
+  "`;
+  $(document).ready(function () {
+    $(infoModal).modal("show");
+  })
+  // $(infoModal).modal('show');
+}
+function showfailerModal(coming) {
+  infoModal.innerHTML = `  
+  <div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-content">
+      <div class="modal-header Lired">
+          <h5 class="modal-title ColorDarkBrown" id="modalTitle">${coming.title}</h5>
+          <button type="button" class="close ColorOrange" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+          </button>
+      </div>
+      <form action="" method="">
+          <div class="modal-body" id="imfoBody">
+          ${coming.body}
+          </div>
+          <div class="modal-footer">
+              <button type="button"  data-dismiss="modal" class="btn Lired ColorLightOrange" name="" onclick="(x)=>{console.log(x)}">okay</button>
+          </div>
+      </form>
+  </div>
+  </div>
+  "`;
+  $(document).ready(function () {
+    $(infoModal).modal("show");
+  })
 }

@@ -36,8 +36,6 @@ function login($email, $Password)
     }
     // echo "use is loged in";
 }
-
-
 // not used for the time beeing
 function processMyimage($source, $destination, $w, $h, $ext)
 {
@@ -102,15 +100,17 @@ function clearBlogTempData()
     if (isset($_SESSION['images'])) {
         $keys = array_keys($_SESSION['images']);
         foreach ($keys as $key) :
-            if (unlink("./files/blogsData/tempoUpload/$key.png")) :
-                unset($_SESSION['order']["$key"]);
-                unset($_SESSION['images']["$key"]);
-            endif;
+            if (file_exists("./files/blogsData/tempoUpload/$key.png"))
+                unlink("./files/blogsData/tempoUpload/$key.png");
+            unset($_SESSION['order']["$key"]);
+            unset($_SESSION['images']["$key"]);
+
         endforeach;
     }
     if (isset($_SESSION['cover'])) {
+        if (file_exists("./files/blogsData/temp-cover/" . $_SESSION['cover'] . "_cover.png"))
+            unlink("./files/blogsData/temp-cover/" . $_SESSION['cover'] . "_cover.png");
         unset($_SESSION['cover']);
-        unlink("./files/blogsData/temp-cover/" . $_SESSION['cover'] . "_cover.png");
     }
     setNull($_SESSION['order'], $_SESSION['preserve'], $_SESSION['type'], $_SESSION['title'], $_SESSION['textArea'], $_SESSION['images'], $_FILES['AddPicture'], $_SESSION['content']);
 }

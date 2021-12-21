@@ -179,7 +179,12 @@ $BR = "<br/>";
             <button type="submit" name="upload" id="publish">Publish</button>
             <!-- </div> -->
         </div>
-        <?php include "./includes/modals.php"; ?>
+        <?php
+        include "./includes/modals.php";
+        if (isset($_SESSION['published'])) {
+            echo "<script>showSuccessModal({ title: 'sucess', body: 'Now your blog is published<br/> we will notify others about your blog' })</script>";
+            unset($_SESSION['published']);
+        } ?>
 </form>
 </div>
 <?php
