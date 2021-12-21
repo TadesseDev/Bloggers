@@ -108,8 +108,7 @@ function clearBlogTempData()
         endforeach;
     }
     if (isset($_SESSION['cover'])) {
-        if (file_exists("./files/blogsData/temp-cover/" . $_SESSION['cover'] . "_cover.png"))
-            unlink("./files/blogsData/temp-cover/" . $_SESSION['cover'] . "_cover.png");
+        unlink("./files/blogsData/temp-cover/" . $_SESSION['cover'] . "_cover.png");
         unset($_SESSION['cover']);
     }
     setNull($_SESSION['order'], $_SESSION['preserve'], $_SESSION['type'], $_SESSION['title'], $_SESSION['textArea'], $_SESSION['images'], $_FILES['AddPicture'], $_SESSION['content']);
@@ -182,6 +181,22 @@ function saveDataToDatabase()
         $res = mysqli_query($con, "insert into content(Bid,orderOf,contentType,content,remark) values($BlogId,$key,$contentType,'$content','$remark')");
     // echo print_r($key) . "<br/>";
     endforeach;
+    $result = mysqli_fetch_all(getQueryResult("select DISTINCT email from blog.subscriptions;"), 1);
+    $emails = [];
+    foreach ($result as $row) {
+        array_push($emails, $row['email']);
+    }
+    $authorFullName = $_SESSION['userTitle'] . " " . $_SESSION['userFname'] . " " . $_SESSION['userLname'];
+    $intro = substr($_SESSION["textArea"][0], 0, 200);
+    $body = "<div style='font-size:18px; max-width: 300px;margin: auto'>
+    <p style='font-size:20px; color:#340100;font-weight: bold'>New blog is published by <i><u>$authorFullName</u></i></p>
+    <p> <b>title:</b>$title</p>
+    <p style='font-size:16px'> <b>intro text:</b>$intro</p>
+    <p> use the link to access the blog:<b> http://localhost/winmac-blog?bid=$BlogId </b></p>
+</div>";
+    // echo $body;
+    sentMail(to: $emails, body: $body);
+    $_SESSION['published'] = true;
     return "success";
 }
 
@@ -198,7 +213,7 @@ function sentMail(
     $header = 'New blog Publish',
     $emailAlias = 'Bloggers',
     $to = [],
-    $body = 'click the link to get there http://localhost/winmac-blog/'
+    $body = 'click the link for the homepage http://localhost/winmac-blog/'
 ) {
     try {
         if (file_exists('../vendor/autoload.php'))
@@ -221,7 +236,7 @@ function sentMail(
     $message = (new Swift_Message($header))
         ->setFrom([$sender => $emailAlias])
         ->setTo($to)
-        ->setBody($body);
+        ->setBody($body, "text/html");
     // Send the message
     $result = $mailer->send($message);
     return $result;

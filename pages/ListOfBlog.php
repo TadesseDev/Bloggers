@@ -33,22 +33,24 @@ for ($i = 0; $i < count($getAllBlogs); $i++) {
 } ?>
 <div class="row align-items-center justify-content-center BlogList ">
     <?php
-    foreach ($blogDetail as $key => $blog) :
-        $preview = "";
-        // echo print_r($blog[0]['title']) . "<br/>";
-        for ($i = 0; $i < count($blog[2]) && strlen($preview) < 300; $i++) {
-            if ($blog[2][$i]['contentType'] == 1) {
-                $preview = $preview . $blog[2][$i]['content'];
+    // echo print_r($blogDetail[0][0]);
+    if (is_array($blogDetail[0][0])) {
+        foreach ($blogDetail as $key => $blog) :
+            $preview = "";
+            // echo print_r($blog[0]['title']) . "<br/>";
+            for ($i = 0; $i < count($blog[2]) && strlen($preview) < 300; $i++) {
+                if ($blog[2][$i]['contentType'] == 1) {
+                    $preview = $preview . $blog[2][$i]['content'];
+                }
             }
-        }
-        $preview = substr($preview, 0, 300) . "....";
+            $preview = substr($preview, 0, 300) . "....";
     ?><?php if (strlen($blog[0]['title']) > 45) { ?>
     <div class="col-md-11">
     <?php } else {
     ?>
         <div class="col-md-6">
         <?php
-        } ?>
+            } ?>
         <div class="row halfSide">
             <div class="col-md-12">
                 <div class="blogPreviewTitle">
@@ -75,10 +77,13 @@ for ($i = 0; $i < count($getAllBlogs); $i++) {
             </div>
         </div>
         </div>
-    <?php
-    endforeach;
-    ?>
-    <!--
+<?php
+        endforeach;
+    } else {
+        echo "there is no blog yet";
+    }
+?>
+<!--
         <div class="col-md-6 halfSide">
             <div class="row">
                 <div class="col-md-8">

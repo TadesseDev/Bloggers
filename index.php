@@ -5,6 +5,7 @@ include "./includes/validateRegistration.php";
 // $rotateImage = imagerotate($image, 45, false);
 // imagepng($rotateImage, "./files/createdImage.png", 9);
 ?>
+
 <div class="heading">
     <div class="container-fluid">
         <div class="row align-items-center">
@@ -114,8 +115,10 @@ include "./includes/validateRegistration.php";
 
     <div id="HomePagecontainer">
         <?php
-        include "./pages/ListOfBlog.php";
-        // include "./pages/singleBlog.php";
+        if (isset($_GET['bid']))
+            include "./pages/singleBlog.php";
+        else
+            include "./pages/ListOfBlog.php";
         ?>
     </div>
 </div>

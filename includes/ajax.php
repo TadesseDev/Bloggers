@@ -31,8 +31,14 @@ if (isset($_POST['executeQuery'])) {
         $res = getQueryResult("insert into subscriptions (id,email)value(default,'$value');");
         // echo $res;
         // echo $value;
-        echo sentMail(to: $value, header: 'successful subscription to the blogers page.', body: 'Now we will happyly let you know whenever we have a new blog published. 
-Thank you for beeing a part of this growing platform
-http://localhost/winmac-blog/');
+        echo sentMail(
+            to: $value,
+            header: 'successful subscription to the blogers page.',
+            body: '<span style="font-size: 20px">
+            <p style="color: #340100">you are one of us now!!</p>
+            <p>we are <b>delight</b> to assure you that you are now a part of our growing platform!</p>
+            <p>use the link to head to the homepage http://localhost/winmac-blog/</p>
+        </span>'
+        );
     }
 }
