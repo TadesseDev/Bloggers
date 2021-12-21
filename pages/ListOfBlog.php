@@ -31,7 +31,7 @@ for ($i = 0; $i < count($getAllBlogs); $i++) {
     // echo $key . "<br/>";
     // echo print_r($content) . "<br/>";
 } ?>
-<div class="row align-items-center BlogList">
+<div class="row align-items-center justify-content-center BlogList ">
     <?php
     foreach ($blogDetail as $key => $blog) :
         $preview = "";
@@ -42,33 +42,38 @@ for ($i = 0; $i < count($getAllBlogs); $i++) {
             }
         }
         $preview = substr($preview, 0, 300) . "....";
+    ?><?php if (strlen($blog[0]['title']) > 45) { ?>
+    <div class="col-md-11">
+    <?php } else {
     ?>
         <div class="col-md-6">
-            <div class="row halfSide">
-                <div class="col-md-12">
-                    <div class="blogPreviewTitle">
-                        <p><?php echo $blog[0]['title'] ?></p>
+        <?php
+        } ?>
+        <div class="row halfSide">
+            <div class="col-md-12">
+                <div class="blogPreviewTitle">
+                    <p><?php echo $blog[0]['title'] ?></p>
+                </div>
+                <div class="previewContetn">
+                    <div class="BlogSideImage">
+                        <img src="<?php echo $blog[0]['cover'] ?>" alt="angular">
                     </div>
-                    <div class="previewContetn">
-                        <div class="BlogSideImage">
-                            <img src="<?php echo $blog[0]['cover'] ?>" alt="angular">
+                    <span class="textContent">
+                        <div class="blogPreviewInfo">
+                            <p> About: <?php echo $blog[0]['type'] ?></p>
+                            <a href="#">
+                                <p> By: <?php echo  $blog[1] != null ? $blog[1]['title'] . ", " . $blog[1]['fname'] . $blog[1]['lname'] : "anonymous" ?></p>
+                            </a>
                         </div>
-                        <span class="textContent">
-                            <div class="blogPreviewInfo">
-                                <p> About: <?php echo $blog[0]['type'] ?></p>
-                                <a href="#">
-                                    <p> By: <?php echo  $blog[1] != null ? $blog[1]['title'] . ", " . $blog[1]['fname'] . $blog[1]['lname'] : "anonymous" ?></p>
-                                </a>
-                            </div>
-                            <p><?php echo $preview ?></p>
-                        </span>
-                    </div>
-                    <div class="halfsideFooter">
-                        <a href="#" id="<?php echo $blog[0]['id'] ?>" onclick="displaySingleBlog({bid: <?php echo $blog[0]['id'] ?>})">read more...</a>
-                        <p>published: <?php echo $blog[0]['time'] ?></p>
-                    </div>
+                        <p><?php echo $preview ?></p>
+                    </span>
+                </div>
+                <div class="halfsideFooter">
+                    <a href="#" id="<?php echo $blog[0]['id'] ?>" onclick="displaySingleBlog({bid: <?php echo $blog[0]['id'] ?>})">read more...</a>
+                    <p>published: <?php echo $blog[0]['time'] ?></p>
                 </div>
             </div>
+        </div>
         </div>
     <?php
     endforeach;
@@ -85,4 +90,4 @@ for ($i = 0; $i < count($getAllBlogs); $i++) {
                 </div>
             </div>
         </div> -->
-</div>
+    </div>
