@@ -101,8 +101,9 @@ if (upload) {
           formData.append(`${i}`, e.value);
           i++;
         });
-        // formData.append("pictureCaption", captionModal.find("input[name='pictureCaption']").val());
-        formData.append("pictureCaption", "image caption");
+        console.log("caption is: " + captionModal.find("input[name='pictureCaption']").val())
+        formData.append("pictureCaption", captionModal.find("input[name='pictureCaption']").val());
+        // formData.append("pictureCaption", "image caption");
         formData.append("uploadImage", true);
         formData.append("AddPicture", ctx.canvas.toDataURL());
         formData.append("title", BlogTitle.value);

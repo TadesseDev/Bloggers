@@ -162,6 +162,7 @@ function saveDataToDatabase()
         if (explode("_", $_SESSION["order"][$key][0])[0] == "image") {
             $destination = "files/blogsData/images/blogPart/$key.png";
             $source = "files/blogsData/tempoUpload/$key.png";
+            $remark = $_SESSION['captions']["./" . $source];
             try {
                 rename($source, $destination);
             } catch (exception $exce) {

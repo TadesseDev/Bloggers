@@ -36,7 +36,7 @@ $BR = "<br/>";
                     if (isset($_SESSION['userId'])) :
                         echo "<p>" . $_SESSION['userFname'] . " " . $_SESSION['userLname'] . "</p>";
                     else :
-                        echo "uknown user... pleas sign in";
+                        echo "unknown user... pleas sign in";
                     endif; ?>
                 </p>
             </div>
@@ -75,6 +75,8 @@ $BR = "<br/>";
                                             } else {
                                                 echo "<img class='MHeight-500 margin-auto display-block' id='" . $key . "' src='./files/blogsData/tempoUpload/$key.png'> </img>";
                                             }
+                                            $caption = $_SESSION['captions']["./files/blogsData/tempoUpload/$key.png"];
+                                            echo "<p style='text-align: center;'>$caption</p>";
                                         } else if ($_SESSION['order'][$key][0] == 'preservedText') {
                                 ?>
                                     <!-- echo "<h3>programing code is here...</h3>"; -->

@@ -98,7 +98,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content ">
             <div class="modal-header darkBrown">
-                <h5 class="modal-title ColorOrange">pleas enter cation for your image</h5>
+                <h5 class="modal-title ColorOrange">pleas enter caption for your image</h5>
                 <button type="button" class="close ColorOrange" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

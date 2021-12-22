@@ -64,6 +64,7 @@ if (isset($_POST['blogId']) || isset($_GET['bid'])) :
                             } else if ($data['contentType'] == 3) {
                             ?>
                                 <img class='MHeight-500 margin-auto display-block' src='<?php echo $data['content']; ?>'> </img>
+                                <p style='text-align: center;'><?php echo $data['remark']; ?> </p>
                         <?php
                             }
                         // echo $data['contentType'];

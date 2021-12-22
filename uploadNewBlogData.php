@@ -50,6 +50,9 @@ if (isset($_POST['upload'])) {
     $_SESSION['images']["$index"] = $imageFile;
     updatePreviewOrder($index, "image_" . $_POST['loaclSTR'], $_SESSION['images']["$index"]);
     $success = file_put_contents($location, $data);
+    if (!isset($_SESSION['captions']))
+        $_SESSION['captions'] = array();
+    $_SESSION['captions'][$location] = $caption;
 } else if (isset($_POST['preview'])) {
     header("location: ./AddBlog.php");
 } else if (isset($_POST['addTextArea'])) {
