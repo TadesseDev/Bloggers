@@ -9,7 +9,6 @@ if (isset($_POST['blogId']) || isset($_GET['bid'])) :
     // echo $bid;
     $blog = mysqli_fetch_assoc(getQueryResult("select b.id, b.timeOf, b.author, b.title, b.type, b.cover from blog as b where b.id=$bid;"));
     if (is_array($blog)) {
-        echo is_array($blog) . "is the result of querying";
         $bAId = $blog['author'];
         $author = null;
         if ($bAId) {
@@ -60,16 +59,11 @@ if (isset($_POST['blogId']) || isset($_GET['bid'])) :
                             } else if ($data['contentType'] == 2) {
 
                             ?>
-                                <pre>
-                            <code class="language-<?php echo $data['remark']; ?>">
-                            <?php echo $data['content'] . $BR; ?>
-                            </code>
-                            </pre>
+                                <pre><code class="language-<?php echo $data['remark']; ?>"><?php echo $data['content'] . $BR; ?></code></pre>
                             <?php
                             } else if ($data['contentType'] == 3) {
                             ?>
                                 <img class='MHeight-500 margin-auto display-block' src='<?php echo $data['content']; ?>'> </img>
-
                         <?php
                             }
                         // echo $data['contentType'];

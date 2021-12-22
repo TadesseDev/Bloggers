@@ -78,11 +78,7 @@ $BR = "<br/>";
                                         } else if ($_SESSION['order'][$key][0] == 'preservedText') {
                                 ?>
                                     <!-- echo "<h3>programing code is here...</h3>"; -->
-                                    <pre>
-                                            <code class="language-<?php echo $_SESSION['order'][$key][1]['language']; ?>">
-                                            <?php echo $_SESSION['order'][$key][1]['content'] . $BR; ?>
-                                            </code>
-                                            </pre>
+                                    <pre><code class="language-<?php echo $_SESSION['order'][$key][1]['language']; ?>"><?php echo $_SESSION['order'][$key][1]['content'] . $BR; ?></code></pre>
                         <?php
                                         } else if ($_SESSION['order'][$key][0] == 'subTitle') {
                                             echo "<h2>" . $_SESSION['order'][$key][1] . "</h2>";

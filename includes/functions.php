@@ -188,7 +188,7 @@ function saveDataToDatabase()
     }
     $authorFullName = $_SESSION['userTitle'] . " " . $_SESSION['userFname'] . " " . $_SESSION['userLname'];
     $intro = substr($_SESSION["textArea"][0], 0, 200);
-    $body = "<div style='font-size:18px; max-width: 300px;margin: auto'>
+    $body = "<div style='font-size:18px; max-width: 500px;margin: auto'>
     <p style='font-size:20px; color:#340100;font-weight: bold'>New blog is published by <i><u>$authorFullName</u></i></p>
     <p> <b>title:</b>$title</p>
     <p style='font-size:16px'> <b>intro text:</b>$intro</p>
