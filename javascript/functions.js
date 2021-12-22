@@ -113,7 +113,7 @@ const excuteQuery = (coming) => {
         }
         else {
           console.log(data);
-          showSuccessModal({ title: "failer", body: "subscription fails pleas try again" });
+          showfailerModal({ title: "failed", body: "subscription fails pleas try again" });
           console.log('subscription fails');
           // $(infoModal).find('#modalTitle').text('failer');
           // $(infoModal).find('#imfoBody').html('<h4>subscription fails pleas try again</h4>');
@@ -122,7 +122,6 @@ const excuteQuery = (coming) => {
       }
     });
   }
-
 }
 // showSuccessModal({ title: 'sucess', body: 'Now your blog is published<br/> we will notify others about your blog' })
 function showSuccessModal(coming) {
