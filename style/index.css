@@ -282,10 +282,10 @@ textarea {
   color: var(--darkBrown);
   background-color: var(--orange);
 }
-.add .sideButton.save,
+/* .add .sideButton.save,
 .add .sideButton.cancel {
   display: none;
-}
+} */
 
 .fullContainer {
   background-color: white;

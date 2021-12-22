@@ -11,18 +11,27 @@ const subscribe = document.getElementsByClassName("subscribe-container")[0];
 // const registrationFormPlace = document.getElementById("registrationFormPlace");
 const BlogcoverImage = $("#blogCoverImage");
 const profileImage = $("#profileImage");
-const pictureAdded = () => {
-  selectFile.style = "display: none";
-  upload.style = "display: inline";
-  cancel.style = "display: inline";
-};
-const cancePhotoUpload = () => {
-  selectFile.style = "display: inline";
-  upload.style = "display: none";
-  cancel.style = "display: none";
-};
+// const pictureAdded = () => {
+//   selectFile.style = "display: none";
+//   upload.style = "display: inline";
+//   cancel.style = "display: inline";
+// };
+// const cancePhotoUpload = () => {
+//   selectFile.style = "display: inline";
+//   upload.style = "display: none";
+//   cancel.style = "display: none";
+// };
+
 if (file) {
+  file.onclick = (x) => {
+    x.target.value = null;
+  }
   file.onchange = function () {
+    let captionModal = $("#imageCaption");
+    captionModal.modal("show");
+
+    // not sure if being used anywhere in the blog
+    console.log(captionModal);
     console.log(this.files[0]);
     const reader = new FileReader();
     reader.readAsDataURL(this.files[0]);
@@ -50,10 +59,17 @@ if (file) {
     };
   };
 }
+$("#cancel").on("click", function () {
+  if (file) {
+    file.value = null;
+  }
+});
 if (upload) {
   upload.onclick = function (e) {
     e.preventDefault();
-    cancePhotoUpload();
+    let captionModal = $("#imageCaption");
+    captionModal.modal("hide");
+    // cancePhotoUpload();
     const formData = new FormData();
     // const fileData = file.files[0];
     const reader = new FileReader();
@@ -85,6 +101,8 @@ if (upload) {
           formData.append(`${i}`, e.value);
           i++;
         });
+        // formData.append("pictureCaption", captionModal.find("input[name='pictureCaption']").val());
+        formData.append("pictureCaption", "image caption");
         formData.append("uploadImage", true);
         formData.append("AddPicture", ctx.canvas.toDataURL());
         formData.append("title", BlogTitle.value);
@@ -112,6 +130,7 @@ if (upload) {
           .catch((e) => {
             console.log("errore uploading form");
           });
+        file.value = null;
       };
     };
     // console.log(fileData);
@@ -148,17 +167,26 @@ if (BlogcoverImage || profileImage) {
     // console.log(CroperModal);
     // console.log(val);
   }
-  BlogcoverImage ? BlogcoverImage.change(changeLoader) : null;
-  profileImage ? profileImage.change(changeLoader) : null;
+  if (BlogcoverImage) {
+    BlogcoverImage.on("click", (e) =>
+      e.target.value = null);
+    BlogcoverImage.change(changeLoader);
+  }
+  if (profileImage) {
+    profileImage.on("click", (e) => e.target.value = null);
+    profileImage.change(changeLoader);
+  }
+  // BlogcoverImage ? BlogcoverImage.change(changeLoader) : null;
+  // profileImage ? profileImage.change(changeLoader) : null;
   $("#crop").click(function () {
-    let canvase = cropper.getCroppedCanvas(
+    let canvas = cropper.getCroppedCanvas(
       {
         width: 600,
         height: 600
       }
     );
-    // console.log(canvase);
-    canvase.toBlob(function (blob) {
+    // console.log(canvas);
+    canvas.toBlob(function (blob) {
       url = URL.createObjectURL(blob);
       let reader = new FileReader();
       reader.readAsDataURL(blob);

@@ -1,12 +1,12 @@
 /* colors */
 .orange {
-  background-color: var(--orange);
+  background-color: var(--orange) !important;
 }
 .darkBrown {
-  background-color: var(--darkBrown);
+  background-color: var(--darkBrown) !important;
 }
 .lightOrange {
-  background-color: var(--lightOrange);
+  background-color: var(--lightOrange) !important;
 }
 .green {
   background-color: var(--green);
@@ -15,10 +15,10 @@
   background-color: var(--lightGreen);
 }
 .Lired {
-  background-color: var(--lightRed);
+  background-color: var(--lightRed) !important;
 }
 .ColorOrange {
-  color: var(--orange);
+  color: var(--orange) !important;
 }
 .ColorDarkBrown {
   color: var(--darkBrown);
@@ -67,4 +67,7 @@
 }
 .font-open-sans {
   font-family: "Open Sans", sans-serif;
+}
+.fullWidth {
+  width: 100%;
 }

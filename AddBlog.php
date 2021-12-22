@@ -98,15 +98,15 @@ $BR = "<br/>";
                             <button type="button" class="sideButton" data-toggle="modal" data-target="#exampleModalCenter">
                                 <span><img class="icon" src="./files/icons/code-brown.png" alt="add programing code"></span>
                             </button>
+
+
                             <label for="AddPicture" class="sideButton">
                                 <span><img class="icon" src="./files/icons/camera-brown.png" alt="add picture"></span>
                             </label>
-                            <button type="submit" name="uploadImage" class="sideButton save" oninput="cancePhotoUpload();" id="upload">
-                                <span><img class="icon" src="./files/icons/Save-brown.png" alt="save picture">
-                                </span></button>
-                            <button type="submit" class="sideButton cancel" id="cancel" onclick="cancePhotoUpload();" name="cancelPhotoUpdate">
-                                <span><img class="icon" src="./files/icons/Cancel-brown.png" alt="dont save"></span></button>
-                            <input type="file" accept="image/*" oninput="pictureAdded();" name="AddPicture" id="AddPicture"></input>
+
+                            <input type="file" accept="image/*" name="AddPicture" id="AddPicture"></input>
+
+
                             <button type="clear" name="addTextArea" class="sideButton">
                                 <span><img class="icon" src="./files/icons/Add-text-area-brown.png" alt="create text area here" disabled></span>
                             </button>

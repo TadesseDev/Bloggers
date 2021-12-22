@@ -39,6 +39,7 @@ if (isset($_POST['upload'])) {
     clearBlogTempData();
     header("location: ./AddBlog.php");
 } else if (isset($_POST['uploadImage'])) {
+    $caption = $_POST['pictureCaption'];
     $img = $_POST['AddPicture'];
     $img = str_replace('data:image/png;base64,', '', $img);
     $img = str_replace(' ', '+', $img);
@@ -60,8 +61,6 @@ if (isset($_POST['upload'])) {
     $index = (sizeof($_SESSION['textArea']) - 1) + time() / 10000000000;
     $_SESSION['preserve']["$index"] = ["content" => htmlspecialchars($_POST['PreservedText']), "language" => $_POST['category']];
     updatePreviewOrder($index, "preservedText", $_SESSION['preserve']["$index"]);
-    header("location: ./AddBlog.php");
-} else if (isset($_POST['cancelPhotoUpdate'])) {
     header("location: ./AddBlog.php");
 } else if (isset($_POST['addSubTitle'])) {
     if ($_POST['subTitle'] == "") {
