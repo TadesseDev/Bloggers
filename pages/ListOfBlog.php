@@ -1,7 +1,7 @@
 <?php
 @include_once("../includes/functions.php");
 isset($_SESSION) ? "" : session_start();
-$getAllBlogs = mysqli_fetch_all(getQueryResult("select b.id, b.timeOf, b.author, b.title, b.type, b.cover from blog as b;"), 1);
+$getAllBlogs = mysqli_fetch_all(getQueryResult("select b.id, b.timeOf, b.author, b.title, b.type, b.cover from blog as b order by(timeof) DESC;"), 1);
 // echo print_r($getAllBlogs);
 $blogDetail = [[[], [], []]];
 
@@ -95,4 +95,13 @@ for ($i = 0; $i < count($getAllBlogs); $i++) {
                 </div>
             </div>
         </div> -->
+<div class="slider col-xs-12">
+    <img class="back" src="./files/icons/double_left.svg"></img>
+    <div class="elements">
+        <a href="" class="item active">1</a>
+        <a href="" class="item ">2</a>
+        <a href="" class="item ">3</a>
+    </div>
+    <img class="next" src="./files/icons/double_right.svg"></img>
+</div>
     </div>

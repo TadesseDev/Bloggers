@@ -96,7 +96,7 @@ include "./includes/validateRegistration.php";
 <div class="container-fluid Home">
     <div class="row ">
         <div class="col-xs-12 menu">
-            <a href="#" class="blog-selection">Most recent</a>|
+            <a href="#" class="blog-selection active">Most recent</a>|
             <a href="#" class="blog-selection">Most ranked</a>|
             <a href="#" class="blog-selection">Top Bloggers</a>|
             <a href="#" class="blog-selection">Older Blogs</a>|

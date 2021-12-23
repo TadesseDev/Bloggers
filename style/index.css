@@ -3,6 +3,7 @@
 @import url("./registrationForm.css");
 @import url("./rot.css");
 @import url("./defines.css");
+@import url("./slider.css");
 html,
 body {
   margin: 0px;
@@ -54,8 +55,13 @@ svg {
 }
 .menu {
   text-decoration: none;
-  color: #340100;
+  color: var(--darkBrown);
 }
+.menu .active {
+  color: var(--orange);
+  text-decoration: underline;
+}
+
 .menu a {
   color: inherit;
   margin-right: 10px;
