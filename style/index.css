@@ -331,6 +331,7 @@ textarea {
   font-size: 1em;
 }
 .userAction {
+  position: relative;
   transform: translate(0px, -50%);
   height: fit-content;
   float: right;
