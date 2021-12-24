@@ -27,7 +27,7 @@
   text-align: center;
   font-weight: bold;
   color: var(--orange);
-  margin-left: 5px;
+  margin-left: 10px;
 }
 .slider .active {
   background-color: var(--orange);

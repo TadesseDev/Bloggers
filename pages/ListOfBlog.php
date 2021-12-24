@@ -2,7 +2,7 @@
 @include_once("../includes/functions.php");
 isset($_SESSION) ? "" : session_start();
 $limitBottom = 0;
-$topLimit = 2;
+$topLimit = 1;
 $filter = "timeof";
 if (isset($_GET['limitId']))
     $limitBottom = is_numeric($_GET['limitId']) ? ($_GET['limitId'] - 1) * $topLimit : 0;
@@ -95,14 +95,21 @@ for ($i = 0; $i < count($getAllBlogs); $i++) {
     // display slider based on the available data
     $query = "select * from blog as b order by($filter)";
     $result = getQueryResult($query);
-    if (ceil(mysqli_num_rows($result) / $topLimit) > 1) {
+    $pages = ceil(mysqli_num_rows($result) / $topLimit);
+    if ($pages > 1) {
     ?>
         <div class="slider col-xs-12">
             <img class="back" src="./files/icons/double_left.svg"></img>
             <div class="elements">
-                <a href="" class="item active">1</a>
-                <a href="" class="item ">2</a>
-                <a href="" class="item ">3</a>
+                <a href="" class="item active" id="1">1</a>
+                <?php
+                for ($i = 2; $i <= $pages; $i++) {
+
+                    echo "<a href='' class='item' id='$i'>$i</a>";
+                }
+                ?>
+                <!-- <a href="" class="item ">2</a>
+                <a href="" class="item ">3</a> -->
             </div>
             <img class="next" src="./files/icons/double_right.svg"></img>
         </div>
