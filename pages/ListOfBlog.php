@@ -1,13 +1,26 @@
 <?php
 @include_once("../includes/functions.php");
 isset($_SESSION) ? "" : session_start();
-$getAllBlogs = mysqli_fetch_all(getQueryResult("select b.id, b.timeOf, b.author, b.title, b.type, b.cover from blog as b order by(timeof) DESC;"), 1);
+$limitBottom = 0;
+$topLimit = 2;
+$filter = "timeof";
+if (isset($_GET['limitId']))
+    $limitBottom = is_numeric($_GET['limitId']) ? ($_GET['limitId'] - 1) * $topLimit : 0;
+if (isset($_POST['filterId']))
+    $filter = $_POST['filterId'];
+$query = "select * from (select b.id, b.timeOf, b.author, b.title, b.type, b.cover from blog as b order by($filter) DESC)as res limit $limitBottom,$topLimit;";
+// $query = "select b.id, b.timeOf, b.author, b.title, b.type, b.cover from blog as b order by($filter) DESC;";
+
+$result = getQueryResult($query);
+if (is_numeric($result) || mysqli_num_rows($result) < 1) {
+    echo "error fetching blogs";
+    return;
+}
+$getAllBlogs = mysqli_fetch_all($result, 1);
 // echo print_r($getAllBlogs);
 $blogDetail = [[[], [], []]];
 
 for ($i = 0; $i < count($getAllBlogs); $i++) {
-    // echo $i . "<br/>";
-    // echo print_r($getAllBlogs[$i]) . "<br/>";
     $blog = $getAllBlogs[$i];
     // echo print_r($blog['timeOf']) . "<br/>";
     $bId = $blog['id'];
@@ -19,38 +32,35 @@ for ($i = 0; $i < count($getAllBlogs); $i++) {
     // echo print_r($res) . "<br/>";
     if ($res) {
         $author = mysqli_fetch_assoc($res);
-        $auuthorInfo = ["id" => $bAId, "fname" => $author['fname'], "lname" => $author['lname'], "title" => $author['title']];
+        $authorInfo = ["id" => $bAId, "fname" => $author['fname'], "lname" => $author['lname'], "title" => $author['title']];
         // $blogDetail[$i][1] = [];
-        $blogDetail[$i][1] = $auuthorInfo;
+        $blogDetail[$i][1] = $authorInfo;
     } else {
         $blogDetail[$i][1] = null;
     }
     $content =  mysqli_fetch_all(getQueryResult("select c.orderOf, c.contentType, c.content, c.remark from content as c where c.bid=$bId;"), 1);
     // $blogDetail[$i][2] = [];
     $blogDetail[$i][2] = $content;
-    // echo $key . "<br/>";
-    // echo print_r($content) . "<br/>";
 } ?>
 <div class="row align-items-center justify-content-center BlogList ">
     <?php
-    // echo print_r($blogDetail[0][0]);
-    if (is_array($blogDetail[0][0])) {
-        foreach ($blogDetail as $key => $blog) :
-            $preview = "";
-            // echo print_r($blog[0]['title']) . "<br/>";
-            for ($i = 0; $i < count($blog[2]) && strlen($preview) < 300; $i++) {
-                if ($blog[2][$i]['contentType'] == 1) {
-                    $preview = $preview . $blog[2][$i]['content'];
-                }
+    // if (is_array($blogDetail[0][0])) {
+    foreach ($blogDetail as $key => $blog) :
+        $preview = "";
+        // echo print_r($blog[0]['title']) . "<br/>";
+        for ($i = 0; $i < count($blog[2]) && strlen($preview) < 300; $i++) {
+            if ($blog[2][$i]['contentType'] == 1) {
+                $preview = $preview . $blog[2][$i]['content'];
             }
-            $preview = substr($preview, 0, 300) . "....";
+        }
+        $preview = substr($preview, 0, 300) . "....";
     ?><?php if (strlen($blog[0]['title']) > 45) { ?>
     <div class="col-md-11">
     <?php } else {
     ?>
         <div class="col-md-6">
         <?php
-            } ?>
+        } ?>
         <div class="row halfSide">
             <div class="col-md-12">
                 <div class="blogPreviewTitle">
@@ -77,31 +87,26 @@ for ($i = 0; $i < count($getAllBlogs); $i++) {
             </div>
         </div>
         </div>
+    <?php
+    endforeach;
+    // } else {
+    //     echo "there is no blog yet";
+    // } 
+    // display slider based on the available data
+    $query = "select * from blog as b order by($filter)";
+    $result = getQueryResult($query);
+    if (ceil(mysqli_num_rows($result) / $topLimit) > 1) {
+    ?>
+        <div class="slider col-xs-12">
+            <img class="back" src="./files/icons/double_left.svg"></img>
+            <div class="elements">
+                <a href="" class="item active">1</a>
+                <a href="" class="item ">2</a>
+                <a href="" class="item ">3</a>
+            </div>
+            <img class="next" src="./files/icons/double_right.svg"></img>
+        </div>
+    </div>
 <?php
-        endforeach;
-    } else {
-        echo "there is no blog yet";
     }
 ?>
-<!--
-        <div class="col-md-6 halfSide">
-            <div class="row">
-                <div class="col-md-8">
-                    <div class="blogTitle">this is paragraph</div>
-                    <p> this is paragraph this is paragraph this is paragraph this is paragraph this is paragraph this is paragraph this is paragraph this is paragraph this is paragraph this is paragraph this is paragraph this is </p>
-                </div>
-                <div class="col-md-4 BlogSideImage">
-                    <img src="./files/vue@2x.png" alt="angular">
-                </div>
-            </div>
-        </div> -->
-<div class="slider col-xs-12">
-    <img class="back" src="./files/icons/double_left.svg"></img>
-    <div class="elements">
-        <a href="" class="item active">1</a>
-        <a href="" class="item ">2</a>
-        <a href="" class="item ">3</a>
-    </div>
-    <img class="next" src="./files/icons/double_right.svg"></img>
-</div>
-    </div>
