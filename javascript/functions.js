@@ -45,9 +45,14 @@ const displaySingleBlog = (coming) => {
   // console.log(bid);
 }
 const displayBlogList = () => {
-  $("#HomePagecontainer").load("./pages/ListOfBlog.php", {}, function () {
-    console.log("returned");
+  let url = "./pages/ListOfBlog.php";
+  $("#HomePagecontainer").load(url, {}, function () {
+    let footerSlide = $(".slider")[0];
+    if (footerSlide) {
+      footerSlider();
+    }
   });
+
   // console.log(bid);
 }
 const loadTopBlogs = (coming) => {
@@ -175,3 +180,52 @@ function showfailerModal(coming) {
     $(infoModal).modal("show");
   })
 }
+const footerSlider = (active) => {
+  let footerSlide = $(".slider")[0];
+  let back = $(footerSlide).find(".back");
+  let next = $(footerSlide).find(".next");
+  let items = $(footerSlide).find(".item");
+  let activeId = active ? active : 1;
+  const activeElement = $(footerSlide).find(`#${activeId}`);
+  activeElement.addClass("active");
+  if (activeElement[0] === items[0]) {
+    back.addClass('disable');
+  }
+  if (activeElement[0] === items[items.length - 1]) {
+    next.addClass('disable');
+  }
+  activeElement.css({
+
+  });
+
+  for (let i = 0; i < items.length; i++) {
+    $(items[i]).on("click", (x) => {
+      x.preventDefault();
+      activeId = x.target.id;
+      let para = "limitId=" + activeId;
+      $.get("./pages/ListOfBlog.php?" + para, {}, function (data, status) {
+        $("#HomePagecontainer").html(data);
+        footerSlider(activeId);
+      });
+      // displayBlogList({ para: para });
+    })
+  }
+  // for the next and back items
+  next.on("click", (x) => {
+    activeId++;
+    let para = "limitId=" + activeId;
+    $.get("./pages/ListOfBlog.php?" + para, {}, function (data, status) {
+      $("#HomePagecontainer").html(data);
+      footerSlider(activeId);
+    });
+  });
+  back.on("click", (x) => {
+    activeId--;
+    let para = "limitId=" + activeId;
+    $.get("./pages/ListOfBlog.php?" + para, {}, function (data, status) {
+      $("#HomePagecontainer").html(data);
+      footerSlider(activeId);
+    });
+  });
+}
+

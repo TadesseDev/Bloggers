@@ -42,3 +42,8 @@
 .slider > .next {
   filter: drop-shadow(-10px 0px 5px #340100);
 }
+.slider .disable {
+  filter: none;
+  opacity: 0.2;
+  pointer-events: none;
+}

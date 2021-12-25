@@ -3,13 +3,14 @@
 isset($_SESSION) ? "" : session_start();
 $limitBottom = 0;
 $pageId = 1;
-$topLimit = 1;
+$topLimit = 2;
 $filter = "timeof";
-if (isset($_GET['limitId']))
-    if (is_numeric($_GET['limitId'])) {
+if (isset($_GET['limitId'])) {
+    if (is_numeric($_GET['limitId']) && $_GET['limitId'] > 0) {
         $limitBottom = ($_GET['limitId'] - 1) * $topLimit;
         $pageId = $_GET['limitId'];
     }
+}
 if (isset($_POST['filterId']))
     $filter = $_POST['filterId'];
 $query = "select * from (select b.id, b.timeOf, b.author, b.title, b.type, b.cover from blog as b order by($filter) DESC)as res limit $limitBottom,$topLimit;";
@@ -105,9 +106,9 @@ for ($i = 0; $i < count($getAllBlogs); $i++) {
         <div class="slider col-xs-12">
             <img class="back" src="./files/icons/double_left.svg"></img>
             <div class="elements">
-                <a href="" class="item" id="1">1</a>
+                <!-- <a href="" class="item" id="1">1</a> -->
                 <?php
-                for ($i = 2; $i <= $pages; $i++) {
+                for ($i = 1; $i <= $pages; $i++) {
                     echo "<a href='' class='item' id='$i'>$i</a>";
                 }
                 ?>
@@ -115,10 +116,6 @@ for ($i = 0; $i < count($getAllBlogs); $i++) {
             <img class="next" src="./files/icons/double_right.svg"></img>
         </div>
     </div>
-    <script lang="javascript">
-        document.addEventListener("DOMContentLoaded", () =>
-            document.getElementsByClassName('item')[<?php echo $pageId ?> - 1].classList.add("active"))
-    </script>
 <?php
     }
 ?>

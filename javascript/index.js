@@ -441,7 +441,13 @@ $(document).ready(function () {
     subscriptionBody.css({
       "display": "none",
     });
-  })
+  });
+
+  // first time the javascript loaded this code will ge executed
+  let footerSlide = $(".slider")[0];
+  if (footerSlide) {
+    footerSlider();
+  }
   // scrollWindowToBottom();
 });
 
