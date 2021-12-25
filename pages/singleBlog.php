@@ -38,6 +38,9 @@ if (isset($_POST['blogId']) || isset($_GET['bid'])) :
         <div class="row singleBlog">
             <div class=" col-md-8">
                 <div class="mainContent">
+                    <div class="dateTime">
+                        <span><?php echo $blog['dateTime'] ?></span>
+                    </div>
                     <div class="about">
                         <p><?php echo $blog['type'] ?></p>
                     </div>

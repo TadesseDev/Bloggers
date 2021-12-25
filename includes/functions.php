@@ -27,7 +27,7 @@ function login($email, $Password)
         $_SESSION['userLname'] = $namedResult['Lname'];
         $_SESSION['userEmail'] = $namedResult['email'];
         $_SESSION['userTitle'] = $namedResult['Title'];
-        $_SESSION['userExperties'] = $namedResult['Experties'];
+        $_SESSION['userExpertise'] = $namedResult['Experties'];
         $_SESSION['userPassword'] = $namedResult['Password'];
         unset($_POST['RegisterNewUser']);
         echo "<script>window.location='http://localhost/winmac-blog/';</script>";

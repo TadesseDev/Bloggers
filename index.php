@@ -41,7 +41,7 @@ include "./includes/validateRegistration.php";
 
                             if (isset($_SESSION['userId']) || isset($_POST['updateProfilePicture'])) :
                                 $user_status = "<p>" . $_SESSION['userTitle'] . ", " . $_SESSION['userFname'] . " " . $_SESSION['userLname'] . "<p/>";
-                                $user_status = $user_status . "<p>" . $_SESSION['userExperties'] . "</p>";
+                                $user_status = $user_status . "<p>" . $_SESSION['userExpertise'] . "</p>";
                                 $user_status = $user_status . "<p>" . $_SESSION['userEmail'] . "</p>";
                                 $user_status = $user_status . "<p>Rank: </p>";
                                 $uid = $_SESSION['userId'];

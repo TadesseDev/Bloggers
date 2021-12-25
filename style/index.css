@@ -475,6 +475,9 @@ pre {
   font-size: 2rem;
   font-family: "Yanone Kaffeesatz", sans-serif;
 }
+.mainContent .about {
+  margin-top: 0px;
+}
 .mainContent .title {
   text-decoration: underline;
   text-align: center;
