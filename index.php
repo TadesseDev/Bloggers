@@ -95,12 +95,12 @@ include "./includes/validateRegistration.php";
 
 <div class="container-fluid Home">
     <div class="row ">
-        <div class="col-xs-12 menu">
-            <a href="#" class="blog-selection active">Most recent</a>|
-            <a href="#" class="blog-selection">Most ranked</a>|
-            <a href="#" class="blog-selection">Top Bloggers</a>|
-            <a href="#" class="blog-selection">Older Blogs</a>|
-            <a href="#" class="blog-selection">My Blogs</a>
+        <div class="col-xs-12 menu blog-orderings">
+            <a href="#" class="blog-ordering active" id="dateTime">Most recent</a>|
+            <a href="#" class="blog-ordering" id="blogRank">Most ranked</a>|
+            <a href="#" class="blog-ordering" id="none1">Top Bloggers</a>|
+            <a href="#" class="blog-ordering" id="none2">Older Blogs</a>|
+            <a href="#" class="blog-ordering" id="none3">My Blogs</a>
         </div>
     </div>
     <!-- <div class="row">

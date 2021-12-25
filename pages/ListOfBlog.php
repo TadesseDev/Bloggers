@@ -4,17 +4,25 @@ isset($_SESSION) ? "" : session_start();
 $limitBottom = 0;
 $pageId = 1;
 $topLimit = 2;
-$filter = "timeof";
+$order = "dateTime";
 if (isset($_GET['limitId'])) {
     if (is_numeric($_GET['limitId']) && $_GET['limitId'] > 0) {
         $limitBottom = ($_GET['limitId'] - 1) * $topLimit;
         $pageId = $_GET['limitId'];
     }
 }
-if (isset($_POST['filterId']))
-    $filter = $_POST['filterId'];
-$query = "select * from (select b.id, b.timeOf, b.author, b.title, b.type, b.cover from blog as b order by($filter) DESC)as res limit $limitBottom,$topLimit;";
-// $query = "select b.id, b.timeOf, b.author, b.title, b.type, b.cover from blog as b order by($filter) DESC;";
+if (isset($_GET['orderId'])) {
+    $colNames = mysqli_fetch_all(getQueryResult("SELECT column_name as cols FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'blog' AND TABLE_NAME = 'blog';"), 1);
+    $cols = [];
+    foreach ($colNames as $col) {
+        array_push($cols, $col['cols']);
+    }
+    if (in_array($_GET['orderId'], $cols)) {
+        $order = $_GET['orderId'];
+    }
+}
+$query = "select * from (select b.id, b.dateTime, b.author, b.title, b.type, b.cover from blog as b order by($order) DESC)as res limit $limitBottom,$topLimit;";
+// $query = "select b.id, b.dateTime, b.author, b.title, b.type, b.cover from blog as b order by($order) DESC;";
 
 $result = getQueryResult($query);
 if (is_numeric($result) || mysqli_num_rows($result) < 1) {
@@ -27,10 +35,10 @@ $blogDetail = [[[], [], []]];
 
 for ($i = 0; $i < count($getAllBlogs); $i++) {
     $blog = $getAllBlogs[$i];
-    // echo print_r($blog['timeOf']) . "<br/>";
+    // echo print_r($blog['dateTime']) . "<br/>";
     $bId = $blog['id'];
     $bAId = $blog['author'];
-    $blogInfo = ["id" => $bId, "time" => $blog['timeOf'], "author" => $bAId, "title" => $blog['title'], "type" => $blog['type'], "cover" => $blog['cover']];
+    $blogInfo = ["id" => $bId, "time" => $blog['dateTime'], "author" => $bAId, "title" => $blog['title'], "type" => $blog['type'], "cover" => $blog['cover']];
     // $blogDetail[$i][0] = [];
     $blogDetail[$i][0] = $blogInfo;
     $res = getQueryResult("select a.fname, a.lname, a.title from author as a where a.id=$bAId;");
@@ -98,7 +106,7 @@ for ($i = 0; $i < count($getAllBlogs); $i++) {
     //     echo "there is no blog yet";
     // } 
     // display slider based on the available data
-    $query = "select * from blog as b order by($filter)";
+    $query = "select * from blog as b order by($order)";
     $result = getQueryResult($query);
     $pages = ceil(mysqli_num_rows($result) / $topLimit);
     if ($pages > 1) {

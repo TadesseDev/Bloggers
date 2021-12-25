@@ -448,6 +448,11 @@ $(document).ready(function () {
   if (footerSlide) {
     footerSlider();
   }
+  let blog_orderings = $(".blog-orderings")[0];
+  if (blog_orderings) {
+    reorderBlogs();
+  }
+  // console.log(blog_orderings)
   // scrollWindowToBottom();
 });
 

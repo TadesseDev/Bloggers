@@ -7,7 +7,7 @@ if (isset($_POST['blogId']) || isset($_GET['bid'])) :
         $bid = $_POST['blogId'];
     else  $bid =  $_GET['bid'];
     // echo $bid;
-    $blog = mysqli_fetch_assoc(getQueryResult("select b.id, b.timeOf, b.author, b.title, b.type, b.cover from blog as b where b.id=$bid;"));
+    $blog = mysqli_fetch_assoc(getQueryResult("select b.id, b.dateTime, b.author, b.title, b.type, b.cover from blog as b where b.id=$bid;"));
     if (is_array($blog)) {
         $bAId = $blog['author'];
         $author = null;
@@ -99,7 +99,7 @@ if (isset($_POST['blogId']) || isset($_GET['bid'])) :
                     <script>
                         loadTopBlogs({
                             amount: 10,
-                            by: "timeOf",
+                            by: "dateTime",
                             fields: ['title'],
                             target: $(".recentBlogs .lists"),
                             id: "title"

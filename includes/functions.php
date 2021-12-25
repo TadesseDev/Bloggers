@@ -142,7 +142,7 @@ function saveDataToDatabase()
     } else {
         $cover = "default";
     }
-    $res = mysqli_query($con, "insert into blog(author, Title, type, cover) values($author, '$title', '$type','$cover');");
+    $res = mysqli_query($con, "insert into blog(author, Title, type, cover,blogRank) values($author, '$title', '$type','$cover',0);");
     if ($res != 1) {
         mysqli_query($con, " UNLOCK TABLES");
         return "cant write to the database";
