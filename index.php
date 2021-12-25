@@ -52,7 +52,7 @@ include "./includes/validateRegistration.php";
                                     <script lang="javascript" type="text/javascript">
                                         const profilePicture = document.getElementById("profileImage");
                                         // console.log(profilePicture);
-                                        updateAbackgroundPicture(`<?php echo  $profilePic ?>`,
+                                        updateBackgroundPicture(`<?php echo  $profilePic ?>`,
                                             profilePicture);
                                     </script>
                             <?php
@@ -113,7 +113,7 @@ include "./includes/validateRegistration.php";
         </div>
     </div> -->
 
-    <div id="HomePagecontainer">
+    <div id="HomepageContainer">
         <?php
         if (isset($_GET['bid']))
             include "./pages/singleBlog.php";

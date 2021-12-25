@@ -112,7 +112,7 @@ if (isset($_POST['blogId']) || isset($_GET['bid'])) :
                             let img = new Image();
                             img.src = '<?php echo $author['profilePic'] ?>';
                             img.onload = function() {
-                                updateAbackgroundPicture(this.src, $(".authorInfo .authorPic"))
+                                updateBackgroundPicture(this.src, $(".authorInfo .authorPic"))
                                 $(".authorInfo .authorPic").css({
                                     "display": "block"
                                 });

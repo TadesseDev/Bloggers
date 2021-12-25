@@ -224,7 +224,7 @@ if (BlogcoverImage || profileImage) {
                 getProfilePicture: true
               }, function (newImage, status) {
                 if (status === "success") {
-                  updateAbackgroundPicture(newImage, profileImage);
+                  updateBackgroundPicture(newImage, profileImage);
                 }
               });
             }
