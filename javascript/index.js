@@ -153,7 +153,7 @@ if (BlogcoverImage || profileImage) {
         don(reader.result);
       };
       reader.readAsDataURL(files[0]);
-      // CroperModal.modal("show");
+      // CropperModal.modal("show");
     }
     $modal.on('shown.bs.modal', function () {
       cropper = new Cropper(image, {
@@ -453,9 +453,9 @@ $(document).ready(function () {
     reorderBlogs();
   }
   // console.log(blog_orderings)
-  // scrollWindowToBottom();
-});
 
+  scrollWindowToBottom();
+});
 
 
 

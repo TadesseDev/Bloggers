@@ -7,6 +7,9 @@
   --lightRed: #fd1501;
   --red: #a52013;
   --Blue: #007bff;
+  --grayBrown: #460436;
+  --grayBrown1: #8f006c;
+  --grayBrownLight: #ff00c1;
 }
 html::-webkit-scrollbar {
   width: 10px;
