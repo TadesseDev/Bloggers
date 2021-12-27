@@ -13,7 +13,7 @@ include "./includes/validateRegistration.php";
                 <div class="textContent">
                     <ol>
                         <li class="title">
-                            <p>you can be a bloger ?</p>
+                            <p>you can be a blogger ?</p>
                         </li>
                         <li>
                             <p>sign in / register</p>
@@ -38,7 +38,6 @@ include "./includes/validateRegistration.php";
                             <?php
                             $data_target = "";
                             $user_status = "Not Signed In";
-
                             if (isset($_SESSION['userId']) || isset($_POST['updateProfilePicture'])) :
                                 $user_status = "<p>" . $_SESSION['userTitle'] . ", " . $_SESSION['userFname'] . " " . $_SESSION['userLname'] . "<p/>";
                                 $user_status = $user_status . "<p>" . $_SESSION['userExpertise'] . "</p>";
@@ -94,6 +93,9 @@ include "./includes/validateRegistration.php";
 <?php include "./includes/modals.php" ?>
 
 <div class="container-fluid Home">
+    <div id="searchContainer">
+
+    </div>
     <div class="row ">
         <div class="col-xs-12 menu blog-orderings">
             <a href="#" class="blog-ordering active" id="dateTime">Most recent</a>|
@@ -103,16 +105,6 @@ include "./includes/validateRegistration.php";
             <a href="#" class="blog-ordering" id="none3">My Blogs</a>
         </div>
     </div>
-    <!-- <div class="row">
-        <div class="col-sm-8">
-            <div class="blogTitle">this is paragraph</div>
-            <p> this is paragraph this is paragraph this is paragraph this is paragraph this is paragraph this is paragraph this is paragraph this is paragraph this is paragraph this is paragraph this is paragraph this is paragraph this is paragraph this is paragraph this is paragraph this is paragraph this is paragraph this is paragraph this is paragraph this is paragraph this is paragraph </p>
-        </div>
-        <div class="col-sm-4 BlogSideImage topImage">
-            <img src="./files/react@2x.png" alt="angular">
-        </div>
-    </div> -->
-
     <div id="HomepageContainer">
         <?php
         if (isset($_GET['bid']))
@@ -123,26 +115,4 @@ include "./includes/validateRegistration.php";
     </div>
 </div>
 <?php include "footer.php";
-// sentMail(to: ['itsamateroflife@gmail.com']);
-// require_once './vendor/autoload.php';
-// // Create the Transport
-// $transport = (new Swift_SmtpTransport('smtp.gmail.com', 587, 'tls'))
-//     ->setUsername('blog.ers.cf@gmail.com')
-//     ->setPassword('grymunfgfggfzflf');
-
-// // Create the Mailer using your created Transport
-// $mailer = new Swift_Mailer($transport);
-
-// // Create a message
-// $message = (new Swift_Message('New Blog is published'))
-//     ->setFrom(['blog.ers.cf@gmail.com' => 'Bloggers'])
-//     ->setTo(['itsamateroflife@gmail.com'])
-//     ->setBody('click the link to get there http://localhost/winmac-blog/');
-// // Send the message
-// $result = $mailer->send($message);
-// if ($result) {
-//     echo "email is sent";
-// } else {
-//     echo "sending email fails";
-// }
 ?>

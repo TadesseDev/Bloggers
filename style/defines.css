@@ -71,3 +71,8 @@
 .fullWidth {
   width: 100%;
 }
+.title1 {
+  font-weight: bold;
+  font-size: min(2rem, 30px);
+  color: var(--darkBrown);
+}

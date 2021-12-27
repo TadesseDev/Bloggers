@@ -542,3 +542,7 @@ p.subTitle {
   display: inline-block;
   border-radius: 5px;
 }
+.searchDisplay .result {
+  height: auto;
+  min-height: 100px;
+}

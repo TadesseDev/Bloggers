@@ -452,10 +452,15 @@ $(document).ready(function () {
   if (blog_orderings) {
     reorderBlogs();
   }
-  // console.log(blog_orderings)
+  let search = $("#topSearchContainer");
+  if (search) {
+    search.find(".searchButton").on("click", (x) => searchForContent(search));
+  }
 
-  scrollWindowToBottom();
+  // console.log(blog_orderings)
+  // scrollWindowToBottom();
 });
+
 
 
 
