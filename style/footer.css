@@ -1,0 +1,26 @@
+.footer .top {
+  /* background-color: red; */
+  background-image: url("../files/SVG/footer-top.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 10vw;
+  max-height: 110px;
+}
+.footer .middle {
+  padding: 40px 0px;
+  background-color: var(--grayBrown);
+  color: var(--grayBrownLight);
+}
+.footer .bottom {
+  background-color: var(--grayBrown1);
+}
+.footer .logo {
+  color: var(--orange);
+}
+.footer .logo img {
+  width: 100px;
+}
+.searchBox {
+  margin-top: 20%;
+}

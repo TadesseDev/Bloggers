@@ -41,7 +41,7 @@ include "./includes/validateRegistration.php";
 
                             if (isset($_SESSION['userId']) || isset($_POST['updateProfilePicture'])) :
                                 $user_status = "<p>" . $_SESSION['userTitle'] . ", " . $_SESSION['userFname'] . " " . $_SESSION['userLname'] . "<p/>";
-                                $user_status = $user_status . "<p>" . $_SESSION['userExperties'] . "</p>";
+                                $user_status = $user_status . "<p>" . $_SESSION['userExpertise'] . "</p>";
                                 $user_status = $user_status . "<p>" . $_SESSION['userEmail'] . "</p>";
                                 $user_status = $user_status . "<p>Rank: </p>";
                                 $uid = $_SESSION['userId'];
@@ -52,7 +52,7 @@ include "./includes/validateRegistration.php";
                                     <script lang="javascript" type="text/javascript">
                                         const profilePicture = document.getElementById("profileImage");
                                         // console.log(profilePicture);
-                                        updateAbackgroundPicture(`<?php echo  $profilePic ?>`,
+                                        updateBackgroundPicture(`<?php echo  $profilePic ?>`,
                                             profilePicture);
                                     </script>
                             <?php
@@ -95,12 +95,12 @@ include "./includes/validateRegistration.php";
 
 <div class="container-fluid Home">
     <div class="row ">
-        <div class="col-xs-12 menu">
-            <a href="#" class="blog-selection">Most recent</a>|
-            <a href="#" class="blog-selection">Most ranked</a>|
-            <a href="#" class="blog-selection">Top Bloggers</a>|
-            <a href="#" class="blog-selection">Older Blogs</a>|
-            <a href="#" class="blog-selection">My Blogs</a>
+        <div class="col-xs-12 menu blog-orderings">
+            <a href="#" class="blog-ordering active" id="dateTime">Most recent</a>|
+            <a href="#" class="blog-ordering" id="blogRank">Most ranked</a>|
+            <a href="#" class="blog-ordering" id="none1">Top Bloggers</a>|
+            <a href="#" class="blog-ordering" id="none2">Older Blogs</a>|
+            <a href="#" class="blog-ordering" id="none3">My Blogs</a>
         </div>
     </div>
     <!-- <div class="row">
@@ -113,7 +113,7 @@ include "./includes/validateRegistration.php";
         </div>
     </div> -->
 
-    <div id="HomePagecontainer">
+    <div id="HomepageContainer">
         <?php
         if (isset($_GET['bid']))
             include "./pages/singleBlog.php";

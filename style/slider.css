@@ -1,0 +1,49 @@
+@import url("./rot.css");
+.slider {
+  display: block;
+  min-width: 100%;
+  min-height: 30px;
+  padding: 10px 5vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.slider .elements {
+}
+.slider img {
+  width: 4vw;
+  max-width: 50px;
+  height: auto;
+  background: opaque;
+}
+.slider .item {
+  background-color: var(--darkBrown);
+  display: inline-block;
+  width: 2vw;
+  height: 2vw;
+  max-width: 30px;
+  max-height: 30px;
+  border-radius: 50%;
+  text-align: center;
+  font-weight: bold;
+  color: var(--orange);
+  margin-left: 10px;
+}
+.slider .active {
+  background-color: var(--orange);
+  color: var(--darkBrown);
+}
+.slider > * {
+  filter: drop-shadow(0px 0px 5px #340100);
+}
+.slider > .back {
+  filter: drop-shadow(10px 0px 5px #340100);
+}
+.slider > .next {
+  filter: drop-shadow(-10px 0px 5px #340100);
+}
+.slider .disable {
+  filter: none;
+  opacity: 0.2;
+  pointer-events: none;
+}

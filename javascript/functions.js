@@ -1,6 +1,6 @@
 // this file containes function which will be loaded to the header of the page
 // and can be loaded befor the DOM is ready so on the DOM loading function here can be called.
-
+let orderBy = 'dateTime';
 const upFromLST = (localStorageName, id) => {
   let img = document.getElementById(id);
   img.src = localStorage.getItem(localStorageName);
@@ -22,7 +22,7 @@ const scrollWindowToBottom = () => {
   window.scrollBy(0, scrolHeight);
 }
 
-const updateAbackgroundPicture = (img, element) => {
+const updateBackgroundPicture = (img, element) => {
   $(document).ready(function () {
     if (!element[0]) {
       element = $(element);
@@ -37,7 +37,7 @@ const updateAbackgroundPicture = (img, element) => {
 }
 
 const displaySingleBlog = (coming) => {
-  $("#HomePagecontainer").load("./pages/singleBlog.php", {
+  $("#HomepageContainer").load("./pages/singleBlog.php", {
     blogId: coming.bid
   }, function () {
     // console.log("returned");
@@ -45,9 +45,14 @@ const displaySingleBlog = (coming) => {
   // console.log(bid);
 }
 const displayBlogList = () => {
-  $("#HomePagecontainer").load("./pages/ListOfBlog.php", {}, function () {
-    console.log("returned");
+  let url = "./pages/ListOfBlog.php?orderId=" + orderBy;
+  $("#HomepageContainer").load(url, {}, function () {
+    let footerSlide = $(".slider")[0];
+    if (footerSlide) {
+      footerSlider();
+    }
   });
+
   // console.log(bid);
 }
 const loadTopBlogs = (coming) => {
@@ -174,4 +179,70 @@ function showfailerModal(coming) {
   $(document).ready(function () {
     $(infoModal).modal("show");
   })
+}
+const footerSlider = (activeId = 1) => {
+  // console.log(orderBy);
+  let footerSlide = $(".slider")[0];
+  let back = $(footerSlide).find(".back");
+  let next = $(footerSlide).find(".next");
+  let items = $(footerSlide).find(".item");
+  // let activeId = active ? active : 1;
+  const activeElement = $(footerSlide).find(`#${activeId}`);
+  activeElement.addClass("active");
+  if (activeElement[0] === items[0]) {
+    back.addClass('disable');
+  }
+  if (activeElement[0] === items[items.length - 1]) {
+    next.addClass('disable');
+  }
+  activeElement.css({
+
+  });
+
+  for (let i = 0; i < items.length; i++) {
+    $(items[i]).on("click", (x) => {
+      x.preventDefault();
+      activeId = x.target.id;
+      let para = "limitId=" + activeId;
+      $.get("./pages/ListOfBlog.php?" + para + "&orderId=" + orderBy, {}, function (data, status) {
+        $("#HomepageContainer").html(data);
+        footerSlider(activeId);
+      });
+      // displayBlogList({ para: para });
+    })
+  }
+  // for the next and back items
+  next.on("click", (x) => {
+    activeId++;
+    let para = "limitId=" + activeId;
+    $.get("./pages/ListOfBlog.php?" + para + "&orderId=" + orderBy, {}, function (data, status) {
+      $("#HomepageContainer").html(data);
+      footerSlider(activeId);
+    });
+  });
+  back.on("click", (x) => {
+    activeId--;
+    let para = "limitId=" + activeId;
+    $.get("./pages/ListOfBlog.php?" + para + "&orderId=" + orderBy, {}, function (data, status) {
+      $("#HomepageContainer").html(data);
+      footerSlider(activeId);
+    });
+  });
+}
+const reorderBlogs = () => {
+  let orderings = $($(".blog-orderings")[0]).find(".blog-ordering");
+  for (let i = 0; i < orderings.length; i++) {
+    $(orderings[i]).on("click", (x) => {
+      x.preventDefault();
+      activeId = x.target.id;
+      $(`#${orderBy}`).removeClass("active");
+      orderBy = activeId;
+      $(`#${orderBy}`).addClass("active");
+      let para = "orderId=" + activeId;
+      $.get("./pages/ListOfBlog.php?" + para, {}, function (data, status) {
+        $("#HomepageContainer").html(data);
+        footerSlider();
+      });
+    })
+  }
 }

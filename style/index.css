@@ -3,6 +3,8 @@
 @import url("./registrationForm.css");
 @import url("./rot.css");
 @import url("./defines.css");
+@import url("./slider.css");
+@import url("./footer.css");
 html,
 body {
   margin: 0px;
@@ -54,8 +56,13 @@ svg {
 }
 .menu {
   text-decoration: none;
-  color: #340100;
+  color: var(--darkBrown);
 }
+.menu .active {
+  color: var(--orange);
+  text-decoration: underline;
+}
+
 .menu a {
   color: inherit;
   margin-right: 10px;
@@ -418,7 +425,7 @@ pre {
   width: auto;
   /* max-width: 100%; */
 }
-.blog-selection {
+.blog-ordering {
   font-family: "Open Sans", sans-serif;
   font-weight: bold;
 }
@@ -469,6 +476,9 @@ pre {
   margin: 20px;
   font-size: 2rem;
   font-family: "Yanone Kaffeesatz", sans-serif;
+}
+.mainContent .about {
+  margin-top: 0px;
 }
 .mainContent .title {
   text-decoration: underline;

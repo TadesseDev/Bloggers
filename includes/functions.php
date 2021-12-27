@@ -27,7 +27,7 @@ function login($email, $Password)
         $_SESSION['userLname'] = $namedResult['Lname'];
         $_SESSION['userEmail'] = $namedResult['email'];
         $_SESSION['userTitle'] = $namedResult['Title'];
-        $_SESSION['userExperties'] = $namedResult['Experties'];
+        $_SESSION['userExpertise'] = $namedResult['Experties'];
         $_SESSION['userPassword'] = $namedResult['Password'];
         unset($_POST['RegisterNewUser']);
         echo "<script>window.location='http://localhost/winmac-blog/';</script>";
@@ -142,7 +142,7 @@ function saveDataToDatabase()
     } else {
         $cover = "default";
     }
-    $res = mysqli_query($con, "insert into blog(author, Title, type, cover) values($author, '$title', '$type','$cover');");
+    $res = mysqli_query($con, "insert into blog(author, Title, type, cover,blogRank) values($author, '$title', '$type','$cover',0);");
     if ($res != 1) {
         mysqli_query($con, " UNLOCK TABLES");
         return "cant write to the database";
@@ -204,8 +204,15 @@ function saveDataToDatabase()
 function getQueryResult($query)
 {
     $con = mysqli_connect($_SESSION['conInfo'][0], $_SESSION['conInfo'][1], $_SESSION['conInfo'][2], $_SESSION['conInfo'][3]);
-    $qry = mysqli_query($con, $query);
-    return $qry;
+
+    try {
+        //code..
+        $qry = mysqli_query($con, $query);
+        return $qry;
+    } catch (exception $ex) {
+        return 0;
+        //throw $th;
+    }
 }
 
 function sentMail(

@@ -153,7 +153,7 @@ if (BlogcoverImage || profileImage) {
         don(reader.result);
       };
       reader.readAsDataURL(files[0]);
-      // CroperModal.modal("show");
+      // CropperModal.modal("show");
     }
     $modal.on('shown.bs.modal', function () {
       cropper = new Cropper(image, {
@@ -224,7 +224,7 @@ if (BlogcoverImage || profileImage) {
                 getProfilePicture: true
               }, function (newImage, status) {
                 if (status === "success") {
-                  updateAbackgroundPicture(newImage, profileImage);
+                  updateBackgroundPicture(newImage, profileImage);
                 }
               });
             }
@@ -441,10 +441,21 @@ $(document).ready(function () {
     subscriptionBody.css({
       "display": "none",
     });
-  })
-  // scrollWindowToBottom();
-});
+  });
 
+  // first time the javascript loaded this code will ge executed
+  let footerSlide = $(".slider")[0];
+  if (footerSlide) {
+    footerSlider();
+  }
+  let blog_orderings = $(".blog-orderings")[0];
+  if (blog_orderings) {
+    reorderBlogs();
+  }
+  // console.log(blog_orderings)
+
+  scrollWindowToBottom();
+});
 
 
 

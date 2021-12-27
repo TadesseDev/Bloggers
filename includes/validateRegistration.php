@@ -19,7 +19,7 @@ if (isset($_POST['RegisterNewUser'])) :
             $_SESSION['userLname'] = $lastName;
             $_SESSION['userEmail'] = $email;
             $_SESSION['userTitle'] = $title;
-            $_SESSION['userExperties'] = $experties;
+            $_SESSION['userExpertise'] = $experties;
             $_SESSION['userPassword'] = $password;
             $_SESSION['registrationStatus'] = 1;
             unset($_POST['RegisterNewUser']);
