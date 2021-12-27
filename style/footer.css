@@ -7,20 +7,43 @@
   height: 10vw;
   max-height: 110px;
 }
+.footer .top .container-fluid {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: end !important;
+}
 .footer .middle {
   padding: 40px 0px;
   background-color: var(--grayBrown);
   color: var(--grayBrownLight);
+  text-decoration: none;
+}
+.footer ul {
+  list-style: none;
+  padding-left: min(1vw, 13px);
 }
 .footer .bottom {
   background-color: var(--grayBrown1);
+  color: var(--orange);
+}
+.footer .bottom .legal-content * {
+  margin-left: min(2vw, 20px);
+}
+.footer .bottom .contact {
+  background-color: var(--grayBrown1);
+  color: var(--grayBrown);
 }
 .footer .logo {
   color: var(--orange);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .footer .logo img {
   width: 100px;
 }
 .searchBox {
-  margin-top: 20%;
+  /* margin-top: 20%; */
+  display: inline-block;
 }

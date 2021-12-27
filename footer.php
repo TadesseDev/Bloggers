@@ -1,9 +1,10 @@
 <?php
 ?>
+
 <div class="footer">
     <div class="top">
-        <div class="container-fluid">
-            <div class="row justify-content-end">
+        <div class="container-fluid align-items-center">
+            <div class="row">
                 <div class="searchBox col-xs-12">
                     <input type="text" name="search" id="footerSearch" />
                     <button type="submit" name="footerSearch">search</button>
@@ -14,7 +15,7 @@
     <div class="middle">
         <div class="container-fluid">
             <div class="row align-items-center justify-content-between">
-                <div class="logo col-sm-4">
+                <div class="logo col-sm-4 align-self-baseline">
                     <img src="./files/icons/logo.png" alt="WinMac-Logo">
                     <h6>WinMac</h6>
                     <h6>Digital Marketing</h6>
@@ -42,16 +43,18 @@
     </div>
     <div class="bottom">
         <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-8">
+            <div class="row align-items-center justify-content-between">
+                <div class="col-md-8 legal-content">
                     <span class="legalDoc">TERMS AND CONDITIONS</span>
                     <span class="legalDoc">PRIVACY POLICES</span>
                     <span class="legalDoc">SITE MAP</span>
                 </div>
                 <div class="col-md-4 contact">
-                    <h6>CONTACT</h6>
-                    <h6>blog-ers.cf@gmail.com</h6>
-                    <h7>+251921577930</h7>
+                    <p>CONTACT</p>
+                    <ul class="title">
+                        <li>blog-ers.cf@gmail.com</li>
+                        <li>+251921577930</li>
+                    </ul>
                 </div>
             </div>
         </div>
