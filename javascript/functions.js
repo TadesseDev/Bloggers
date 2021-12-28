@@ -246,3 +246,31 @@ const reorderBlogs = () => {
     })
   }
 }
+const searchForContent = (element) => {
+  const searchIn = $(element).find(".searchType").val();
+  const searchFor = $(element).find(".searchText").val();
+  let searchContainer = $("#searchContainer");
+  $.post("./pages/search.php", {
+    loadGrid: true,
+    searchIn: searchIn,
+    searchFor: searchFor
+  }, (data, status) => {
+    if (status) {
+      searchContainer.html(data);
+      // append the empty html to the DOM 
+      console.log(data);
+    }
+  }, "html").done(() => {
+    // once empty grid is loaded we can load for searched data 
+    $.post("./pages/search.php", {
+      search: true,
+      searchIn: searchIn,
+      searchFor: searchFor
+    }, (data, status) => {
+      if (status) {
+        console.log("data is ready");
+        console.log(data);
+      }
+    })
+  });
+}

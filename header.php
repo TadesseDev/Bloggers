@@ -3,10 +3,9 @@
 use function PHPSTORM_META\sql_injection_subst;
 
 isset($_SESSION) ? "" : session_start();
-$_SESSION['conInfo'] = ["localhost", "root", "", "blog"];
-$con = mysqli_connect("localhost", "root", "", "blog") or die("cant connect to the database");
-$_SESSION['con'] = $con; // only beeing used on login page
-include "./includes/functions.php";
+@include_once("./includes/connection.php");
+// only beeing used on login page
+@include_once("./includes/functions.php");
 if (isset($_POST['login'])) {
     login(mysqli_real_escape_string($con, $_POST['email']), mysqli_real_escape_string($con, $_POST['password']));
 } else if (isset($_POST['LogOut'])) {
@@ -103,6 +102,19 @@ if (isset($_POST['login'])) {
                             <option value="">tech talk</option>
                             <option value="">news</option>
                         </select>
+                    </div>
+                </div>
+                <div class="row justify-content-end">
+                    <div class="search" id="topSearchContainer">
+                        <select class="searchType">
+                            <option value="all">All</option>
+                            <option value="blog">Blog</option>
+                            <option value="author">Author</option>
+                        </select>
+                        <input type=" text" name="searchText" class="searchText" />
+                        <button type="submit" name="searchButton" class="searchButton">
+                            search
+                        </button>
                     </div>
                 </div>
             </div>
