@@ -107,7 +107,7 @@ if (isset($_POST['login'])) {
                 <div class="row justify-content-end">
                     <div class="search" id="topSearchContainer">
                         <select class="searchType">
-                            <option value="all">All</option>
+                            <option value="Everything">Everything</option>
                             <option value="blog">Blog</option>
                             <option value="author">Author</option>
                         </select>

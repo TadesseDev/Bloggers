@@ -247,7 +247,10 @@ const reorderBlogs = () => {
   }
 }
 const searchForContent = (element) => {
-  const searchIn = $(element).find(".searchType").val();
+  let searchIn = $(element).find(".searchType").val();
+  if (searchIn === "Everything") {
+    searchIn = ['bllog', 'author']
+  }
   const searchFor = $(element).find(".searchText").val();
   let searchContainer = $("#searchContainer");
   $.post("./pages/search.php", {
@@ -258,7 +261,7 @@ const searchForContent = (element) => {
     if (status) {
       searchContainer.html(data);
       // append the empty html to the DOM 
-      console.log(data);
+      // console.log(data);
     }
   }, "html").done(() => {
     // once empty grid is loaded we can load for searched data 
