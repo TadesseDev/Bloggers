@@ -14,8 +14,8 @@ body {
   outline: none;
   margin: 0px;
   padding: 0px;
-  font-family: "Open Sans", sans-serif;
   font-family: "Roboto Mono", monospace;
+  font-family: "Open Sans", sans-serif;
 }
 *:focus {
   outline: none;
@@ -96,9 +96,11 @@ svg {
   color: white;
   font-size: 1.5em;
 }
-.userDetil {
+.userDetail {
   text-align: right;
   font-size: 0.9rem;
+  display: block;
+  margin-left: auto;
 }
 #profileImage {
   position: relative;
@@ -248,6 +250,9 @@ svg {
 /* .textArea { */
 /* background-color: #7a705e; */
 /* } */
+#composeBlog {
+  position: relative;
+}
 .editPost {
   position: relative;
   width: 100%;
@@ -325,7 +330,7 @@ textarea {
 }
 #publish {
   font-size: 18px;
-  position: fixed;
+  position: absolute;
   bottom: 2%;
   right: 2%;
   height: 70px;

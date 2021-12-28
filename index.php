@@ -64,7 +64,7 @@ include "./includes/validateRegistration.php";
                         </div>
                     </div>
                     <div class="col-sm-6">
-                        <span class="userDetil"><?php echo $user_status; ?></span>
+                        <span class="userDetail"><?php echo $user_status; ?></span>
                     </div>
                 </div>
             </div>

@@ -6,8 +6,8 @@
         <div class="container-fluid align-items-center">
             <div class="row">
                 <div class="searchBox col-xs-12">
-                    <input type="text" name="search" id="footerSearch" />
-                    <button type="submit" name="footerSearch">search</button>
+                    <input type="text" name="search" id="searchText" />
+                    <button type="submit" name="search" id="searchButton">search</button>
                 </div>
             </div>
         </div>
@@ -50,7 +50,7 @@
                     <span class="legalDoc">SITE MAP</span>
                 </div>
                 <div class="col-md-4 contact">
-                    <p>CONTACT</p>
+                    <strong>CONTACT</strong>
                     <ul class="title">
                         <li>blog-ers.cf@gmail.com</li>
                         <li>+251921577930</li>

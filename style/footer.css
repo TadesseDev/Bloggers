@@ -1,11 +1,28 @@
+.footer {
+  margin: 0px;
+  margin-top: 10px;
+}
 .footer .top {
   /* background-color: red; */
+  position: relative;
   background-image: url("../files/SVG/footer-top.png");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
   height: 10vw;
   max-height: 110px;
+}
+.footer .top::before {
+  content: "";
+  position: absolute;
+  display: block;
+  background: linear-gradient(
+    90deg,
+    rgba(52, 1, 0, 1) 11%,
+    rgba(0, 212, 255, 0) 100%
+  );
+  min-width: 100%;
+  height: 100%;
 }
 .footer .top .container-fluid {
   height: 100%;
@@ -32,18 +49,49 @@
 }
 .footer .bottom .contact {
   background-color: var(--grayBrown1);
-  color: var(--grayBrown);
+  color: var(--grayBrownLight);
 }
 .footer .logo {
   color: var(--orange);
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-height: fit-content;
+  height: fit-content;
 }
 .footer .logo img {
   width: 100px;
 }
 .searchBox {
-  /* margin-top: 20%; */
+  /* position: relative; */
+  background-color: var(--grayBrown1);
+  border-radius: 20px;
+  overflow: hidden;
+  height: 8vw;
+  max-height: 50px;
+}
+.searchBox #searchText {
+  color: var(--grayBrownLight);
   display: inline-block;
+  height: 100%;
+  min-height: 100%;
+  outline: none;
+  border: none;
+  width: 40vw;
+  max-width: 400px;
+  padding-left: 15px;
+  text-transform: capitalize;
+}
+.searchBox #searchButton {
+  padding: 0px 10px;
+  height: 100%;
+  float: right;
+  min-height: 100%;
+  outline: none;
+  border: none;
+  width: 30vw;
+  min-width: 100px;
+  max-width: 120px;
+  background-color: var(--grayBrownLight);
+  color: var(--darkBrown);
 }

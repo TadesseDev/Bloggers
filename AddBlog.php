@@ -27,7 +27,7 @@ if (!isset($_SESSION['order'])) {
 }
 $BR = "<br/>";
 ?>
-<form action="uploadNewBlogData.php" method="POST" enctype="multipart/form-data">
+<form action="uploadNewBlogData.php" method="POST" enctype="multipart/form-data" id="composeBlog">
     <div class="fullContainer" id="authorInfo">
         <div class="CreateBlogHeader container ">
             <div class="author">
