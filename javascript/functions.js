@@ -249,7 +249,8 @@ const reorderBlogs = () => {
 const searchForContent = (element) => {
   let searchIn = $(element).find(".searchType").val();
   if (searchIn === "Everything") {
-    searchIn = ['bllog', 'author']
+    // console.log("searching for everyting");
+    searchIn = ['Blog', 'Author']
   }
   const searchFor = $(element).find(".searchText").val();
   let searchContainer = $("#searchContainer");
@@ -265,15 +266,36 @@ const searchForContent = (element) => {
     }
   }, "html").done(() => {
     // once empty grid is loaded we can load for searched data 
-    $.post("./pages/search.php", {
-      search: true,
-      searchIn: searchIn,
-      searchFor: searchFor
-    }, (data, status) => {
-      if (status) {
-        console.log("data is ready");
-        console.log(data);
-      }
-    })
+    if (Array.isArray(searchIn)) {
+      searchIn.forEach(se => {
+        $.post("./pages/search.php", {
+          search: true,
+          searchIn: se,
+          searchFor: searchFor
+        }, (data, status) => {
+          if (status) {
+            console.log("result is ready in: " + se);
+            const result = $($(`#` + se).find(`.result`)[0])
+            result.append(data);
+            // console.log(result);
+            // console.log(data);
+          }
+        }, "html");
+      });
+    } else {
+      $.post("./pages/search.php", {
+        search: true,
+        searchIn: searchIn,
+        searchFor: searchFor
+      }, (data, status) => {
+        if (status) {
+          console.log("result is ready in: " + searchIn);
+          const result = $($(`#` + searchIn).find(`.result`)[0])
+          result.append(data);
+          // console.log(result);
+          // console.log(data);
+        }
+      }, "html");
+    }
   });
 }

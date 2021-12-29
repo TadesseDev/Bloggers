@@ -108,8 +108,8 @@ if (isset($_POST['login'])) {
                     <div class="search" id="topSearchContainer">
                         <select class="searchType">
                             <option value="Everything">Everything</option>
-                            <option value="blog">Blog</option>
-                            <option value="author">Author</option>
+                            <option value="Blog">Blog</option>
+                            <option value="Author">Author</option>
                         </select>
                         <input type=" text" name="searchText" class="searchText" />
                         <button type="submit" name="searchButton" class="searchButton">
