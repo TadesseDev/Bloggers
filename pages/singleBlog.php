@@ -1,13 +1,17 @@
 <?php
-@include_once("../includes/functions.php");
+@include_once($_SERVER['DOCUMENT_ROOT'] . "/includes/functions.php");
+@require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/connection.php");
 isset($_SESSION) ? "" : session_start();
 // $_POST['blogId'] = 1;
 if (isset($_POST['blogId']) || isset($_GET['bid'])) :
     if (isset($_POST['blogId']))
-        $bid = $_POST['blogId'];
-    else  $bid =  $_GET['bid'];
+        $bid = mysqli_real_escape_string($con, $_POST['blogId']);
+    else  $bid =  mysqli_real_escape_string($con, $_GET['bid']);
     // echo $bid;
-    $blog = mysqli_fetch_assoc(getQueryResult("select b.id, b.dateTime, b.author, b.title, b.type, b.cover from blog as b where b.id=$bid;"));
+    $blog = "";
+    $res = getQueryResult("select b.id, b.dateTime, b.author, b.title, b.type, b.cover from blog as b where b.id=$bid;");
+    if ($res)
+        $blog = mysqli_fetch_assoc($res);
     if (is_array($blog)) {
         $bAId = $blog['author'];
         $author = null;
@@ -131,10 +135,10 @@ if (isset($_POST['blogId']) || isset($_GET['bid'])) :
         </div>
 <?php
     } else {
-        echo "failed to feach blog data";
+        echo "failed to fetch blog data";
     }
 else :
-    echo "no Blog Id is submited ";
+    echo "no Blog Id is submitted ";
 endif;
 ?>
 <script lang="javascript" src="./javascript/prism.js"></script>

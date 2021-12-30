@@ -1,6 +1,6 @@
 <?php
-@include_once("../includes/connection.php");
-@require_once("../includes/functions.php");
+@include_once($_SERVER['DOCUMENT_ROOT'] . "/includes/connection.php");
+@require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/functions.php");
 $searchIn = null;
 if (is_array($_POST['searchIn'])) {
     $searchIn = [];

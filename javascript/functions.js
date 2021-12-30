@@ -276,21 +276,24 @@ const searchForContent = (element) => {
           searchFor: searchFor
         }, (data, status) => {
           if (status) {
-            console.log("result is ready in: " + se);
+            // console.log("result is ready in: " + se);
             const result = $($(`#` + se).find(`.result`)[0])
             result.append(data);
             // console.log(result);
             // console.log(data);
           }
-        }, "html").done((data) => {
+        }, "html").done(() => {
           if (se.toLowerCase() == ("blog")) {
-            let button = searchContainer.find(".btn");
-            console.log(button);
+            let button = searchContainer.find("#Blog").find(".btn");
+            // console.log(button);
             for (let i = 0; i < button.length; i++) {
               button[i].onclick = (x) => {
+                x.preventDefault();
                 displaySingleBlog({ bid: x.target.id });
                 console.log(searchContainer[0].scrollHeight);
-                window.scrollBy(0, 1000);
+                $(document).ready(function () {
+                  window.scrollTo(0, searchContainer[0].scrollHeight);
+                })
               };
             }
           }
@@ -304,23 +307,26 @@ const searchForContent = (element) => {
         searchFor: searchFor
       }, (data, status) => {
         if (status) {
-          console.log("result is ready in: " + searchIn);
+          // console.log("result is ready in: " + searchIn);
           const result = $($(`#` + searchIn).find(`.result`)[0])
           result.append(data);
-          // console.log(result);
-          // console.log(data);
         }
       }, "html").done((data) => {
 
-
-        console.log("button");
-        let button = $(data).find(".btn");
-        for (let i = 0; i < button.length; i++) {
-          $(button[i]).on("click", (x) => {
-            console.log(x);
-          })
+        if (searchIn.toLowerCase() == ("blog")) {
+          let button = searchContainer.find("#Blog").find(".btn");
+          console.log(button);
+          for (let i = 0; i < button.length; i++) {
+            button[i].onclick = (x) => {
+              x.preventDefault();
+              displaySingleBlog({ bid: x.target.id });
+              console.log(searchContainer[0].scrollHeight);
+              $(document).ready(function () {
+                window.scrollTo(0, searchContainer[0].scrollHeight);
+              })
+            };
+          }
         }
-
       });
     }
   });
