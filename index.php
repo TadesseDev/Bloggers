@@ -94,8 +94,8 @@ include "./includes/validateRegistration.php";
 
 <div class="container-fluid Home">
     <div id="searchContainer">
-
     </div>
+    <a name="searchEnd"></a>
     <div class="row ">
         <div class="col-xs-12 menu blog-orderings">
             <a href="#" class="blog-ordering active" id="dateTime">Most recent</a>|

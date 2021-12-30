@@ -266,6 +266,7 @@ const searchForContent = (element) => {
     }
   }, "html").done(() => {
     // once empty grid is loaded we can load for searched data 
+    let searchContainer = $("#searchContainer");
     if (Array.isArray(searchIn)) {
       searchIn.forEach(se => {
         // console.log("searching in" + se);
@@ -281,7 +282,20 @@ const searchForContent = (element) => {
             // console.log(result);
             // console.log(data);
           }
-        }, "html");
+        }, "html").done((data) => {
+          if (se.toLowerCase() == ("blog")) {
+            let button = searchContainer.find(".btn");
+            console.log(button);
+            for (let i = 0; i < button.length; i++) {
+              button[i].onclick = (x) => {
+                displaySingleBlog({ bid: x.target.id });
+                console.log(searchContainer[0].scrollHeight);
+                window.scrollBy(0, 1000);
+              };
+            }
+          }
+
+        });
       });
     } else {
       $.post("./pages/search.php", {
@@ -296,7 +310,18 @@ const searchForContent = (element) => {
           // console.log(result);
           // console.log(data);
         }
-      }, "html");
+      }, "html").done((data) => {
+
+
+        console.log("button");
+        let button = $(data).find(".btn");
+        for (let i = 0; i < button.length; i++) {
+          $(button[i]).on("click", (x) => {
+            console.log(x);
+          })
+        }
+
+      });
     }
   });
 }
