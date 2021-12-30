@@ -111,8 +111,10 @@ svg {
   background-image: url("../files/icons/anonymous_user.svg");
   background-position: center;
   background-size: contain;
-  height: 180px;
-  width: 180px;
+  height: 17vw;
+  width: 17vw;
+  max-height: 180px;
+  max-width: 180px;
   box-shadow: 0px 0px 10px 10px #c0c0c042;
 }
 /* #profileImage img {
@@ -551,3 +553,25 @@ p.subTitle {
   height: auto;
   min-height: 100px;
 }
+#searchContainer .card-title {
+  border-bottom: 2px solid var(--darkBrown);
+}
+#searchContainer .btn {
+  float: right;
+}
+#searchContainer .card {
+  margin-bottom: 20px;
+}
+.popIcon {
+  height: 40px;
+  width: auto;
+}
+.searchButton {
+  min-height: fit-content;
+}
+#topSearchContainer {
+  /* display: none; */
+}
+/* .popIcon img {
+  height: 200px;
+} */

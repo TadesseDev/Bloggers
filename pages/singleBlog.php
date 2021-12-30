@@ -1,6 +1,11 @@
 <?php
-@include_once($_SERVER['DOCUMENT_ROOT'] . "/includes/functions.php");
-@require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/connection.php");
+if (file_exists("./includes/connection.php")) {
+    @include_once("./includes/connection.php");
+    @require_once("./includes/functions.php");
+} else {
+    @include_once("../includes/connection.php");
+    @require_once("../includes/functions.php");
+}
 isset($_SESSION) ? "" : session_start();
 // $_POST['blogId'] = 1;
 if (isset($_POST['blogId']) || isset($_GET['bid'])) :
@@ -32,7 +37,7 @@ if (isset($_POST['blogId']) || isset($_GET['bid'])) :
         $contents = mysqli_fetch_all(getQueryResult("select c.orderOf, c.contentType, c.content, c.remark from content as c where c.bid=$bid order by(orderOf);"), 1);
 ?>
         <div class="row ">
-            <a class="ColorDarkBrown" href="#" id="backToListOfBlog" onclick="displayBlogList()"><i class=" fontS-1_5em  bi bi-skip-backward-fill"></i>
+            <a class="ColorDarkBrown" href="#" id="backToListOfBlog" onclick="displayBlogList()">
                 <span style="display: inline-block; font-weight: bold">Home</span>
             </a>
             <span class="">

@@ -1,6 +1,12 @@
 <?php
-@include_once($_SERVER['DOCUMENT_ROOT'] . "/includes/connection.php");
-@require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/functions.php");
+// echo $_SERVER['DOCUMENT_ROOT'];
+if (file_exists("./includes/connection.php")) {
+    @include_once("./includes/connection.php");
+    @require_once("./includes/functions.php");
+} else {
+    @include_once("../includes/connection.php");
+    @require_once("../includes/functions.php");
+}
 $searchIn = null;
 if (is_array($_POST['searchIn'])) {
     $searchIn = [];
@@ -61,7 +67,7 @@ function searchIn($in, $for)
               <div class='card-body'>
                 <h5 class='card-title'>$title</h5>
                 <p class='card-text'>With supporting text below as a natural lead-in to additional content.</p>
-                <a href='#' class='btn btn-primary' id='$bid' >Go somewhere</a>
+                <a href='#' class='btn darkBrown ColorOrange' id='$bid' >Go to blog</a>
               </div>
             </div>
           </div>
@@ -83,7 +89,7 @@ function searchIn($in, $for)
               <div class='card-body'>
                 <h5 class='card-title'>$fullName</h5>
                 <p class='card-text'>With supporting text below as a natural lead-in to additional content.</p>
-                <a href='#' class='btn btn-primary'  >Go somewhere</a>
+                <a href='#' class='btn darkBrown ColorOrange' >Show author detail</a>
               </div>
             </div>
           </div>

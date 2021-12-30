@@ -5,7 +5,6 @@ include "./includes/validateRegistration.php";
 // $rotateImage = imagerotate($image, 45, false);
 // imagepng($rotateImage, "./files/createdImage.png", 9);
 ?>
-
 <div class="heading">
     <div class="container-fluid">
         <div class="row align-items-center">
@@ -93,6 +92,16 @@ include "./includes/validateRegistration.php";
 <?php include "./includes/modals.php" ?>
 
 <div class="container-fluid Home">
+    <div class="row ">
+        <div class="category">
+            <select id="category">
+                <option value="">General</option>
+                <option value="">tech talk</option>
+                <option value="">news</option>
+            </select>
+            <label for="category">Category</label>
+        </div>
+    </div>
     <div id="searchContainer">
     </div>
     <a name="searchEnd"></a>

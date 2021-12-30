@@ -95,16 +95,6 @@ if (isset($_POST['login'])) {
                     </span>
                 <?php endif; ?>
                 <div class="row justify-content-end">
-                    <div class="category">
-                        <label for="category">Category</label>
-                        <select id="category">
-                            <option value="">General</option>
-                            <option value="">tech talk</option>
-                            <option value="">news</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row justify-content-end">
                     <div class="search" id="topSearchContainer">
                         <select class="searchType">
                             <option value="Everything">Everything</option>
@@ -113,9 +103,10 @@ if (isset($_POST['login'])) {
                         </select>
                         <input type=" text" name="searchText" class="searchText" />
                         <button type="submit" name="searchButton" class="searchButton">
-                            search
+                            <img class="icon" src="./files/icons/search.svg" alt="search icon" />
                         </button>
                     </div>
+
                 </div>
             </div>
         </header>

@@ -3,7 +3,7 @@
 isset($_SESSION) ? "" : session_start();
 $limitBottom = 0;
 $pageId = 1;
-$topLimit = 1;
+$topLimit = 4;
 $order = "dateTime";
 if (isset($_GET['limitId'])) {
     if (is_numeric($_GET['limitId']) && $_GET['limitId'] > 0) {
@@ -123,7 +123,7 @@ for ($i = 0; $i < count($getAllBlogs); $i++) {
             </div>
             <img class="next" src="./files/icons/double_right.svg"></img>
         </div>
-    </div>
-<?php
+    <?php
     }
-?>
+    ?>
+    </div>
