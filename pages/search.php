@@ -67,6 +67,25 @@ function searchIn($in, $for)
         }
     }
     if (strnatcasecmp($in, "author") == 0) {
-        echo "looking for author";
+        $query = "select * from (select id, title, fname, lname, group_CONCAT(Fname,Lname,Experties,Title,email) as con from author group by(id)) as res where res.con REGEXP '$for';";
+        $res = getQueryResult($query);
+        $row = mysqli_fetch_all($res, 1);
+        if (count($row) > 0) {
+            foreach ($row as $res) {
+                $aid = $res['id'];
+                $fullName = $res['title'] . " " . $res['fname'] . " " . $res['lname'];
+                echo "
+          <div class='col-sm-6 col-md-4 col-lg-3'>
+            <div class='card'>
+              <div class='card-body'>
+                <h5 class='card-title'>$fullName</h5>
+                <p class='card-text'>With supporting text below as a natural lead-in to additional content.</p>
+                <a href='#' class='btn btn-primary' onclick='' >Go somewhere</a>
+              </div>
+            </div>
+          </div>
+            ";
+            }
+        }
     }
 }

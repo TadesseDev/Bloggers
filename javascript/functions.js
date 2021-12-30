@@ -268,6 +268,7 @@ const searchForContent = (element) => {
     // once empty grid is loaded we can load for searched data 
     if (Array.isArray(searchIn)) {
       searchIn.forEach(se => {
+        // console.log("searching in" + se);
         $.post("./pages/search.php", {
           search: true,
           searchIn: se,
