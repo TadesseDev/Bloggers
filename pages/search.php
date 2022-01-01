@@ -67,7 +67,7 @@ function searchIn($in, $for)
               <div class='card-body'>
                 <h5 class='card-title'>$title</h5>
                 <p class='card-text'>With supporting text below as a natural lead-in to additional content.</p>
-                <a href='#' class='btn darkBrown ColorOrange' id='$bid' >Go to blog</a>
+                <a href='#' class='btn ColorGrayBrown bold' id='$bid' >Go to blog</a>
               </div>
             </div>
           </div>
@@ -89,7 +89,7 @@ function searchIn($in, $for)
               <div class='card-body'>
                 <h5 class='card-title'>$fullName</h5>
                 <p class='card-text'>With supporting text below as a natural lead-in to additional content.</p>
-                <a href='#' class='btn darkBrown ColorOrange' >Show author detail</a>
+                <a href='#' class='btn ColorGrayBrown bold' >Show author detail</a>
               </div>
             </div>
           </div>

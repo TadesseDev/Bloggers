@@ -253,7 +253,9 @@ const searchForContent = (element) => {
     searchIn = ['Blog', 'Author']
   }
   const searchFor = $(element).find(".searchText").val();
-  let searchContainer = $("#searchContainer");
+  const searchContainer = $("#searchContainer");
+  searchContainer.css({ "display": "block" })
+  const disposeSearch = searchContainer.find("#closeSearch");
   $.post("./pages/search.php", {
     loadGrid: true,
     searchIn: searchIn,
@@ -263,6 +265,9 @@ const searchForContent = (element) => {
       searchContainer.html(data);
       // append the empty html to the DOM 
       // console.log(data);
+      searchContainer.append(disposeSearch); disposeSearch.on("click", (x) => {
+        searchContainer.css({ "display": "none" })
+      });
     }
   }, "html").done(() => {
     // once empty grid is loaded we can load for searched data 
@@ -278,9 +283,11 @@ const searchForContent = (element) => {
           if (status) {
             // console.log("result is ready in: " + se);
             const result = $($(`#` + se).find(`.result`)[0])
+            if (data.length < 1)
+              data = "<p style='text-align:center; width: 100%'>Nothing found in " + se + "</p>";
             result.append(data);
             // console.log(result);
-            // console.log(data);
+            console.log(data.length);
           }
         }, "html").done(() => {
           if (se.toLowerCase() == ("blog")) {
@@ -297,7 +304,6 @@ const searchForContent = (element) => {
               };
             }
           }
-
         });
       });
     } else {
@@ -309,6 +315,8 @@ const searchForContent = (element) => {
         if (status) {
           // console.log("result is ready in: " + searchIn);
           const result = $($(`#` + searchIn).find(`.result`)[0])
+          if (data.length < 1)
+            data = "Nothing found in " + searchIn;
           result.append(data);
         }
       }, "html").done((data) => {
@@ -330,4 +338,5 @@ const searchForContent = (element) => {
       });
     }
   });
+  console.log(disposeSearch);
 }

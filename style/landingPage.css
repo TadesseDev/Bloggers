@@ -1,0 +1,75 @@
+#landingPage {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  z-index: 2;
+  color: white;
+  overflow: hidden;
+  background: linear-gradient(
+    45deg,
+    rgba(255, 165, 0, 1) 0%,
+    rgba(52, 1, 0, 1) 100%
+  );
+}
+#landingPage #innerGlass {
+  position: relative;
+  display: block;
+  width: 80vw;
+  height: 80vh;
+  margin-top: 10vh;
+  margin-left: 10vw;
+  background: rgba(209, 209, 209, 0.308);
+  backdrop-filter: blur(15px);
+  box-shadow: 0px 0px 11px rgba(0, 0, 0, 0.384);
+  /* filter: ; */
+}
+#landingPage #innerGlass .closeLanding {
+  /* display: inline-block; */
+  float: right;
+
+  height: 5vw;
+  width: 5vw;
+  max-height: 50px;
+  max-width: 50px;
+  /* background-color: black; */
+  /* opacity: 1; */
+  border-radius: 50%;
+  transform: translate(50%, -50%);
+  background: rgba(120 82 65 / 65%);
+  backdrop-filter: blur(50px);
+  box-shadow: 0px 0px 11px rgba(0, 0, 0, 0.384);
+}
+#landingPage #landingSVG2 {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 40vw;
+  height: 30vw;
+  max-height: 350px;
+  /* background-color: #8f006c; */
+  background-image: url("../files/SVG/on_the_office.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+#landingPage #landingSVG1 {
+  position: absolute;
+  bottom: 0;
+  height: auto;
+  width: 30vw;
+  max-width: 400px;
+}
+#landingPage #landingPageMenu a {
+  color: white;
+}
+#landingPage #landingPageMenu li {
+  display: inline-block;
+  font-weight: bold;
+  margin-right: 30px;
+}
+#landingPage #landingPageMenu ul {
+  list-style: none;
+  padding: 30px;
+}
+.normalFlow {
+  display: none;
+}

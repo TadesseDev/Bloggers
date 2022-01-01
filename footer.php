@@ -5,9 +5,12 @@
     <div class="top">
         <div class="container-fluid align-items-center">
             <div class="row">
-                <div class="searchBox col-xs-12">
-                    <input type="text" name="search" id="searchText" />
-                    <button type="submit" name="search" id="searchButton">search</button>
+                <div class="searchBox col-xs-12" id="footerSearchContainer">
+                    <select class="searchType" style="display: none;">
+                        <option value="Everything">Everything</option>
+                    </select>
+                    <input type="text" name="search" id="footerSearchText" class="searchText" />
+                    <button type=" submit" name="search" id="searchButton">search</button>
                 </div>
             </div>
         </div>

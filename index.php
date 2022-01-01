@@ -89,22 +89,21 @@ include "./includes/validateRegistration.php";
         endif; ?>
     </div>
 </div>
-<?php include "./includes/modals.php" ?>
-
+<?php include "./includes/modals.php"; ?>
 <div class="container-fluid Home">
-    <div class="row ">
+    <!-- <div class="row ">
         <div class="category">
-            <select id="category">
+            <select id="category" class="simpleTextField">
                 <option value="">General</option>
                 <option value="">tech talk</option>
                 <option value="">news</option>
             </select>
-            <label for="category">Category</label>
         </div>
+    </div> -->
+    <div id="searchContainer" style="display: none">
+        <button id="closeSearch" name="searchEnd" class="button darkBrown ColorOrange">X close search</button>
     </div>
-    <div id="searchContainer">
-    </div>
-    <a name="searchEnd"></a>
+
     <div class="row ">
         <div class="col-xs-12 menu blog-orderings">
             <a href="#" class="blog-ordering active" id="dateTime">Most recent</a>|

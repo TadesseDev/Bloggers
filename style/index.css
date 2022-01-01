@@ -5,6 +5,7 @@
 @import url("./defines.css");
 @import url("./slider.css");
 @import url("./footer.css");
+@import url("./landingPage.css");
 html,
 body {
   margin: 0px;
@@ -553,6 +554,17 @@ p.subTitle {
   height: auto;
   min-height: 100px;
 }
+.cropper-container {
+  max-width: 100%;
+  max-height: 100%;
+}
+#searchContainer {
+  display: block;
+  border-bottom: 5px solid #8f006c;
+  border-top: 5px solid #8f006c;
+  margin-bottom: 20px;
+  padding: 20px;
+}
 #searchContainer .card-title {
   border-bottom: 2px solid var(--darkBrown);
 }
@@ -562,6 +574,10 @@ p.subTitle {
 #searchContainer .card {
   margin-bottom: 20px;
 }
+#searchContainer #closeSearch {
+  display: block;
+  margin-left: auto;
+}
 .popIcon {
   height: 40px;
   width: auto;
@@ -570,8 +586,23 @@ p.subTitle {
   min-height: fit-content;
 }
 #topSearchContainer {
-  /* display: none; */
+  display: flex;
+  align-items: center;
+  margin: 10px 0px;
 }
-/* .popIcon img {
-  height: 200px;
+#topSearchContainer button {
+  /* background-image: url("../files/icons/search.svg"); */
+  height: 60px;
+  width: 60px;
+  padding: 0px;
+  border: none;
+  background-color: transparent;
+  /* background-size: cover; */
+}
+#topSearchContainer .searchText {
+  width: 250px;
+  margin-left: 20px;
+}
+/* .category {
+  margin: 10px 0px;
 } */

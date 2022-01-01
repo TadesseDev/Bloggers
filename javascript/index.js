@@ -453,8 +453,17 @@ $(document).ready(function () {
     reorderBlogs();
   }
   let search = $("#topSearchContainer");
+  let searchFooter = $("#footerSearchContainer");
   if (search) {
     search.find(".searchButton").on("click", (x) => searchForContent(search));
+  }
+  if (searchFooter) {
+    searchFooter.find("#searchButton").on("click", (x) => {
+      searchForContent(searchFooter);
+      $(document).ready(function () {
+        window.scrollTo(0, (document.body.scrollHeight * -1));
+      })
+    });
   }
 
   // console.log(blog_orderings)

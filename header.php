@@ -25,6 +25,8 @@ if (isset($_POST['login'])) {
 //     echo $profilePic;
 // }
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,6 +34,7 @@ if (isset($_POST['login'])) {
 <script lang="javascipt" src="./javascript/defined.js"></script>
 <script script script lang="javascript" src="./javascript/functions.js">
 </script>
+
 
 <head>
     <link rel="icon" href="./files/icons/title-logo.svg" type="image/x-icon">
@@ -47,8 +50,10 @@ if (isset($_POST['login'])) {
     <link rel="stylesheet" href="./style/index.css">
 </head>
 
+
 <body>
 
+    <?php include "./pages/landing.php"; ?>
     <div class="normalFlow">
         <header>
             <div class="container-fluid">
@@ -96,17 +101,15 @@ if (isset($_POST['login'])) {
                 <?php endif; ?>
                 <div class="row justify-content-end">
                     <div class="search" id="topSearchContainer">
-                        <select class="searchType">
+                        <select class="searchType simpleTextField">
                             <option value="Everything">Everything</option>
-                            <option value="blog">Blog</option>
-                            <option value="author">Author</option>
+                            <option value="Blog">Blog</option>
+                            <option value="Author">Author</option>
                         </select>
-                        <input type=" text" name="searchText" class="searchText" />
-                        <button type="submit" name="searchButton" class="searchButton">
-                            <img class="icon" src="./files/icons/search.svg" alt="search icon" />
+                        <input type=" text" name="searchText" class="searchText simpleTextField" placeholder="Search for..." />
+                        <button type="submit" name="searchButton" class="searchButton button"> <img class="icon" src="./files/icons/search.svg" alt="search icon" />
                         </button>
                     </div>
-
                 </div>
             </div>
         </header>
