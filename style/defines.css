@@ -24,7 +24,7 @@
   color: var(--darkBrown);
 }
 .ColorLightOrange {
-  color: var(--lightOrange);
+  color: var(--lightOrange) !important;
 }
 .ColorLiGreen {
   color: var(--lightGreen);
@@ -77,6 +77,11 @@
 .title1 {
   font-weight: bold;
   font-size: min(2rem, 30px);
+  color: var(--darkBrown);
+}
+.title2 {
+  font-weight: bold;
+  font-size: min(1.5rem, 20px);
   color: var(--darkBrown);
 }
 .bold {

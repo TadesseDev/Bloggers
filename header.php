@@ -82,7 +82,7 @@ if (isset($_POST['login'])) {
                                 <div>
                                     <form action=""> <input type="email" class="simpleTextField" name='email' id="subscriptionEmail" placeholder='your email' autocomplete="off" required>
 
-                                        <button class="button" type="submit" name='email' id="SubscribeEmail">Go</button>
+                                        <button class="button" type="submit" name='email' id="SubscribeEmail">Subscribe</button>
 
                                     </form>
                                 </div>

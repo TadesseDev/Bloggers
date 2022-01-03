@@ -7,6 +7,8 @@ const BlogType = document.getElementById("type");
 const BlogTypePreview = document.getElementById("BlogTypePreview");
 const BlogTitlePreview = document.getElementById("BlogTitlePreview");
 const register = document.getElementById("registerUserButton");
+const landingPage = document.getElementById("landingPage");
+const subscriptionBody = $('.subscribe-container .subscriptionBody');
 const subscribe = document.getElementsByClassName("subscribe-container")[0];
 // const registrationFormPlace = document.getElementById("registrationFormPlace");
 const BlogcoverImage = $("#blogCoverImage");
@@ -381,23 +383,9 @@ $(document).ready(function () {
     });
   }
   if (register) {
-    $(register).click((ele) => {
-      ele.preventDefault();
-      $.post("./includes/ajax.php", {
-        Register: true
-      }, function (data, status) {
-        updateDom({
-          elementId: 'registrationFormPlace',
-          content: data
-        });
-        // $(registrationFormPlace).html(data);
-        // console.log(registrationFormPlace);
-      });
-    }
-    );
+    $(register).click((ele) => showRegistrationForm(ele));
   }
   // console.log(subscribe);
-  let subscriptionBody = $('.subscribe-container .subscriptionBody');
   let subscribeButton = document.getElementById("SubscribeEmail");
   let email = document.getElementById('subscriptionEmail');
   subscribeButton.setAttribute('disabled', true);
@@ -465,7 +453,25 @@ $(document).ready(function () {
       })
     });
   }
-
+  if (landingPage) {
+    const closeButton = $(landingPage).find(".closeLanding")[0];
+    const normalFlow = $(".normalFlow")[0];
+    const home = $("[data-name='home']")[0];
+    const register = $("[data-name='register']")[0];
+    const login = $("[data-name='login']")[0];
+    $(closeButton).click(x => closeLandingPage(x, normalFlow));
+    $(home).click(x => closeLandingPage(x, normalFlow));
+    $(register).click(x => {
+      closeLandingPage(x, normalFlow);
+      showRegistrationForm(x);
+      window.scrollBy(0, 200);
+    });
+    $(login).click(x => {
+      closeLandingPage(x, normalFlow)
+      showModal({ modalId: 'LoginModal' });
+    }
+    );
+  }
   // console.log(blog_orderings)
   // scrollWindowToBottom();
 });

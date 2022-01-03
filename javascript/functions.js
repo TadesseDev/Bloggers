@@ -100,7 +100,20 @@ const updateDom = (coming) => {
     element.html(content);
   });
 }
+const showRegistrationForm = (ele) => {
+  ele.preventDefault();
+  $.post("./includes/ajax.php", {
+    Register: true
+  }, function (data, status) {
+    updateDom({
+      elementId: 'registrationFormPlace',
+      content: data
+    });
+    // $(registrationFormPlace).html(data);
+    // console.log(registrationFormPlace);
+  });
 
+}
 const excuteQuery = (coming) => {
   if (coming.id === 'emailSubscription') {
     // console.log(coming.value);
@@ -245,6 +258,13 @@ const reorderBlogs = () => {
       });
     })
   }
+}
+const closeLandingPage = function (x, normalFlow) {
+  x.preventDefault();
+  $(normalFlow).css({
+    "display": "block",
+  });
+  $(landingPage).css("display", "none");
 }
 const searchForContent = (element) => {
   let searchIn = $(element).find(".searchType").val();

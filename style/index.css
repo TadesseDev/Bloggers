@@ -535,9 +535,11 @@ p.subTitle {
 }
 .subscribe-container .subscriptionBody > div {
   margin: 0px;
-  background-color: var(--darkBrown);
+  background-color: rgba(126, 126, 126, 0.541);
   padding: 20px;
-  border: 2px solid var(--orange);
+  /* border: 2px solid var(--orange); */
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.397);
+  backdrop-filter: blur(5px);
 }
 .subscribe-container input {
   color: white;
