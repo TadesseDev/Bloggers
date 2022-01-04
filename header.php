@@ -67,7 +67,7 @@ if (isset($_POST['login'])) {
         <header>
             <a name="home"></a>
             <div class="container-fluid">
-                <div class="row justify-content-between">
+                <div class="row justify-content-between align-items-center">
                     <div class="row align-items-center">
                         <a type="submit" name="landing" id="homeLogo" href="./">
                             <div class="logo">
@@ -127,3 +127,4 @@ if (isset($_POST['login'])) {
                 </div>
             </div>
         </header>
+        <a href="#" id="preserveHeader"></a>

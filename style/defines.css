@@ -17,6 +17,9 @@
 .Lired {
   background-color: var(--lightRed) !important;
 }
+.white {
+  background-color: white !important;
+}
 .ColorOrange {
   color: var(--orange) !important;
 }
@@ -86,4 +89,8 @@
 }
 .bold {
   font-weight: bold;
+}
+.stopOnTop {
+  position: sticky;
+  top: 0px;
 }

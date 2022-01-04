@@ -321,17 +321,27 @@ window.onunload = function () {
 
 // this will manage the shadow adding on scroling for the element of author information in uploading a new blog
 
-let headerContainer = document.querySelector("header");
-let authorInfo = $("#authorInfo");
+let preserveHeader = document.querySelector("#preserveHeader");
+let authorInfo = $($("header")[0]);
 let option = {};
 let observer = new IntersectionObserver(function (entries, observer) {
   entries.forEach((entrie) => {
-    if (entrie.intersectionRatio == 0) authorInfo.addClass("bottom-boxShadow");
-    else if (entrie.intersectionRatio > 0)
+    console.log(entrie);
+    if (entrie.intersectionRatio === 0) {
+      console.log("is hidden");
+      authorInfo.addClass("bottom-boxShadow");
+      authorInfo.addClass("stopOnTop");
+      authorInfo.addClass("white");
+    }
+    else {
       authorInfo.removeClass("bottom-boxShadow");
+      authorInfo.removeClass("stopOnTop");
+      authorInfo.removeClass("white");
+    }
   });
 }, option);
-observer.observe(headerContainer);
+if (preserveHeader)
+  observer.observe(preserveHeader);
 
 if (BlogTitle) {
   BlogTitle.oninput = (x) => {

@@ -40,7 +40,7 @@ header {
   letter-spacing: 2px;
   text-transform: capitalize;
   margin-top: 20px;
-  z-index: 1;
+  z-index: 2;
 }
 .heading {
   background-color: #3d0302;
@@ -312,8 +312,6 @@ textarea {
   z-index: 1;
   padding: 10px;
   margin-bottom: 20px;
-  position: sticky;
-  top: 0px;
 }
 .bottom-boxShadow {
   box-shadow: 0px 15px 10px 10px rgba(0, 0, 0, 0.096);
