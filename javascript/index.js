@@ -326,22 +326,19 @@ let authorInfo = $($("header")[0]);
 let option = {};
 let observer = new IntersectionObserver(function (entries, observer) {
   entries.forEach((entrie) => {
-    console.log(entrie);
     if (entrie.intersectionRatio === 0) {
-      console.log("is hidden");
       authorInfo.addClass("bottom-boxShadow");
       authorInfo.addClass("stopOnTop");
-      authorInfo.addClass("white");
     }
     else {
       authorInfo.removeClass("bottom-boxShadow");
       authorInfo.removeClass("stopOnTop");
-      authorInfo.removeClass("white");
     }
   });
 }, option);
-if (preserveHeader)
+if (preserveHeader && window.location.href != 'http://localhost/winmac-blog/AddBlog.php') {
   observer.observe(preserveHeader);
+}
 
 if (BlogTitle) {
   BlogTitle.oninput = (x) => {
