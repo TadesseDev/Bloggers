@@ -10,9 +10,11 @@ const register = document.getElementById("registerUserButton");
 const landingPage = document.getElementById("landingPage");
 const subscriptionBody = $('.subscribe-container .subscriptionBody');
 const subscribe = document.getElementsByClassName("subscribe-container")[0];
+const normalFlow = $(".normalFlow")[0];
 // const registrationFormPlace = document.getElementById("registrationFormPlace");
 const BlogcoverImage = $("#blogCoverImage");
 const profileImage = $("#profileImage");
+const fullPageLoader = $(".fullPageLoader-wrapper")[0]
 // const pictureAdded = () => {
 //   selectFile.style = "display: none";
 //   upload.style = "display: inline";
@@ -343,6 +345,42 @@ if (BlogTitle) {
 }
 
 $(document).ready(function () {
+  if (fullPageLoader) {
+    $(fullPageLoader).css({
+      "display": "none",
+    });
+    {
+      $(normalFlow).css({
+        "display": "block"
+      })
+    }
+  }
+  if (landingPage) {
+    console.log("landing page");
+    const closeButton = $(landingPage).find(".closeLanding")[0];
+    const home = $("[data-name='home']")[0];
+    const register = $("[data-name='register']")[0];
+    const login = $("[data-name='login']")[0];
+    $(normalFlow).css({
+      "display": "none"
+    })
+    var url = new URLSearchParams();
+
+    console.log(url);
+    url.delete("landing");
+    $(closeButton).click(x => closeLandingPage(x, normalFlow));
+    $(home).click(x => closeLandingPage(x, normalFlow));
+    $(register).click(x => {
+      closeLandingPage(x, normalFlow);
+      showRegistrationForm(x);
+      window.scrollBy(0, 200);
+    });
+    $(login).click(x => {
+      closeLandingPage(x, normalFlow)
+      showModal({ modalId: 'LoginModal' });
+    }
+    );
+  }
   if (window.location.pathname == '/winmac-blog/AddBlog.php') {
     scrollWindowToBottom();
   }
@@ -453,25 +491,7 @@ $(document).ready(function () {
       })
     });
   }
-  if (landingPage) {
-    const closeButton = $(landingPage).find(".closeLanding")[0];
-    const normalFlow = $(".normalFlow")[0];
-    const home = $("[data-name='home']")[0];
-    const register = $("[data-name='register']")[0];
-    const login = $("[data-name='login']")[0];
-    $(closeButton).click(x => closeLandingPage(x, normalFlow));
-    $(home).click(x => closeLandingPage(x, normalFlow));
-    $(register).click(x => {
-      closeLandingPage(x, normalFlow);
-      showRegistrationForm(x);
-      window.scrollBy(0, 200);
-    });
-    $(login).click(x => {
-      closeLandingPage(x, normalFlow)
-      showModal({ modalId: 'LoginModal' });
-    }
-    );
-  }
+
   // console.log(blog_orderings)
   // scrollWindowToBottom();
 });

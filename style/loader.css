@@ -1,0 +1,30 @@
+.fullPageLoader-wrapper {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  background: linear-gradient(
+    45deg,
+    rgba(255, 165, 0, 1) 0%,
+    rgba(52, 1, 0, 1) 100%
+  );
+}
+.loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+}
+.loader img {
+  width: 100%;
+  max-width: 100%;
+}
+.normalFlow {
+  display: none;
+}
+/* #landingPage {
+  display: none;
+} */

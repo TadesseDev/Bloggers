@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz:wght@400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Pushster&display=swap");
 @import url("./fonts/registr.css");
 @import url("./registrationForm.css");
 @import url("./rot.css");
@@ -6,6 +7,7 @@
 @import url("./slider.css");
 @import url("./footer.css");
 @import url("./landingPage.css");
+@import url("./loader.css");
 html,
 body {
   margin: 0px;
@@ -23,6 +25,9 @@ body {
 }
 *:focus-visible {
   outline: none;
+}
+.row {
+  max-width: 100%;
 }
 .container-fluid {
   width: 90%;
@@ -368,7 +373,22 @@ textarea {
 .Home {
   padding-top: 100px;
 }
-
+.homeLink {
+  margin-left: 20px;
+  font-size: 2rem;
+  /* text-decoration: underline; */
+  color: var(--darkBrown);
+  font-family: "Pushster", cursive;
+  font-weight: bold;
+}
+.homeLink:hover {
+  color: var(--grayBrown1);
+}
+#homeLogo {
+  background: none;
+  border: none;
+  filter: drop-shadow(0px 10px 5px #340100ec);
+}
 .simpleTextField {
   outline: none;
   border: none;

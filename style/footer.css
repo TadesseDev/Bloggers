@@ -95,3 +95,7 @@
   background-color: var(--grayBrownLight);
   color: var(--darkBrown);
 }
+.footerNavigation a {
+  color: var(--grayBrownLight);
+  text-decoration: none;
+}

@@ -26,10 +26,10 @@
                 <div class="footerNavigation col-sm-4">
                     <h3>BLOGGERS.</h3>
                     <ul>
-                        <li>Home</li>
-                        <li>Blogs</li>
-                        <li>Search</li>
-                        <li>About Us</li>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="./index.php">Blogs</a></li>
+                        <li><a href=" #search">Search</a></li>
+                        <li><a href="#home">About Us</a></li>
                     </ul>
                 </div>
                 <siv class="whatWeDo col-sm-4">
@@ -53,6 +53,7 @@
                     <span class="legalDoc">SITE MAP</span>
                 </div>
                 <div class="col-md-4 contact">
+                    <a name="contact"></a>
                     <strong>CONTACT</strong>
                     <ul class="title">
                         <li>blog-ers.cf@gmail.com</li>

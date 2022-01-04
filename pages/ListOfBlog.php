@@ -3,7 +3,7 @@
 isset($_SESSION) ? "" : session_start();
 $limitBottom = 0;
 $pageId = 1;
-$topLimit = 3;
+$topLimit = 6;
 $order = "dateTime";
 if (isset($_GET['limitId'])) {
     if (is_numeric($_GET['limitId']) && $_GET['limitId'] > 0) {

@@ -1,5 +1,4 @@
 <?php
-@include_once("./includes/connection.php");
 if (file_exists('./includes/constant.php'))
     require_once('./includes/constant.php');
 else
@@ -18,7 +17,9 @@ function setNull(&...$args)
 }
 function login($email, $Password)
 {
-    $res = mysqli_query($_SESSION['con'], "select * from author where email='$email' and Password='$Password'");
+    $con = mysqli_connect($_SESSION['conInfo'][0], $_SESSION['conInfo'][1], $_SESSION['conInfo'][2], $_SESSION['conInfo'][3]);
+
+    $res = mysqli_query($con, "select * from author where email='$email' and Password='$Password'");
     // $res = mysqli_query($con, "select * from author where email='$email' and Password='$Password'");
     $namedResult = mysqli_fetch_assoc($res);
     // echo sizeof($namedResult);
