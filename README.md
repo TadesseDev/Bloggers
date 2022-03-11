@@ -1,6 +1,6 @@
 # Bloggers
 
-> sign in and publish your bloc, or visit and read peoples blob. 😄
+> Sign-in and publish your blog, or visit and read peoples blob. 😄
 
 
 ## Built With
