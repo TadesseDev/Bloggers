@@ -1,6 +1,6 @@
 # Bloggers
 
-> Beloger is a website design with aim of providing a space for a public to pot or read blogs.
+> Beloger is a website design with aim of providing a space for a public to post or read blogs.
 
 ## Built With
 
