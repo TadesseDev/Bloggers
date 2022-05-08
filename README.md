@@ -20,7 +20,7 @@
 [Coming soon]() 🙂
 
 ## Getting Started
-> ### this project require setting up MySql server and PHP config if to be forked and used. 
+> ### This project require setting up MySql server and PHP config if to be forked and used. 
 > Also Server (Apatch) is required to run the project
 1. Open [main branch](https://github.com/Tadesse-Alemayehu/Math-Magicians)
 2. Open VSCode or terminal and navigate to the folder where you would like to clone the project.
