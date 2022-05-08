@@ -1,6 +1,8 @@
 # Bloggers
 
-> Beloger is a website design with aim of providing a space for a public to post or read blogs.
+> Blogger is a website design with aim of providing a space for the public to post or read blogs. 
+> Besides bloging a walking customer will be able to read blogs from bloggers. 
+> it provides a profile for customers that includes their reputaion and other information.
 
 ## Built With
 
@@ -9,7 +11,7 @@
 - PHP
 - MySql
 
-## screenshot
+## Screenshot
 > ### Landing page
 ![Capture](https://user-images.githubusercontent.com/69077061/165298973-92bcd0ba-1180-4644-bcf2-189052970a38.PNG)
 > ### Home page
@@ -20,15 +22,15 @@
 [Coming soon]() 🙂
 
 ## Getting Started
-> ### This project require setting up MySql server and PHP config if to be forked and used. 
-> Also Server (Apatch) is required to run the project
+> ### This project requires setting up the MySql server and PHP config file, if to be forked and used. 
+> Also Server (apache) is required to run the project
 1. Open [main branch](https://github.com/Tadesse-Alemayehu/Math-Magicians)
 2. Open VSCode or terminal and navigate to the folder where you would like to clone the project.
 3. Type "pwd" to see your working directory.
 4. [Clone repository](https://github.com/Tadesse-Alemayehu/Math-Magicians)(git clone "branch-link")
-5. Run git branch to see list of branch (section) in this case.
-6. make sure you have instal MySql sqrver and `configur (User and Database)` name based on information in the [Header](https://github.com/Tadesse-Alemayehu/Blog/blob/preview-update/header.php) file.
-7. Also you should set up your apatch with PHP to run the project.
+5. Run `git branch` to see the list of branches (section) in this case.
+6. make sure you have installed the MySql server and `configure (User and Database)` name based on information in the [Header](https://github.com/Tadesse-Alemayehu/Blog/blob/preview-update/header.php) file.
+7. Also you should set up your apache with PHP to run the project.
 8. Enjoy 😎
 
 ## Authors 👱‍♂️
