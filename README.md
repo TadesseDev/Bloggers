@@ -1,8 +1,8 @@
 # Bloggers
 
 > Blogger is a website design with aim of providing a space for the public to post or read blogs. 
-> Besides bloging a walking customer will be able to read blogs from bloggers. 
-> it provides a profile for customers that includes their reputaion and other information.
+> Besides blogging a walking customer will be able to read blogs from bloggers. 
+> it provides a profile for customers that includes their reputation and other information.
 
 ## Built With
 
