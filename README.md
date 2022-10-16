@@ -19,7 +19,7 @@
 
 ## Live Demo
 
-[Coming soon]() 🙂
+[bloggers](http://bloggers.cf/) 🙂
 
 ## Getting Started
 > ### This project requires setting up the MySql server and PHP config file, if to be forked and used. 
